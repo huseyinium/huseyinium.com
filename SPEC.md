@@ -35,6 +35,7 @@ This document is the single source of truth for `huseyinium.com`. Every design d
 12. [Open Source Guidelines](#12-open-source-guidelines)
 13. [Deployment](#13-deployment)
 14. [Content Inventory](#14-content-inventory)
+15. [Testing Plan](#15-testing-plan)
 
 ---
 
@@ -171,10 +172,9 @@ All colors are defined as CSS custom properties in `globals.css` and exposed via
 
 ```css
 /* Font stack */
---font-sans: "Geist", system-ui, sans-serif; /* body, UI */
---font-mono: "Geist Mono", "JetBrains Mono", monospace; /* code, labels */
---font-display:
-  "Cal Sans", system-ui, sans-serif; /* hero heading + section headings only */
+--font-sans: 'Geist', system-ui, sans-serif; /* body, UI */
+--font-mono: 'Geist Mono', 'JetBrains Mono', monospace; /* code, labels */
+--font-display: 'Cal Sans', system-ui, sans-serif; /* hero heading + section headings only */
 /* Cal Sans: self-host woff2 from cal.com/fonts or install @calcom/cal-sans npm package.
    Body and UI text stays Geist. Only apply font-display to .text-hero and section H2s. */
 
@@ -210,10 +210,10 @@ export const motion = {
   ease: {
     out: [0.0, 0.0, 0.2, 1],
     inOut: [0.4, 0, 0.2, 1],
-    spring: { type: "spring", stiffness: 100, damping: 15 },
-    bounce: { type: "spring", stiffness: 400, damping: 10 },
+    spring: { type: 'spring', stiffness: 100, damping: 15 },
+    bounce: { type: 'spring', stiffness: 400, damping: 10 },
   },
-};
+}
 ```
 
 ### Component Variants
@@ -228,7 +228,7 @@ export const motion = {
 The CSS variable approach means a future theme swap (e.g., light mode, alternate accent) requires only:
 
 ```css
-[data-theme="violet"] {
+[data-theme='violet'] {
   --color-accent: #8b5cf6;
   --color-accent-dim: #6d28d9;
   --color-accent-glow: #8b5cf633;
@@ -368,11 +368,11 @@ On devices where `WebGLRenderingContext` is unavailable (rare but real):
 ```ts
 const webglAvailable = (() => {
   try {
-    return !!document.createElement("canvas").getContext("webgl2");
+    return !!document.createElement('canvas').getContext('webgl2')
   } catch {
-    return false;
+    return false
   }
-})();
+})()
 ```
 
 ---
@@ -632,18 +632,18 @@ Each project card links to `/projects/[slug]` for the full case study. The card'
 
 ```ts
 interface Project {
-  id: string;
-  title: string;
-  description: string; // 1-2 sentences
-  longDescription?: string; // for featured cards
-  category: "startup" | "hackathon" | "freelance" | "open-source" | "personal";
-  stack: string[];
-  coverImage: string; // /images/projects/[id].png
-  liveUrl?: string;
-  githubUrl?: string;
-  prize?: string; // "ETHGlobal Cannes — Worldcoin Pool Prize"
-  featured: boolean; // shows in top 2 slots
-  date: string; // "2025-07"
+  id: string
+  title: string
+  description: string // 1-2 sentences
+  longDescription?: string // for featured cards
+  category: 'startup' | 'hackathon' | 'freelance' | 'open-source' | 'personal'
+  stack: string[]
+  coverImage: string // /images/projects/[id].png
+  liveUrl?: string
+  githubUrl?: string
+  prize?: string // "ETHGlobal Cannes — Worldcoin Pool Prize"
+  featured: boolean // shows in top 2 slots
+  date: string // "2025-07"
 }
 ```
 
@@ -711,17 +711,17 @@ Removed from main grid (archived): Rent3, ODTÜ BDAYS 2024, InvestBuddy, Type-i 
 
 ```ts
 interface CaseStudyFrontmatter {
-  id: string;
-  title: string;
-  description: string; // one line
-  problem: string; // one-sentence summary for meta
-  outcome: string; // one-sentence summary for meta
-  stack: string[];
-  liveUrl?: string;
-  githubUrl?: string;
-  coverImage: string; // /images/projects/[id].png
-  date: string; // "2026-04"
-  category: "startup" | "hackathon" | "freelance";
+  id: string
+  title: string
+  description: string // one line
+  problem: string // one-sentence summary for meta
+  outcome: string // one-sentence summary for meta
+  stack: string[]
+  liveUrl?: string
+  githubUrl?: string
+  coverImage: string // /images/projects/[id].png
+  date: string // "2026-04"
+  category: 'startup' | 'hackathon' | 'freelance'
 }
 ```
 
@@ -873,11 +873,11 @@ Languages
 
 ```yaml
 ---
-title: "Post Title"
-excerpt: "One paragraph summary"
-date: "2026-06-14"
-tags: ["AI", "Startups", "Engineering"]
-coverImage: "/images/blog/post-slug.png"
+title: 'Post Title'
+excerpt: 'One paragraph summary'
+date: '2026-06-14'
+tags: ['AI', 'Startups', 'Engineering']
+coverImage: '/images/blog/post-slug.png'
 readingTime: 5
 ---
 ```
@@ -1044,7 +1044,7 @@ Next.js page transitions between `/`, `/blog/*`, and `/projects/*`:
 All animations respect `prefers-reduced-motion`:
 
 ```ts
-const prefersReducedMotion = useReducedMotion();
+const prefersReducedMotion = useReducedMotion()
 // pass to Framer Motion variants and Three.js uTime multiplier
 ```
 
@@ -1109,46 +1109,46 @@ const HeroScene = dynamic(() => import('@/components/3d/HeroScene'), {
 ```ts
 export const metadata: Metadata = {
   title: {
-    default: "Huseyin Karatas — Co-Founder, Full-Stack Engineer",
-    template: "%s | Huseyin Karatas",
+    default: 'Huseyin Karatas — Co-Founder, Full-Stack Engineer',
+    template: '%s | Huseyin Karatas',
   },
   description:
-    "Co-Founder & CEO at ARCY AI. Full-stack engineer, serial founder, and content creator based in Istanbul. Building AI agents that close the product-market fit loop.",
+    'Co-Founder & CEO at ARCY AI. Full-stack engineer, serial founder, and content creator based in Istanbul. Building AI agents that close the product-market fit loop.',
   keywords: [
-    "Huseyin Karatas",
-    "ARCY AI",
-    "full-stack engineer",
-    "AI founder",
-    "Next.js developer",
-    "React developer",
-    "Istanbul developer",
-    "huseyinium",
-    "freelance developer Turkey",
+    'Huseyin Karatas',
+    'ARCY AI',
+    'full-stack engineer',
+    'AI founder',
+    'Next.js developer',
+    'React developer',
+    'Istanbul developer',
+    'huseyinium',
+    'freelance developer Turkey',
   ],
-  authors: [{ name: "Huseyin Karatas", url: "https://huseyinium.com" }],
-  creator: "Huseyin Karatas",
+  authors: [{ name: 'Huseyin Karatas', url: 'https://huseyinium.com' }],
+  creator: 'Huseyin Karatas',
   openGraph: {
-    type: "website",
-    locale: "en_US",
-    url: "https://huseyinium.com",
-    siteName: "Huseyin Karatas",
-    title: "Huseyin Karatas — Co-Founder, Full-Stack Engineer",
-    description: "Building AI agents that close the product-market fit loop.",
-    images: [{ url: "/og", width: 1200, height: 630 }],
+    type: 'website',
+    locale: 'en_US',
+    url: 'https://huseyinium.com',
+    siteName: 'Huseyin Karatas',
+    title: 'Huseyin Karatas — Co-Founder, Full-Stack Engineer',
+    description: 'Building AI agents that close the product-market fit loop.',
+    images: [{ url: '/og', width: 1200, height: 630 }],
   },
   twitter: {
-    card: "summary_large_image",
-    title: "Huseyin Karatas — Co-Founder, Full-Stack Engineer",
-    description: "Building AI agents that close the product-market fit loop.",
-    images: ["/og"],
+    card: 'summary_large_image',
+    title: 'Huseyin Karatas — Co-Founder, Full-Stack Engineer',
+    description: 'Building AI agents that close the product-market fit loop.',
+    images: ['/og'],
   },
   robots: {
     index: true,
     follow: true,
     googleBot: { index: true, follow: true },
   },
-  alternates: { canonical: "https://huseyinium.com" },
-};
+  alternates: { canonical: 'https://huseyinium.com' },
+}
 ```
 
 ### OG Image Generation (Vercel OG)
@@ -1321,7 +1321,7 @@ Vercel Analytics enabled (privacy-first, no cookies, no GDPR banner needed):
 
 ```tsx
 // app/layout.tsx
-import { Analytics } from "@vercel/analytics/react";
+import { Analytics } from '@vercel/analytics/react'
 // <Analytics /> in root layout
 ```
 
@@ -1388,5 +1388,173 @@ Everything needed before launch. Track completion here.
 - [ ] Vercel deployment live
 
 ---
+
+---
+
+## 15. Testing Plan
+
+### Philosophy
+
+Tests verify **behavior through public interfaces**, not implementation details. A test that breaks on refactor but not on behavioral regression is a bad test.
+
+For a portfolio site the surfaces that actually break silently are: the MDX pipeline, the contact API route, and the rendered page structure (section IDs, metadata). Three.js scenes and Framer Motion animations are not tested — they have no stable public interface and WebGL doesn't run in Node.
+
+### Infrastructure
+
+| Tool                 | Purpose                                                        |
+| -------------------- | -------------------------------------------------------------- |
+| **Vitest**           | Unit and integration tests for `lib/` and `app/api/`           |
+| **@playwright/test** | E2E tests for page structure, navigation, and the contact form |
+| **msw**              | Mock Resend HTTP calls in API route tests (no real email sent) |
+
+```bash
+bun add -D vitest @vitejs/plugin-react jsdom @testing-library/react @testing-library/jest-dom
+bun add -D @playwright/test
+bun add -D msw
+```
+
+Add to `package.json`:
+
+```json
+{
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:e2e": "playwright test"
+  }
+}
+```
+
+`vitest.config.ts`:
+
+```ts
+import { defineConfig } from 'vitest/config'
+import react from '@vitejs/plugin-react'
+import path from 'path'
+
+export default defineConfig({
+  plugins: [react()],
+  test: {
+    environment: 'jsdom',
+    setupFiles: ['./tests/setup.ts'],
+  },
+  resolve: {
+    alias: { '@': path.resolve(__dirname, '.') },
+  },
+})
+```
+
+`playwright.config.ts`:
+
+```ts
+import { defineConfig, devices } from '@playwright/test'
+
+export default defineConfig({
+  testDir: './tests/e2e',
+  webServer: { command: 'bun dev', url: 'http://localhost:3000', reuseExistingServer: true },
+  use: { baseURL: 'http://localhost:3000' },
+  projects: [
+    { name: 'chromium', use: { ...devices['Desktop Chrome'] } },
+    { name: 'mobile', use: { ...devices['iPhone 14'] } },
+  ],
+})
+```
+
+### What We Test
+
+#### Layer 1 — `lib/` functions (Vitest unit)
+
+`lib/mdx.ts` is the highest-risk utility: it parses all content and its bugs silently produce 404s or wrong data.
+
+| Behavior                                          | Test                                  |
+| ------------------------------------------------- | ------------------------------------- |
+| `getAllPosts()` returns posts sorted newest-first | Parse fixture MDX files, assert order |
+| `getPostBySlug(slug)` returns correct frontmatter | Fixture file with known frontmatter   |
+| `getPostBySlug` returns `null` for unknown slug   | Assert null, not throw                |
+| `getAllProjects()` returns all project MDX files  | Count fixture files                   |
+| Post without optional `coverImage` doesn't error  | Fixture without the field             |
+
+#### Layer 2 — API routes (Vitest integration)
+
+`app/api/contact/route.ts` — only testable behavior is input validation and the Resend call.
+
+| Behavior                                        | Test                         |
+| ----------------------------------------------- | ---------------------------- |
+| POST with all valid fields → 200 + success JSON | Mock Resend, assert response |
+| POST with missing `name` → 400                  | No mock needed               |
+| POST with invalid email format → 400            | No mock needed               |
+| POST with missing `message` → 400               | No mock needed               |
+| POST when Resend throws → 500 + error JSON      | Mock Resend to reject        |
+
+msw intercepts `https://api.resend.com` — no real email sent in tests.
+
+#### Layer 3 — OG image routes (Vitest integration)
+
+| Behavior                                                  | Test                         |
+| --------------------------------------------------------- | ---------------------------- |
+| `GET /og` returns 200 with `content-type: image/png`      | Fetch route handler directly |
+| `GET /blog/og?title=Foo&date=2026-01-01` returns 200      | Same                         |
+| `GET /projects/og?title=Bar&category=startup` returns 200 | Same                         |
+
+#### Layer 4 — Page structure (Playwright E2E)
+
+These tests catch the class of regression where a section disappears, an anchor breaks, or metadata goes missing.
+
+| Behavior                                                  | Test                                                    |
+| --------------------------------------------------------- | ------------------------------------------------------- |
+| `/` renders all 8 section IDs (`#hero` … `#contact`)      | `page.locator('#hero')` etc.                            |
+| Hero text is in initial HTML (not JS-deferred)            | `page.content()` before hydration includes hero heading |
+| Canvas `z-index` is lower than hero text                  | Computed CSS assertion                                  |
+| Nav links scroll to correct sections                      | Click "About", assert `#about` in view                  |
+| Nav becomes opaque after 80px scroll                      | Scroll 100px, assert backdrop class                     |
+| `/blog` renders blog listing                              | `page.locator('article')` count > 0                     |
+| `/blog/[slug]` renders post title and reading time        | Visit first post URL                                    |
+| `/projects/[slug]` renders problem/built/outcome headings | Visit first project URL                                 |
+
+#### Layer 5 — Contact form (Playwright E2E)
+
+| Behavior                                              | Test                                                           |
+| ----------------------------------------------------- | -------------------------------------------------------------- |
+| Form shows validation error when submitted empty      | Submit empty, assert error message                             |
+| Form shows success message on valid submit (mock API) | Intercept `POST /api/contact`, return 200, assert success copy |
+| Form shows error message when API fails               | Intercept route, return 500, assert error copy                 |
+| Submit button shows loading state while in-flight     | Intercept with delay, assert spinner                           |
+
+Use Playwright `page.route('/api/contact', ...)` to intercept — no Resend key needed in E2E.
+
+### What We Explicitly Don't Test
+
+| Area                        | Why                                                                                                                        |
+| --------------------------- | -------------------------------------------------------------------------------------------------------------------------- |
+| Three.js / WebGL scenes     | No stable DOM surface; WebGL unavailable in Node/Chromium headless without GPU                                             |
+| Framer Motion animations    | Animation values are implementation details; visual regression belongs in visual testing tools (Chromatic), not unit tests |
+| CSS custom property values  | Design token changes intentionally cascade; testing specific hex values couples tests to design                            |
+| `StaticHeroFallback` render | Only activates on WebGL failure — hard to simulate reliably; covered by code review instead                                |
+| OG image visual output      | Pixel-level — belongs in visual snapshot testing, not behavioral testing                                                   |
+
+### TDD Loop for This Project
+
+Follow vertical slices — one behavior at a time:
+
+```
+RED:   Write test for one behavior → fails (function/route doesn't exist yet)
+GREEN: Write minimal code to pass → passes
+NEXT:  Move to next behavior
+```
+
+Start with `lib/mdx.ts` because everything downstream (blog, projects, OG images, metadata) depends on it.
+
+**Sequence:**
+
+1. `getAllPosts` returns empty array when no MDX files exist
+2. `getAllPosts` returns one post when one MDX file exists with correct frontmatter
+3. `getAllPosts` sorts newest-first when multiple posts exist
+4. `getPostBySlug` returns correct post for known slug
+5. `getPostBySlug` returns null for unknown slug
+6. Contact API: 400 on missing fields
+7. Contact API: 200 on valid input (Resend mocked)
+8. Contact API: 500 on Resend failure
+9. E2E: homepage section IDs present
+10. E2E: contact form success/error states
 
 _This spec is the contract between vision and implementation. When in doubt, return here._
