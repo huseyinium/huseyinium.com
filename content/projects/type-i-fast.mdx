@@ -1,0 +1,20 @@
+---
+title: "Type-i Fast"
+description: "Typing speed trainer with AI-generated passages tuned to your weak keys."
+category: "freelance"
+stack: ["Next.js", "OpenAI"]
+coverImage: "/images/projects/type-i-fast.png"
+date: "2022-12"
+---
+
+## Problem
+
+Standard typing trainers use fixed texts. Your weakest keys never get targeted practice — you just repeatedly type passages that happen to use them. I wanted a trainer that adapts: identify where you slow down, then generate passages that force you to practice exactly those keys.
+
+## What I Built
+
+A Next.js app that tracks per-key latency during typing sessions. After each session, it sends your slowest key combinations to the OpenAI API and generates a custom passage weighted toward those sequences. The next session's text is personalized to your actual weak spots.
+
+## Outcome
+
+My first project using the OpenAI API. Learned prompt engineering basics and how to build tight feedback loops between user behavior and AI generation. Still use it occasionally.

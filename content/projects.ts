@@ -101,4 +101,47 @@ export const PROJECTS: Project[] = [
     featured: false,
     date: '2023-11',
   },
+  {
+    id: 'rent3',
+    title: 'Rent3',
+    description:
+      'Web3-powered rental marketplace letting tenants pay rent with crypto and on-chain deposit escrow.',
+    category: 'personal',
+    stack: ['Solidity', 'Next.js', 'Hardhat'],
+    coverImage: '/images/projects/rent3.png',
+    featured: false,
+    date: '2023-04',
+  },
+  {
+    id: 'odtu-bdays',
+    title: 'ODTÜ BDAYS 2024',
+    description:
+      'Birthday celebration platform for METU students — event coordination and gift pooling.',
+    category: 'personal',
+    stack: ['React', 'Firebase'],
+    coverImage: '/images/projects/odtu-bdays.png',
+    featured: false,
+    date: '2024-03',
+  },
+  {
+    id: 'investbuddy',
+    title: 'InvestBuddy',
+    description:
+      'Portfolio tracking and investment insight tool for early-stage retail investors in Turkey.',
+    category: 'personal',
+    stack: ['React Native', 'FastAPI', 'PostgreSQL'],
+    coverImage: '/images/projects/investbuddy.png',
+    featured: false,
+    date: '2023-02',
+  },
+  {
+    id: 'type-i-fast',
+    title: 'Type-i Fast',
+    description: 'Typing speed trainer with AI-generated passages tuned to your weak keys.',
+    category: 'personal',
+    stack: ['Next.js', 'OpenAI'],
+    coverImage: '/images/projects/type-i-fast.png',
+    featured: false,
+    date: '2022-12',
+  },
 ]
