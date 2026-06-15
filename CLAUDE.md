@@ -15,19 +15,23 @@ bun build            # production build
 bun lint             # ESLint
 bun format           # Prettier
 bun type-check       # tsc --noEmit
+bun run test         # run Vitest unit/integration tests (NOT `bun test` — that runs bun's native runner)
+bun run test:watch   # watch mode
 ```
 
-No test suite yet — verify features by running `bun dev` and observing in browser.
+IMPORTANT: always use `bun run test`, never `bun test`. `bun test` invokes bun's native runner which does not support Vitest's `// @vitest-environment` per-file docblocks, causing component tests to fail.
 
 ## Architecture
 
-**Framework:** Next.js 16.2 App Router, static export. All 3D components are `'use client'` and loaded via `next/dynamic` with `ssr: false`.
+**Framework:** Next.js 16.2 App Router, deployed serverless on Vercel. All 3D components are `'use client'` and loaded via `next/dynamic` with `ssr: false`.
 
 **Single-page + sub-routes:** `/` renders all portfolio sections as one long scroll. `/blog/[slug]` and `/projects/[slug]` are separate pages sharing the same root layout.
 
 **3D pipeline:** React Three Fiber wraps Three.js. Custom GLSL shaders live as inline `ShaderMaterial` strings — no `.glsl` files, no bundler plugin needed. Post-processing via `@react-three/postprocessing`. All Three.js scenes are lazy-loaded and wrapped in `<Suspense>` + `<ErrorBoundary>` that renders `<StaticHeroFallback>` on failure.
 
 **Styling:** Tailwind CSS v4 with all design tokens as CSS custom properties in `globals.css`. Never hardcode colors — always use `var(--color-*)`. The accent is `#B8E04A`. Changing the palette means changing CSS variables only, no component edits.
+
+**CSS token warning:** `globals.css` runs shadcn's token system alongside the portfolio's own `--color-*` tokens. The `@theme inline` block maps Tailwind's `accent` and `border` utility classes to shadcn's tokens (not the portfolio's). Always use CSS variable syntax (`bg-[--color-accent]`, `border-[--color-border]`) — NEVER use `bg-accent` or `border-border` for portfolio UI.
 
 **Fonts:** Geist (body/UI via `next/font/google`) + Geist Mono (code/labels) + Cal Sans (hero heading and section H2s only — self-hosted woff2 via `next/font/local`).
 

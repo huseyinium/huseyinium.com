@@ -28,26 +28,41 @@ export async function getAllPosts(): Promise<Post[]> {
   const files = fs.readdirSync(dir).filter((f) => f.endsWith('.mdx'))
   if (files.length === 0) return []
 
-  const posts = files.map((file) => {
-    const slug = file.replace(/\.mdx$/, '')
-    const raw = fs.readFileSync(path.join(dir, file), 'utf-8')
-    const { data, content } = matter(raw)
-    return {
-      slug,
-      title: data.title ?? '',
-      excerpt: data.excerpt ?? '',
-      date: data.date ?? '',
-      tags: data.tags ?? [],
-      coverImage: data.coverImage,
-      readingTime: data.readingTime,
-      content,
-    } satisfies Post
-  })
+  const posts: Post[] = []
+  for (const file of files) {
+    try {
+      const slug = file.replace(/\.mdx$/, '')
+      const raw = fs.readFileSync(path.join(dir, file), 'utf-8')
+      const { data, content } = matter(raw)
+      posts.push({
+        slug,
+        title: data.title ?? '',
+        excerpt: data.excerpt ?? '',
+        date: data.date ?? '',
+        tags: data.tags ?? [],
+        coverImage: data.coverImage,
+        readingTime: data.readingTime,
+        content,
+      } satisfies Post)
+    } catch (err) {
+      console.error(`[mdx] failed to parse ${file}:`, err)
+    }
+  }
 
-  return posts.sort((a, b) => (a.date < b.date ? 1 : -1))
+  return posts.sort((a, b) => {
+    const aTime = new Date(a.date).getTime()
+    const bTime = new Date(b.date).getTime()
+    if (isNaN(aTime) && isNaN(bTime)) return 0
+    if (isNaN(aTime)) return 1
+    if (isNaN(bTime)) return -1
+    return bTime - aTime
+  })
 }
 
 export async function getPostBySlug(slug: string): Promise<Post | null> {
+  // Prevent path traversal via URL-supplied slugs
+  if (!/^[a-z0-9-]+$/i.test(slug)) return null
+
   const file = path.join(blogDir(), `${slug}.mdx`)
   if (!fs.existsSync(file)) return null
 
