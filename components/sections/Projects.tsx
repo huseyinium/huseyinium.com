@@ -22,7 +22,7 @@ const FILTERS: { label: string; value: Filter }[] = [
 
 const supportsHover = typeof window !== 'undefined' && window.matchMedia('(hover:hover)').matches
 
-function ProjectCard({ project }: { project: Project }) {
+export function ProjectCard({ project }: { project: Project }) {
   const [hovered, setHovered] = useState(false)
 
   return (
@@ -97,7 +97,9 @@ function ProjectCard({ project }: { project: Project }) {
 export function Projects() {
   const [active, setActive] = useState<Filter>('all')
 
-  const filtered = active === 'all' ? PROJECTS : PROJECTS.filter((p) => p.category === active)
+  const mainProjects = PROJECTS.filter((p) => p.category !== 'personal')
+  const filtered =
+    active === 'all' ? mainProjects : mainProjects.filter((p) => p.category === active)
 
   return (
     <section id="projects" className="py-24 md:py-32">
