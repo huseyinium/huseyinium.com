@@ -17,10 +17,15 @@ export async function generateMetadata({
   const { slug } = await params
   const study = getCaseStudyBySlug(slug)
   if (!study) return {}
+  const ogUrl = `/projects/og?title=${encodeURIComponent(study.title)}&category=${encodeURIComponent(study.category)}`
   return {
     title: study.title,
     description: study.description,
-    openGraph: { title: study.title, description: study.description },
+    openGraph: {
+      title: study.title,
+      description: study.description,
+      images: [ogUrl],
+    },
   }
 }
 

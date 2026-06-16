@@ -27,7 +27,7 @@ vi.mock('@/lib/case-studies', () => ({
 }))
 
 import { getCaseStudyBySlug, getAllCaseStudies } from '@/lib/case-studies'
-import ProjectSlugPage from '@/app/projects/[slug]/page'
+import ProjectSlugPage, { generateMetadata } from '@/app/projects/[slug]/page'
 
 const MockContent: React.FC = () => (
   <div>
@@ -96,5 +96,14 @@ describe('/projects/[slug] page', () => {
     await expect(
       ProjectSlugPage({ params: Promise.resolve({ slug: 'nonexistent' }) })
     ).rejects.toThrow('NEXT_NOT_FOUND')
+  })
+
+  it('generateMetadata includes openGraph image pointing to /projects/og', async () => {
+    const meta = await generateMetadata({ params: Promise.resolve({ slug: 'arcy-ai' }) })
+    const images = meta.openGraph?.images
+    const url = Array.isArray(images) ? String(images[0]) : String(images)
+    expect(url).toContain('/projects/og')
+    expect(url).toContain('title=')
+    expect(url).toContain('category=')
   })
 })
