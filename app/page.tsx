@@ -4,6 +4,7 @@ import { Projects } from '@/components/sections/Projects'
 import { Skills } from '@/components/sections/Skills'
 import { Achievements } from '@/components/sections/Achievements'
 import { BlogSection } from '@/components/sections/Blog'
+import { Contact } from '@/components/sections/contact'
 import { getAllPosts } from '@/lib/blog'
 
 export default async function Home() {
@@ -18,6 +19,7 @@ export default async function Home() {
       <Skills />
       <Achievements />
       <BlogSection posts={recentPosts} />
+      <Contact />
     </main>
   )
 }
