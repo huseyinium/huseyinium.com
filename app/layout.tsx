@@ -31,6 +31,9 @@ export const metadata: Metadata = {
   description:
     'Portfolio of Huseyin Karatas — Co-Founder & CEO at ARCY AI, full-stack engineer, serial founder, and content creator.',
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? 'https://huseyinium.com'),
+  openGraph: {
+    images: [{ url: '/og', width: 1200, height: 630 }],
+  },
 }
 
 export default function RootLayout({
