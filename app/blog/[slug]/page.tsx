@@ -18,10 +18,15 @@ export async function generateMetadata({
   const { slug } = await params
   const post = getPostBySlug(slug)
   if (!post) return {}
+  const ogUrl = `/blog/og?title=${encodeURIComponent(post.title)}&date=${encodeURIComponent(post.date)}`
   return {
     title: post.title,
     description: post.excerpt,
-    openGraph: { title: post.title, description: post.excerpt },
+    openGraph: {
+      title: post.title,
+      description: post.excerpt,
+      images: [ogUrl],
+    },
   }
 }
 

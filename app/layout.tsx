@@ -26,14 +26,50 @@ const calSans = localFont({
   display: 'swap',
 })
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://huseyinium.com'
+
 export const metadata: Metadata = {
-  title: 'Huseyin Karatas — Co-Founder & Full-Stack Engineer',
+  title: {
+    default: 'Huseyin Karatas — Co-Founder, Full-Stack Engineer',
+    template: '%s | Huseyin Karatas',
+  },
   description:
-    'Portfolio of Huseyin Karatas — Co-Founder & CEO at ARCY AI, full-stack engineer, serial founder, and content creator.',
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? 'https://huseyinium.com'),
+    'Co-Founder & CEO at ARCY AI. Full-stack engineer, serial founder, and content creator based in Istanbul. Building AI agents that close the product-market fit loop.',
+  keywords: [
+    'Huseyin Karatas',
+    'ARCY AI',
+    'full-stack engineer',
+    'AI founder',
+    'Next.js developer',
+    'React developer',
+    'Istanbul developer',
+    'huseyinium',
+    'freelance developer Turkey',
+  ],
+  authors: [{ name: 'Huseyin Karatas', url: siteUrl }],
+  creator: 'Huseyin Karatas',
+  metadataBase: new URL(siteUrl),
   openGraph: {
+    type: 'website',
+    locale: 'en_US',
+    url: siteUrl,
+    siteName: 'Huseyin Karatas',
+    title: 'Huseyin Karatas — Co-Founder, Full-Stack Engineer',
+    description: 'Building AI agents that close the product-market fit loop.',
     images: [{ url: '/og', width: 1200, height: 630 }],
   },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Huseyin Karatas — Co-Founder, Full-Stack Engineer',
+    description: 'Building AI agents that close the product-market fit loop.',
+    images: ['/og'],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: { index: true, follow: true },
+  },
+  alternates: { canonical: siteUrl },
 }
 
 export default function RootLayout({
