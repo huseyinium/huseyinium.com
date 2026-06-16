@@ -9,6 +9,7 @@ vi.mock('next/font/local', () => ({
   default: () => ({ variable: '--font-cal-sans', className: '' }),
 }))
 
+vi.mock('@vercel/analytics/react', () => ({ Analytics: () => null }))
 vi.mock('@/components/layout/Navbar', () => ({ Navbar: () => null }))
 vi.mock('@/components/layout/Footer', () => ({ Footer: () => null }))
 vi.mock('@/components/ui/CustomCursor', () => ({ CustomCursor: () => null }))
