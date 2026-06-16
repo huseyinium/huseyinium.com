@@ -9,15 +9,36 @@ vi.mock('next/navigation', () => ({
   }),
 }))
 
-vi.mock('@/lib/mdx', () => ({
-  getCaseStudyBySlug: vi.fn(),
+vi.mock('next/link', () => ({
+  default: ({
+    href,
+    children,
+    ...props
+  }: {
+    href: string
+    children: React.ReactNode
+    [key: string]: unknown
+  }) => React.createElement('a', { href, ...props }, children),
 }))
 
-import { getCaseStudyBySlug } from '@/lib/mdx'
+vi.mock('@/lib/case-studies', () => ({
+  getCaseStudyBySlug: vi.fn(),
+  getAllCaseStudies: vi.fn(),
+}))
+
+import { getCaseStudyBySlug, getAllCaseStudies } from '@/lib/case-studies'
 import ProjectSlugPage from '@/app/projects/[slug]/page'
 
+const MockContent: React.FC = () => (
+  <div>
+    <h2>Problem</h2>
+    <h2>What I Built</h2>
+    <h2>Outcome</h2>
+  </div>
+)
+
 const mockStudy = {
-  slug: 'arcy-ai',
+  id: 'arcy-ai',
   title: 'ARCY AI',
   description: 'AI-powered recruitment platform',
   category: 'startup' as const,
@@ -25,12 +46,14 @@ const mockStudy = {
   coverImage: '/images/projects/arcy-ai.png',
   date: '2024-01',
   liveUrl: 'https://arcy.ai',
-  content: `## Problem\n\nManual recruiting is slow.\n\n## What I Built\n\nAn AI agent pipeline.\n\n## Outcome\n\nClosed 10 clients in 3 months.`,
+  featured: true,
+  Component: MockContent,
 }
 
 describe('/projects/[slug] page', () => {
   beforeEach(() => {
-    vi.mocked(getCaseStudyBySlug).mockResolvedValue(mockStudy)
+    vi.mocked(getCaseStudyBySlug).mockReturnValue(mockStudy)
+    vi.mocked(getAllCaseStudies).mockReturnValue([])
   })
 
   it('renders the project title as H1', async () => {
@@ -39,7 +62,7 @@ describe('/projects/[slug] page', () => {
     expect(screen.getByRole('heading', { level: 1, name: /arcy ai/i })).toBeInTheDocument()
   })
 
-  it('renders problem, built, and outcome section headings', async () => {
+  it('renders the project content component', async () => {
     const Page = await ProjectSlugPage({ params: Promise.resolve({ slug: 'arcy-ai' }) })
     render(Page as React.ReactElement)
     expect(screen.getByRole('heading', { name: /problem/i })).toBeInTheDocument()
@@ -61,8 +84,15 @@ describe('/projects/[slug] page', () => {
     expect(back).toHaveAttribute('href', '/projects')
   })
 
+  it('renders a live site link when liveUrl is provided', async () => {
+    const Page = await ProjectSlugPage({ params: Promise.resolve({ slug: 'arcy-ai' }) })
+    render(Page as React.ReactElement)
+    const link = screen.getByRole('link', { name: /live site/i })
+    expect(link).toHaveAttribute('href', 'https://arcy.ai')
+  })
+
   it('calls notFound when slug has no matching case study', async () => {
-    vi.mocked(getCaseStudyBySlug).mockResolvedValue(null)
+    vi.mocked(getCaseStudyBySlug).mockReturnValue(null)
     await expect(
       ProjectSlugPage({ params: Promise.resolve({ slug: 'nonexistent' }) })
     ).rejects.toThrow('NEXT_NOT_FOUND')

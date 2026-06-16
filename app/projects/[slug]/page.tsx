@@ -1,39 +1,35 @@
+import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
-import { getCaseStudyBySlug } from '@/lib/mdx'
+import { getCaseStudyBySlug, getAllCaseStudies } from '@/lib/case-studies'
+import { Prose } from '@/components/ui/Prose'
 
-function renderContent(content: string) {
-  const blocks = content.split(/\n\n+/)
-  return blocks.map((block, i) => {
-    if (block.startsWith('### ')) {
-      return (
-        <h3 key={i} className="font-cal text-xl text-[--color-text-primary] mt-8 mb-3">
-          {block.slice(4).trim()}
-        </h3>
-      )
-    }
-    if (block.startsWith('## ')) {
-      return (
-        <h2 key={i} className="font-cal text-2xl text-[--color-text-primary] mt-12 mb-4">
-          {block.slice(3).trim()}
-        </h2>
-      )
-    }
-    if (block.trim()) {
-      return (
-        <p key={i} className="text-[--color-text-muted] leading-relaxed">
-          {block.trim()}
-        </p>
-      )
-    }
-    return null
-  })
+export async function generateStaticParams() {
+  const projects = getAllCaseStudies()
+  return projects.map((p) => ({ slug: p.id }))
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>
+}): Promise<Metadata> {
+  const { slug } = await params
+  const study = getCaseStudyBySlug(slug)
+  if (!study) return {}
+  return {
+    title: study.title,
+    description: study.description,
+    openGraph: { title: study.title, description: study.description },
+  }
 }
 
 export default async function ProjectSlugPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
-  const study = await getCaseStudyBySlug(slug)
-  if (!study) notFound()
+  const entry = getCaseStudyBySlug(slug)
+  if (!entry) notFound()
+
+  const { Component, ...study } = entry
 
   return (
     <main className="min-h-screen py-24 md:py-32">
@@ -45,7 +41,6 @@ export default async function ProjectSlugPage({ params }: { params: Promise<{ sl
           ← Back to projects
         </Link>
 
-        {/* Hero block */}
         <div className="mb-16">
           <span className="text-xs uppercase tracking-widest text-[--color-accent] mb-4 block">
             {study.category}
@@ -56,12 +51,12 @@ export default async function ProjectSlugPage({ params }: { params: Promise<{ sl
           <p className="text-lg text-[--color-text-muted]">{study.description}</p>
         </div>
 
-        {/* MDX prose */}
-        <article className="prose-invert max-w-none space-y-2">
-          {renderContent(study.content)}
+        <article>
+          <Prose>
+            <Component />
+          </Prose>
         </article>
 
-        {/* Footer block */}
         <div className="mt-16 pt-8 border-t border-[--color-border] space-y-6">
           <div className="flex flex-wrap gap-2">
             {study.stack.map((tech, i) => (
