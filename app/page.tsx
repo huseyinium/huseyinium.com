@@ -3,8 +3,13 @@ import { About } from '@/components/sections/About'
 import { Projects } from '@/components/sections/Projects'
 import { Skills } from '@/components/sections/Skills'
 import { Achievements } from '@/components/sections/Achievements'
+import { BlogSection } from '@/components/sections/Blog'
+import { getAllPosts } from '@/lib/blog'
 
-export default function Home() {
+export default async function Home() {
+  const posts = getAllPosts()
+  const recentPosts = posts.slice(0, 3)
+
   return (
     <main>
       <Hero />
@@ -12,6 +17,7 @@ export default function Home() {
       <Projects />
       <Skills />
       <Achievements />
+      <BlogSection posts={recentPosts} />
     </main>
   )
 }
