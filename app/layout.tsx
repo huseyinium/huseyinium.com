@@ -6,6 +6,7 @@ import { Footer } from '@/components/layout/Footer'
 import { CustomCursor } from '@/components/ui/CustomCursor'
 import { PageTransition } from '@/components/providers/PageTransition'
 import './globals.css'
+import '@/styles/mdx.css'
 
 const geistSans = Geist({
   variable: '--font-geist-sans',

@@ -24,6 +24,10 @@
   --color-border: #222222;
   --color-border-accent: #b8e04a44;
 
+  /* Surface aliases */
+  --color-surface: #111111;
+  --color-surface-2: #1a1a1a;
+
   /* Semantic */
   --color-success: #b8e04a;
   --color-error: #ff4444;
