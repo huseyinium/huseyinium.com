@@ -16,7 +16,7 @@ beforeAll(() => {
 
 async function makeRequest() {
   const { GET } = await import('@/app/og/route')
-  return GET(new Request('http://localhost/og'))
+  return GET()
 }
 
 describe('GET /og', () => {
