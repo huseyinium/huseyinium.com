@@ -111,6 +111,10 @@
   --color-border: var(--border);
   --color-destructive: var(--destructive);
   --color-accent-foreground: var(--accent-foreground);
+  /* --color-accent here is Tailwind's `bg-accent`/`text-accent` utility,
+     wired to shadcn's subtle --accent token (bg-(--color-bg-subtle)) — not
+     the portfolio's strong lime brand color. For the lime accent itself use
+     var(--color-accent) directly, e.g. bg-(--color-accent). See CLAUDE.md. */
   --color-accent: var(--accent);
   --color-muted-foreground: var(--muted-foreground);
   --color-muted: var(--muted);

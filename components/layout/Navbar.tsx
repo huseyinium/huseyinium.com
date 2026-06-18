@@ -51,15 +51,17 @@ export function Navbar() {
               <span className="block h-0.5 w-5 bg-(--color-text-primary)" />
               <span className="block h-0.5 w-5 bg-(--color-text-primary)" />
             </SheetTrigger>
+            {/* top-[66px] keeps the panel below the header bar (measured header
+                height) so it never paints over the hamburger trigger itself —
+                side="top" content is portaled after the header in the DOM and
+                would otherwise sit on top of it at the same z-index. */}
             <SheetContent
               side="top"
-              className="border-b border-(--color-border) bg-(--color-bg)/95 backdrop-blur-md"
+              showCloseButton={false}
+              className="data-[side=top]:top-[66px] border-b border-(--color-border) bg-(--color-bg)/95 backdrop-blur-md"
             >
               <SheetTitle className="sr-only">Navigation menu</SheetTitle>
-              <nav
-                aria-label="mobile"
-                className="mx-auto flex max-w-7xl flex-col gap-4 px-6 py-6 pt-16"
-              >
+              <nav aria-label="mobile" className="mx-auto flex max-w-7xl flex-col gap-4 px-6 py-6">
                 {NAV_LINKS.map(({ href, label }) => (
                   <a
                     key={href}

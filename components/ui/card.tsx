@@ -2,17 +2,20 @@ import * as React from 'react'
 
 import { cn } from '@/lib/utils'
 
-function Card({
-  className,
-  size = 'default',
-  as = 'div',
-  ...props
-}: React.ComponentProps<'div'> & { size?: 'default' | 'sm'; as?: React.ElementType }) {
-  // `as` is a render-target ElementType (e.g. 'article' for semantic project/
-  // achievement cards); createElement sidesteps JSX's inability to type a
-  // dynamic intrinsic tag against arbitrary div props. Deliberate deviation
-  // from upstream shadcn Card — a `shadcn add card` re-sync will drop it.
+type CardProps = React.ComponentProps<'div'> & { size?: 'default' | 'sm'; as?: React.ElementType }
+
+// `as` is a render-target ElementType (e.g. 'article' for semantic project/
+// achievement cards); createElement sidesteps JSX's inability to type a
+// dynamic intrinsic tag against arbitrary div props. Deliberate deviation
+// from upstream shadcn Card — a `shadcn add card` re-sync will drop it.
+// forwardRef is required so motion.create(Card) (Achievements, Projects) can
+// attach its animation ref — without it framer-motion silently never animates.
+const Card = React.forwardRef<HTMLElement, CardProps>(function Card(
+  { className, size = 'default', as = 'div', ...props },
+  ref
+) {
   return React.createElement(as, {
+    ref,
     'data-slot': 'card',
     'data-size': size,
     className: cn(
@@ -21,7 +24,7 @@ function Card({
     ),
     ...props,
   })
-}
+})
 
 function CardHeader({ className, ...props }: React.ComponentProps<'div'>) {
   return (
