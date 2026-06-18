@@ -23,7 +23,7 @@ export function ReadingProgress() {
       value={progress}
       className="fixed top-0 inset-x-0 z-50 gap-0 p-0"
       trackClassName="h-[2px] rounded-none bg-transparent"
-      indicatorClassName="bg-[--color-accent] transition-[width] duration-100"
+      indicatorClassName="bg-(--color-accent) transition-[width] duration-100"
     />
   )
 }

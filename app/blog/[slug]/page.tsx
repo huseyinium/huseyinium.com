@@ -52,7 +52,7 @@ export default async function BlogSlugPage({ params }: { params: Promise<{ slug:
         <div className="container mx-auto px-6 max-w-3xl">
           <Link
             href="/blog"
-            className="text-sm text-[--color-text-muted] hover:text-[--color-accent] transition-colors mb-10 inline-block"
+            className="text-sm text-(--color-text-muted) hover:text-(--color-accent) transition-colors mb-10 inline-block"
           >
             ← Back to blog
           </Link>
@@ -62,16 +62,16 @@ export default async function BlogSlugPage({ params }: { params: Promise<{ slug:
               {post.tags.map((tag) => (
                 <span
                   key={tag}
-                  className="text-[10px] uppercase tracking-widest px-2 py-0.5 rounded-full border border-[--color-accent]/30 text-[--color-accent]"
+                  className="text-[10px] uppercase tracking-widest px-2 py-0.5 rounded-full border border-(--color-accent)/30 text-(--color-accent)"
                 >
                   {tag}
                 </span>
               ))}
             </div>
-            <h1 className="font-cal text-4xl md:text-5xl text-[--color-text-primary] mb-4">
+            <h1 className="font-cal text-4xl md:text-5xl text-(--color-text-primary) mb-4">
               {post.title}
             </h1>
-            <p className="text-[--color-text-muted]">
+            <p className="text-(--color-text-muted)">
               {post.date}
               {post.readingTime ? ` · ${post.readingTime} min read` : ''}
             </p>
@@ -80,9 +80,9 @@ export default async function BlogSlugPage({ params }: { params: Promise<{ slug:
           {toc && toc.length > 0 && (
             <nav
               aria-label="Table of contents"
-              className="mb-12 p-4 rounded-xl border border-[--color-border] bg-[--color-surface]"
+              className="mb-12 p-4 rounded-xl border border-(--color-border) bg-(--color-surface)"
             >
-              <p className="text-xs uppercase tracking-widest text-[--color-text-muted] mb-3">
+              <p className="text-xs uppercase tracking-widest text-(--color-text-muted) mb-3">
                 Contents
               </p>
               <ol className="space-y-1.5">
@@ -90,7 +90,7 @@ export default async function BlogSlugPage({ params }: { params: Promise<{ slug:
                   <li key={h.id} className={h.level === 3 ? 'pl-4' : ''}>
                     <a
                       href={`#${h.id}`}
-                      className="text-sm text-[--color-text-muted] hover:text-[--color-accent] transition-colors"
+                      className="text-sm text-(--color-text-muted) hover:text-(--color-accent) transition-colors"
                     >
                       {h.text}
                     </a>
@@ -106,12 +106,12 @@ export default async function BlogSlugPage({ params }: { params: Promise<{ slug:
             </Prose>
           </article>
 
-          <div className="flex gap-4 mb-16 pt-8 border-t border-[--color-border]">
+          <div className="flex gap-4 mb-16 pt-8 border-t border-(--color-border)">
             <a
               href={tweetUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-sm text-[--color-text-muted] hover:text-[--color-accent] transition-colors"
+              className="text-sm text-(--color-text-muted) hover:text-(--color-accent) transition-colors"
             >
               Share on X →
             </a>
@@ -119,22 +119,22 @@ export default async function BlogSlugPage({ params }: { params: Promise<{ slug:
               href={linkedInUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-sm text-[--color-text-muted] hover:text-[--color-accent] transition-colors"
+              className="text-sm text-(--color-text-muted) hover:text-(--color-accent) transition-colors"
             >
               Share on LinkedIn →
             </a>
           </div>
 
           {related.length > 0 && (
-            <section className="pt-8 border-t border-[--color-border]">
-              <h2 className="font-cal text-xl text-[--color-text-primary] mb-6">Related Posts</h2>
+            <section className="pt-8 border-t border-(--color-border)">
+              <h2 className="font-cal text-xl text-(--color-text-primary) mb-6">Related Posts</h2>
               <div className="space-y-4">
                 {related.map((p) => (
                   <Link key={p.slug} href={`/blog/${p.slug}`} className="block group">
-                    <p className="text-[--color-text-primary] group-hover:text-[--color-accent] transition-colors font-medium">
+                    <p className="text-(--color-text-primary) group-hover:text-(--color-accent) transition-colors font-medium">
                       {p.title}
                     </p>
-                    <p className="text-sm text-[--color-text-muted] mt-1">{p.excerpt}</p>
+                    <p className="text-sm text-(--color-text-muted) mt-1">{p.excerpt}</p>
                   </Link>
                 ))}
               </div>

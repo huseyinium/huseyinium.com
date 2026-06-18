@@ -12,12 +12,12 @@ export default function ProjectsPage() {
       <div className="container mx-auto px-6 max-w-6xl">
         <Link
           href="/#projects"
-          className="text-sm text-[--color-text-muted] hover:text-[--color-accent] transition-colors mb-10 inline-block"
+          className="text-sm text-(--color-text-muted) hover:text-(--color-accent) transition-colors mb-10 inline-block"
         >
           ← Back
         </Link>
 
-        <h1 className="font-cal text-4xl md:text-5xl text-[--color-text-primary] mb-12">
+        <h1 className="font-cal text-4xl md:text-5xl text-(--color-text-primary) mb-12">
           All Projects
         </h1>
 

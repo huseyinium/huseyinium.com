@@ -22,12 +22,12 @@ export function Navbar() {
       <nav
         className={`transition-all duration-300 ${
           scrolled
-            ? 'border-b border-[--color-border] bg-[--color-bg]/80 backdrop-blur-md'
+            ? 'border-b border-(--color-border) bg-(--color-bg)/80 backdrop-blur-md'
             : 'bg-transparent'
         }`}
       >
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-8">
-          <Link href="/" className="font-mono text-sm font-semibold text-[--color-text-primary]">
+          <Link href="/" className="font-mono text-sm font-semibold text-(--color-text-primary)">
             huseyinium
           </Link>
 
@@ -37,7 +37,7 @@ export function Navbar() {
               <a
                 key={href}
                 href={href}
-                className="text-sm text-[--color-text-secondary] transition-colors hover:text-[--color-accent]"
+                className="text-sm text-(--color-text-secondary) transition-colors hover:text-(--color-accent)"
               >
                 {label}
               </a>
@@ -47,13 +47,13 @@ export function Navbar() {
           {/* Mobile menu */}
           <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
             <SheetTrigger aria-label="menu" className="flex flex-col gap-1.5 p-2 md:hidden">
-              <span className="block h-0.5 w-5 bg-[--color-text-primary]" />
-              <span className="block h-0.5 w-5 bg-[--color-text-primary]" />
-              <span className="block h-0.5 w-5 bg-[--color-text-primary]" />
+              <span className="block h-0.5 w-5 bg-(--color-text-primary)" />
+              <span className="block h-0.5 w-5 bg-(--color-text-primary)" />
+              <span className="block h-0.5 w-5 bg-(--color-text-primary)" />
             </SheetTrigger>
             <SheetContent
               side="top"
-              className="border-b border-[--color-border] bg-[--color-bg]/95 backdrop-blur-md"
+              className="border-b border-(--color-border) bg-(--color-bg)/95 backdrop-blur-md"
             >
               <SheetTitle className="sr-only">Navigation menu</SheetTitle>
               <nav
@@ -64,7 +64,7 @@ export function Navbar() {
                   <a
                     key={href}
                     href={href}
-                    className="text-sm text-[--color-text-secondary] transition-colors hover:text-[--color-accent]"
+                    className="text-sm text-(--color-text-secondary) transition-colors hover:text-(--color-accent)"
                     onClick={() => setMobileOpen(false)}
                   >
                     {label}

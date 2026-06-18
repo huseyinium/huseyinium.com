@@ -34,14 +34,14 @@ export function ProjectCard({ project }: { project: Project }) {
       as="article"
       data-featured={project.featured ? 'true' : undefined}
       className={cn(
-        'rounded-xl bg-[--color-surface] py-0 ring-1 ring-[--color-border]',
+        'rounded-xl bg-(--color-surface) py-0 ring-1 ring-(--color-border)',
         project.featured && 'md:col-span-2 xl:col-span-3'
       )}
       onMouseEnter={() => supportsHover && setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
       {/* Cover / micro-canvas */}
-      <div className="relative h-48 bg-[--color-surface-2] overflow-hidden">
+      <div className="relative h-48 bg-(--color-surface-2) overflow-hidden">
         {hovered && (
           <div className="absolute inset-0 z-10">
             <ProjectMicroCanvas />
@@ -50,15 +50,15 @@ export function ProjectCard({ project }: { project: Project }) {
       </div>
 
       <CardContent className="flex flex-col gap-3 p-6 flex-1">
-        <span className="text-xs uppercase tracking-widest text-[--color-accent]">
+        <span className="text-xs uppercase tracking-widest text-(--color-accent)">
           {project.category}
         </span>
-        <h3 className="font-cal text-xl text-[--color-text-primary]">{project.title}</h3>
-        <p className="text-sm text-[--color-text-muted] leading-relaxed">{project.description}</p>
+        <h3 className="font-cal text-xl text-(--color-text-primary)">{project.title}</h3>
+        <p className="text-sm text-(--color-text-muted) leading-relaxed">{project.description}</p>
 
         <div className="flex flex-wrap gap-2 mt-1">
           {project.stack.map((tech, i) => (
-            <Badge key={`${tech}-${i}`} variant="outline" className="text-[--color-text-muted]">
+            <Badge key={`${tech}-${i}`} variant="outline" className="text-(--color-text-muted)">
               {tech}
             </Badge>
           ))}
@@ -68,7 +68,7 @@ export function ProjectCard({ project }: { project: Project }) {
           <Badge
             data-testid={`prize-${project.id}`}
             variant="outline"
-            className="w-fit border-[--color-accent]/30 text-[--color-accent] hover:border-[--color-accent]"
+            className="w-fit border-(--color-accent)/30 text-(--color-accent) hover:border-(--color-accent)"
           >
             {project.prize}
           </Badge>
@@ -77,7 +77,7 @@ export function ProjectCard({ project }: { project: Project }) {
         <div className="flex items-center gap-4 mt-auto pt-4">
           <Link
             href={`/projects/${project.id}`}
-            className="text-sm font-medium text-[--color-text-primary] hover:text-[--color-accent] transition-colors"
+            className="text-sm font-medium text-(--color-text-primary) hover:text-(--color-accent) transition-colors"
           >
             Read case study
           </Link>
@@ -87,7 +87,7 @@ export function ProjectCard({ project }: { project: Project }) {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="GitHub"
-              className="text-[--color-text-muted] hover:text-[--color-accent] transition-colors"
+              className="text-(--color-text-muted) hover:text-(--color-accent) transition-colors"
             >
               GH
             </a>
@@ -108,7 +108,7 @@ export function Projects() {
   return (
     <section id="projects" className="py-24 md:py-32">
       <div className="container mx-auto px-6 max-w-6xl">
-        <h2 className="font-cal text-4xl md:text-5xl text-[--color-text-primary] mb-10">
+        <h2 className="font-cal text-4xl md:text-5xl text-(--color-text-primary) mb-10">
           Projects
         </h2>
 
@@ -122,7 +122,7 @@ export function Projects() {
               <TabsTrigger
                 key={value}
                 value={value}
-                className="rounded-full border border-[--color-border] px-4 py-1.5 text-sm text-[--color-text-muted] data-active:border-[--color-accent] data-active:bg-[--color-accent] data-active:text-black"
+                className="rounded-full border border-(--color-border) px-4 py-1.5 text-sm text-(--color-text-muted) data-active:border-(--color-accent) data-active:bg-(--color-accent) data-active:text-black dark:data-active:border-(--color-accent) dark:data-active:bg-(--color-accent) dark:data-active:text-black"
               >
                 {label}
               </TabsTrigger>
@@ -149,7 +149,7 @@ export function Projects() {
         <div className="mt-12 text-center">
           <Link
             href="/projects"
-            className="text-sm text-[--color-text-muted] hover:text-[--color-accent] transition-colors"
+            className="text-sm text-(--color-text-muted) hover:text-(--color-accent) transition-colors"
           >
             View all projects →
           </Link>

@@ -41,19 +41,19 @@ export default async function ProjectSlugPage({ params }: { params: Promise<{ sl
       <div className="container mx-auto px-6 max-w-3xl">
         <Link
           href="/projects"
-          className="text-sm text-[--color-text-muted] hover:text-[--color-accent] transition-colors mb-10 inline-block"
+          className="text-sm text-(--color-text-muted) hover:text-(--color-accent) transition-colors mb-10 inline-block"
         >
           ← Back to projects
         </Link>
 
         <div className="mb-16">
-          <span className="text-xs uppercase tracking-widest text-[--color-accent] mb-4 block">
+          <span className="text-xs uppercase tracking-widest text-(--color-accent) mb-4 block">
             {study.category}
           </span>
-          <h1 className="font-cal text-4xl md:text-5xl text-[--color-text-primary] mb-4">
+          <h1 className="font-cal text-4xl md:text-5xl text-(--color-text-primary) mb-4">
             {study.title}
           </h1>
-          <p className="text-lg text-[--color-text-muted]">{study.description}</p>
+          <p className="text-lg text-(--color-text-muted)">{study.description}</p>
         </div>
 
         <article>
@@ -62,12 +62,12 @@ export default async function ProjectSlugPage({ params }: { params: Promise<{ sl
           </Prose>
         </article>
 
-        <div className="mt-16 pt-8 border-t border-[--color-border] space-y-6">
+        <div className="mt-16 pt-8 border-t border-(--color-border) space-y-6">
           <div className="flex flex-wrap gap-2">
             {study.stack.map((tech, i) => (
               <span
                 key={`${tech}-${i}`}
-                className="text-xs px-2 py-0.5 rounded-full border border-[--color-border] text-[--color-text-muted]"
+                className="text-xs px-2 py-0.5 rounded-full border border-(--color-border) text-(--color-text-muted)"
               >
                 {tech}
               </span>
@@ -80,7 +80,7 @@ export default async function ProjectSlugPage({ params }: { params: Promise<{ sl
                 href={study.liveUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-sm font-medium text-[--color-accent] hover:underline"
+                className="text-sm font-medium text-(--color-accent) hover:underline"
               >
                 Live site →
               </a>
@@ -90,7 +90,7 @@ export default async function ProjectSlugPage({ params }: { params: Promise<{ sl
                 href={study.githubUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-sm font-medium text-[--color-text-muted] hover:text-[--color-accent] transition-colors"
+                className="text-sm font-medium text-(--color-text-muted) hover:text-(--color-accent) transition-colors"
               >
                 GitHub →
               </a>

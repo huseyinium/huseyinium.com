@@ -8,8 +8,8 @@ import type { Post } from '@/lib/blog'
 function tagButtonClass(active: boolean) {
   return `text-xs px-3 py-1 rounded-full border transition-colors ${
     active
-      ? 'border-[--color-accent] text-[--color-accent]'
-      : 'border-[--color-border] text-[--color-text-muted] hover:border-[--color-accent]/40'
+      ? 'border-(--color-accent) text-(--color-accent)'
+      : 'border-(--color-border) text-(--color-text-muted) hover:border-(--color-accent)/40'
   }`
 }
 
@@ -23,13 +23,13 @@ export function BlogPageClient({ posts, tags }: { posts: Post[]; tags: string[] 
       <div className="container mx-auto px-6 max-w-5xl">
         <Link
           href="/"
-          className="text-sm text-[--color-text-muted] hover:text-[--color-accent] transition-colors mb-10 inline-block"
+          className="text-sm text-(--color-text-muted) hover:text-(--color-accent) transition-colors mb-10 inline-block"
         >
           ← Back to home
         </Link>
 
-        <h1 className="font-cal text-4xl md:text-5xl text-[--color-text-primary] mb-4">Writing</h1>
-        <p className="text-[--color-text-muted] mb-12">
+        <h1 className="font-cal text-4xl md:text-5xl text-(--color-text-primary) mb-4">Writing</h1>
+        <p className="text-(--color-text-muted) mb-12">
           Thoughts on AI, startups, engineering, and building in public.
         </p>
 

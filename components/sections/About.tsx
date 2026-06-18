@@ -35,11 +35,11 @@ export function About() {
       </div>
 
       <div className="container mx-auto px-6 max-w-6xl">
-        <h2 className="font-cal text-4xl md:text-5xl text-[--color-text-primary] mb-16">About</h2>
+        <h2 className="font-cal text-4xl md:text-5xl text-(--color-text-primary) mb-16">About</h2>
 
         <div className="grid md:grid-cols-2 gap-12 md:gap-20">
           {/* Left — story */}
-          <div className="flex flex-col gap-6 text-[--color-text-muted] leading-relaxed">
+          <div className="flex flex-col gap-6 text-(--color-text-muted) leading-relaxed">
             {[
               {
                 id: 'about-para-builder' as const,
@@ -77,7 +77,7 @@ export function About() {
             </div>
 
             <div>
-              <p className="text-xs uppercase tracking-widest text-[--color-text-muted] mb-4">
+              <p className="text-xs uppercase tracking-widest text-(--color-text-muted) mb-4">
                 Find me online
               </p>
               <div className="flex gap-4">
@@ -88,7 +88,7 @@ export function About() {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={label}
-                    className="text-sm text-[--color-text-muted] hover:text-[--color-accent] transition-colors"
+                    className="text-sm text-(--color-text-muted) hover:text-(--color-accent) transition-colors"
                   >
                     {label}
                   </a>

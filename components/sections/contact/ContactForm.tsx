@@ -72,7 +72,7 @@ export function ContactForm() {
 
   if (state === 'success') {
     return (
-      <p className="text-[--color-text-secondary] text-sm">
+      <p className="text-(--color-text-secondary) text-sm">
         Message sent. I&apos;ll get back to you within 24 hours.
       </p>
     )
@@ -92,7 +92,7 @@ export function ContactForm() {
       )}
 
       <div className="flex flex-col gap-1">
-        <label htmlFor={nameId} className="text-sm text-[--color-text-secondary]">
+        <label htmlFor={nameId} className="text-sm text-(--color-text-secondary)">
           Name
         </label>
         <input
@@ -103,9 +103,9 @@ export function ContactForm() {
             setName(e.target.value)
             clearFieldError('name')
           }}
-          className="rounded-lg border border-[--color-border] bg-[--color-bg-elevated]
-            px-3 py-2 text-sm text-[--color-text-primary] outline-none
-            focus:border-[--color-accent] transition-colors"
+          className="rounded-lg border border-(--color-border) bg-(--color-bg-elevated)
+            px-3 py-2 text-sm text-(--color-text-primary) outline-none
+            focus:border-(--color-accent) transition-colors"
         />
         {validationErrors.name && (
           <span className="text-xs text-red-400">{validationErrors.name}</span>
@@ -113,7 +113,7 @@ export function ContactForm() {
       </div>
 
       <div className="flex flex-col gap-1">
-        <label htmlFor={emailId} className="text-sm text-[--color-text-secondary]">
+        <label htmlFor={emailId} className="text-sm text-(--color-text-secondary)">
           Email
         </label>
         <input
@@ -124,9 +124,9 @@ export function ContactForm() {
             setEmail(e.target.value)
             clearFieldError('email')
           }}
-          className="rounded-lg border border-[--color-border] bg-[--color-bg-elevated]
-            px-3 py-2 text-sm text-[--color-text-primary] outline-none
-            focus:border-[--color-accent] transition-colors"
+          className="rounded-lg border border-(--color-border) bg-(--color-bg-elevated)
+            px-3 py-2 text-sm text-(--color-text-primary) outline-none
+            focus:border-(--color-accent) transition-colors"
         />
         {validationErrors.email && (
           <span className="text-xs text-red-400">{validationErrors.email}</span>
@@ -134,7 +134,7 @@ export function ContactForm() {
       </div>
 
       <div className="flex flex-col gap-1">
-        <label htmlFor={messageId} className="text-sm text-[--color-text-secondary]">
+        <label htmlFor={messageId} className="text-sm text-(--color-text-secondary)">
           Message
         </label>
         <textarea
@@ -145,9 +145,9 @@ export function ContactForm() {
             setMessage(e.target.value)
             clearFieldError('message')
           }}
-          className="rounded-lg border border-[--color-border] bg-[--color-bg-elevated]
-            px-3 py-2 text-sm text-[--color-text-primary] outline-none resize-none
-            focus:border-[--color-accent] transition-colors"
+          className="rounded-lg border border-(--color-border) bg-(--color-bg-elevated)
+            px-3 py-2 text-sm text-(--color-text-primary) outline-none resize-none
+            focus:border-(--color-accent) transition-colors"
         />
         {validationErrors.message && (
           <span className="text-xs text-red-400">{validationErrors.message}</span>
@@ -158,13 +158,13 @@ export function ContactForm() {
         type="submit"
         disabled={state === 'loading'}
         className="flex items-center justify-center gap-2 rounded-lg
-          bg-[--color-accent] text-[--color-bg] font-medium px-4 py-2.5 text-sm
+          bg-(--color-accent) text-(--color-bg) font-medium px-4 py-2.5 text-sm
           hover:opacity-90 transition-opacity disabled:opacity-60"
       >
         {state === 'loading' && (
           <span
             data-loading
-            className="h-4 w-4 rounded-full border-2 border-[--color-bg]
+            className="h-4 w-4 rounded-full border-2 border-(--color-bg)
               border-t-transparent animate-spin"
           />
         )}
