@@ -2,6 +2,9 @@
 
 import { motion } from 'framer-motion'
 import { SKILLS } from '@/content/skills'
+import { Badge } from '@/components/ui/badge'
+
+const MotionBadge = motion.create(Badge)
 
 const containerVariants = {
   hidden: {},
@@ -45,18 +48,19 @@ export function Skills() {
                 viewport={{ once: true }}
               >
                 {group.skills.map((skill) => (
-                  <motion.span
+                  <MotionBadge
                     key={skill}
                     data-skill-badge
+                    variant="outline"
                     variants={badgeVariants}
-                    className="inline-flex items-center px-3 py-1 rounded-full text-sm
-                      bg-[--color-bg-elevated] border border-[--color-border]
+                    className="h-auto rounded-full px-3 py-1 text-sm
+                      bg-[--color-bg-elevated] border-[--color-border]
                       text-[--color-text-muted]
                       hover:text-[--color-accent] hover:border-[--color-accent] hover:shadow-[0_0_8px_var(--color-accent)]
                       transition-all duration-200 cursor-default select-none"
                   >
                     {skill}
-                  </motion.span>
+                  </MotionBadge>
                 ))}
               </motion.div>
             </div>
