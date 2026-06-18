@@ -48,4 +48,19 @@ describe('Navbar', () => {
     })
     expect(screen.queryByRole('navigation', { name: /mobile/i })).not.toBeInTheDocument()
   })
+
+  it('closes mobile menu on Escape key press', async () => {
+    render(<Navbar />)
+    const hamburger = screen.getByRole('button', { name: /menu/i })
+
+    await act(async () => {
+      fireEvent.click(hamburger)
+    })
+    expect(screen.getByRole('navigation', { name: /mobile/i })).toBeInTheDocument()
+
+    await act(async () => {
+      fireEvent.keyDown(document, { key: 'Escape', code: 'Escape' })
+    })
+    expect(screen.queryByRole('navigation', { name: /mobile/i })).not.toBeInTheDocument()
+  })
 })

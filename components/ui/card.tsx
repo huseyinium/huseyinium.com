@@ -10,7 +10,8 @@ function Card({
 }: React.ComponentProps<'div'> & { size?: 'default' | 'sm'; as?: React.ElementType }) {
   // `as` is a render-target ElementType (e.g. 'article' for semantic project/
   // achievement cards); createElement sidesteps JSX's inability to type a
-  // dynamic intrinsic tag against arbitrary div props.
+  // dynamic intrinsic tag against arbitrary div props. Deliberate deviation
+  // from upstream shadcn Card — a `shadcn add card` re-sync will drop it.
   return React.createElement(as, {
     'data-slot': 'card',
     'data-size': size,

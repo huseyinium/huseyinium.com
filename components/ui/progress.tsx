@@ -4,6 +4,8 @@ import { Progress as ProgressPrimitive } from '@base-ui/react/progress'
 
 import { cn } from '@/lib/utils'
 
+// trackClassName/indicatorClassName are a deliberate deviation from upstream
+// shadcn Progress — a `shadcn add progress` re-sync will drop them.
 function Progress({
   className,
   trackClassName,
