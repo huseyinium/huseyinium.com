@@ -5,6 +5,10 @@ import dynamic from 'next/dynamic'
 import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
 import { PROJECTS, type Project } from '@/content/projects'
+import { Card, CardContent } from '@/components/ui/card'
+import { Badge } from '@/components/ui/badge'
+import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs'
+import { cn } from '@/lib/utils'
 
 const ProjectMicroCanvas = dynamic(
   () => import('@/components/3d/ProjectMicroCanvas').then((m) => m.ProjectMicroCanvas),
@@ -26,11 +30,13 @@ export function ProjectCard({ project }: { project: Project }) {
   const [hovered, setHovered] = useState(false)
 
   return (
-    <article
+    <Card
+      as="article"
       data-featured={project.featured ? 'true' : undefined}
-      className={`relative rounded-xl border border-[--color-border] bg-[--color-surface] overflow-hidden flex flex-col ${
-        project.featured ? 'md:col-span-2 xl:col-span-3' : ''
-      }`}
+      className={cn(
+        'rounded-xl bg-[--color-surface] py-0 ring-1 ring-[--color-border]',
+        project.featured && 'md:col-span-2 xl:col-span-3'
+      )}
       onMouseEnter={() => supportsHover && setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
@@ -43,7 +49,7 @@ export function ProjectCard({ project }: { project: Project }) {
         )}
       </div>
 
-      <div className="flex flex-col gap-3 p-6 flex-1">
+      <CardContent className="flex flex-col gap-3 p-6 flex-1">
         <span className="text-xs uppercase tracking-widest text-[--color-accent]">
           {project.category}
         </span>
@@ -52,22 +58,20 @@ export function ProjectCard({ project }: { project: Project }) {
 
         <div className="flex flex-wrap gap-2 mt-1">
           {project.stack.map((tech, i) => (
-            <span
-              key={`${tech}-${i}`}
-              className="text-xs px-2 py-0.5 rounded-full border border-[--color-border] text-[--color-text-muted]"
-            >
+            <Badge key={`${tech}-${i}`} variant="outline" className="text-[--color-text-muted]">
               {tech}
-            </span>
+            </Badge>
           ))}
         </div>
 
         {project.prize && (
-          <p
+          <Badge
             data-testid={`prize-${project.id}`}
-            className="text-xs text-[--color-accent] border border-[--color-accent]/30 rounded px-2 py-1 w-fit hover:border-[--color-accent] transition-colors"
+            variant="outline"
+            className="w-fit border-[--color-accent]/30 text-[--color-accent] hover:border-[--color-accent]"
           >
             {project.prize}
-          </p>
+          </Badge>
         )}
 
         <div className="flex items-center gap-4 mt-auto pt-4">
@@ -89,8 +93,8 @@ export function ProjectCard({ project }: { project: Project }) {
             </a>
           )}
         </div>
-      </div>
-    </article>
+      </CardContent>
+    </Card>
   )
 }
 
@@ -108,22 +112,23 @@ export function Projects() {
           Projects
         </h2>
 
-        {/* Filter tabs */}
-        <div className="flex gap-2 mb-12 flex-wrap">
-          {FILTERS.map(({ label, value }) => (
-            <button
-              key={value}
-              onClick={() => setActive(value)}
-              className={`px-4 py-1.5 rounded-full text-sm border transition-colors ${
-                active === value
-                  ? 'bg-[--color-accent] text-black border-[--color-accent]'
-                  : 'border-[--color-border] text-[--color-text-muted] hover:border-[--color-accent]'
-              }`}
-            >
-              {label}
-            </button>
-          ))}
-        </div>
+        <Tabs
+          value={active}
+          onValueChange={(value) => setActive(value as Filter)}
+          className="mb-12"
+        >
+          <TabsList className="flex-wrap h-auto bg-transparent p-0 gap-2">
+            {FILTERS.map(({ label, value }) => (
+              <TabsTrigger
+                key={value}
+                value={value}
+                className="rounded-full border border-[--color-border] px-4 py-1.5 text-sm text-[--color-text-muted] data-active:border-[--color-accent] data-active:bg-[--color-accent] data-active:text-black"
+              >
+                {label}
+              </TabsTrigger>
+            ))}
+          </TabsList>
+        </Tabs>
 
         {/* Grid */}
         <AnimatePresence mode="wait">
