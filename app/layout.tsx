@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from 'next/font/google'
 import localFont from 'next/font/local'
 import { Analytics } from '@vercel/analytics/react'
 import { PageTransition } from '@/components/providers/PageTransition'
+import { TooltipProvider } from '@/components/ui/tooltip'
 import './globals.css'
 import '@/styles/mdx.css'
 
@@ -82,10 +83,12 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} ${calSans.variable} dark h-full antialiased`}
     >
       <body className="flex min-h-full flex-col">
-        <main className="flex-1">
-          <PageTransition>{children}</PageTransition>
-        </main>
-        <Analytics />
+        <TooltipProvider>
+          <main className="flex-1">
+            <PageTransition>{children}</PageTransition>
+          </main>
+          <Analytics />
+        </TooltipProvider>
       </body>
     </html>
   )
