@@ -1,8 +1,9 @@
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
+import { ChevronLeft } from 'lucide-react'
 import { getPostBySlug, getAllPosts } from '@/lib/blog'
-import { ReadingProgress } from '@/components/ui/ReadingProgress'
+import { ScrollProgress } from '@/components/ui/scroll-progress'
 import { Prose } from '@/components/ui/Prose'
 
 export async function generateStaticParams() {
@@ -47,14 +48,15 @@ export default async function BlogSlugPage({ params }: { params: Promise<{ slug:
 
   return (
     <>
-      <ReadingProgress />
+      <ScrollProgress className="h-[2px] bg-(--color-accent)" />
       <main className="min-h-screen py-24 md:py-32">
         <div className="container mx-auto px-6 max-w-3xl">
           <Link
             href="/blog"
-            className="text-sm text-(--color-text-muted) hover:text-(--color-accent) transition-colors mb-10 inline-block"
+            className="inline-flex items-center gap-1 text-sm text-(--color-text-muted) hover:text-(--color-accent) transition-colors mb-10"
           >
-            ← Back to blog
+            <ChevronLeft className="size-4" aria-hidden="true" />
+            Back to blog
           </Link>
 
           <header className="mb-12">

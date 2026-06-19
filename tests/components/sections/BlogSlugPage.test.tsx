@@ -74,10 +74,10 @@ describe('/blog/[slug] page', () => {
     expect(screen.getByTestId('post-content')).toBeInTheDocument()
   })
 
-  it('renders a reading progress bar element', async () => {
+  it('renders a scroll progress bar element', async () => {
     const Page = await BlogSlugPage({ params: Promise.resolve({ slug: 'ai-product-lessons' }) })
-    render(Page as React.ReactElement)
-    expect(document.querySelector('[data-reading-progress]')).toBeTruthy()
+    const { container } = render(Page as React.ReactElement)
+    expect(container.querySelector('.fixed.top-0')).toBeTruthy()
   })
 
   it('renders a table of contents with H2 heading links from toc field', async () => {
