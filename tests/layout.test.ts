@@ -10,9 +10,6 @@ vi.mock('next/font/local', () => ({
 }))
 
 vi.mock('@vercel/analytics/react', () => ({ Analytics: () => null }))
-vi.mock('@/components/layout/Navbar', () => ({ Navbar: () => null }))
-vi.mock('@/components/layout/Footer', () => ({ Footer: () => null }))
-vi.mock('@/components/ui/CustomCursor', () => ({ CustomCursor: () => null }))
 vi.mock('@/components/providers/PageTransition', () => ({
   PageTransition: ({ children }: { children: unknown }) => children,
 }))

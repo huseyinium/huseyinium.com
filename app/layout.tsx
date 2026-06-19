@@ -2,9 +2,6 @@ import type { Metadata } from 'next'
 import { Geist, Geist_Mono } from 'next/font/google'
 import localFont from 'next/font/local'
 import { Analytics } from '@vercel/analytics/react'
-import { Navbar } from '@/components/layout/Navbar'
-import { Footer } from '@/components/layout/Footer'
-import { CustomCursor } from '@/components/ui/CustomCursor'
 import { PageTransition } from '@/components/providers/PageTransition'
 import './globals.css'
 import '@/styles/mdx.css'
@@ -84,12 +81,9 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} ${calSans.variable} dark h-full antialiased`}
     >
       <body className="flex min-h-full flex-col">
-        <CustomCursor />
-        <Navbar />
         <main className="flex-1">
           <PageTransition>{children}</PageTransition>
         </main>
-        <Footer />
         <Analytics />
       </body>
     </html>
