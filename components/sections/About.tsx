@@ -2,7 +2,6 @@
 
 import { motion } from 'framer-motion'
 import { StatCounter } from '@/components/ui/StatCounter'
-import { ParticleDrift } from '@/components/3d/ParticleDrift'
 
 const STATS = [
   { value: '2+', label: 'Startups founded' },
@@ -16,7 +15,7 @@ const STATS = [
 ]
 
 const SOCIAL_LINKS = [
-  { label: 'LinkedIn', href: 'https://linkedin.com/in/huseyinkaratas' },
+  { label: 'LinkedIn', href: 'https://linkedin.com/in/huseyinlorakaratas' },
   { label: 'GitHub', href: 'https://github.com/huseyinium' },
   { label: 'YouTube', href: 'https://youtube.com/@huseyinium' },
   { label: 'Instagram', href: 'https://instagram.com/huseyinium' },
@@ -30,12 +29,8 @@ const paragraphVariants = {
 export function About() {
   return (
     <section id="about" className="relative overflow-hidden py-24 md:py-32">
-      <div className="hidden md:block absolute inset-0 -z-10">
-        <ParticleDrift />
-      </div>
-
       <div className="container mx-auto px-6 max-w-6xl">
-        <h2 className="font-cal text-4xl md:text-5xl text-(--color-text-primary) mb-16">About</h2>
+        <h2 className="font-cal text-4xl md:text-5xl text-foreground mb-16">About</h2>
 
         <div className="grid md:grid-cols-2 gap-12 md:gap-20">
           {/* Left — story */}
@@ -60,6 +55,7 @@ export function About() {
                 custom={i}
                 variants={paragraphVariants}
                 initial="hidden"
+                className="text-gray-300"
                 whileInView="visible"
                 viewport={{ once: true }}
               >
@@ -74,26 +70,6 @@ export function About() {
               {STATS.map((stat) => (
                 <StatCounter key={stat.label} value={stat.value} label={stat.label} />
               ))}
-            </div>
-
-            <div>
-              <p className="text-xs uppercase tracking-widest text-(--color-text-muted) mb-4">
-                Find me online
-              </p>
-              <div className="flex gap-4">
-                {SOCIAL_LINKS.map(({ label, href }) => (
-                  <a
-                    key={label}
-                    href={href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={label}
-                    className="text-sm text-(--color-text-muted) hover:text-(--color-accent) transition-colors"
-                  >
-                    {label}
-                  </a>
-                ))}
-              </div>
             </div>
           </div>
         </div>
