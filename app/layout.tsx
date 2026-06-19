@@ -28,7 +28,7 @@ const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://huseyinium.com'
 
 export const metadata: Metadata = {
   title: {
-    default: 'Huseyin Karatas — Co-Founder, Full-Stack Engineer',
+    default: 'Huseyin Karatas — Full-Stack Engineer & Entrepreneur',
     template: '%s | Huseyin Karatas',
   },
   description:
@@ -37,6 +37,7 @@ export const metadata: Metadata = {
     'Huseyin Karatas',
     'ARCY AI',
     'full-stack engineer',
+    'full-stack developer',
     'AI founder',
     'Next.js developer',
     'React developer',
@@ -52,13 +53,13 @@ export const metadata: Metadata = {
     locale: 'en_US',
     url: siteUrl,
     siteName: 'Huseyin Karatas',
-    title: 'Huseyin Karatas — Co-Founder, Full-Stack Engineer',
+    title: 'Huseyin Karatas — Full-Stack Engineer & Entrepreneur',
     description: 'Building AI agents that close the product-market fit loop.',
     images: [{ url: '/og', width: 1200, height: 630 }],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Huseyin Karatas — Co-Founder, Full-Stack Engineer',
+    title: 'Huseyin Karatas — Full-Stack Engineer & Entrepreneur',
     description: 'Building AI agents that close the product-market fit loop.',
     images: ['/og'],
   },
