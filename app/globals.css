@@ -154,6 +154,30 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Hero lens glow — soft chromatic-feeling blur behind the hero heading.
+   Two stacked radial gradients (white-hot core + lime ambient) fake the
+   lens-flare-ribbon look while staying inside the existing accent token. */
+.hero-lens-glow {
+  background:
+    radial-gradient(ellipse 45% 55% at 50% 50%, rgba(255, 255, 255, 0.85), transparent 70%),
+    radial-gradient(ellipse 70% 90% at 50% 50%, var(--color-accent), transparent 70%);
+  filter: blur(20px);
+  mix-blend-mode: screen;
+  animation: hero-glow-pulse 10s ease-in-out infinite;
+}
+
+@keyframes hero-glow-pulse {
+  0%,
+  100% {
+    opacity: 0.5;
+    transform: scaleX(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scaleX(1.02);
+  }
+}
+
 /* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
   *,

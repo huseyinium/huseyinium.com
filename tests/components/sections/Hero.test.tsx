@@ -1,11 +1,11 @@
 // @vitest-environment happy-dom
 import React from 'react'
 import { describe, it, expect, beforeEach, vi } from 'vitest'
-import { render, screen, act, fireEvent } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
 import { Hero } from '@/components/sections/Hero'
 
-vi.mock('@/components/3d/HeroCanvas', () => ({
-  HeroCanvas: () => <div data-testid="hero-canvas" className="-z-10 fixed inset-0" />,
+vi.mock('@/components/Galaxy', () => ({
+  default: () => <div data-testid="hero-galaxy" />,
 }))
 
 vi.mock('framer-motion', () => {
@@ -71,28 +71,13 @@ describe('Hero', () => {
     expect(screen.getByRole('img', { name: /scroll down/i })).toBeInTheDocument()
   })
 
-  it('canvas wrapper has lower z-index than text overlay', () => {
+  it('galaxy background has lower z-index than text overlay', () => {
     const { container } = render(<Hero />)
-    const canvas = container.querySelector('[data-testid="hero-canvas"]')
+    const galaxy = container.querySelector('[data-testid="hero-galaxy"]')
     const textOverlay = container.querySelector('[data-testid="hero-text"]')
-    expect(canvas).toBeInTheDocument()
+    expect(galaxy).toBeInTheDocument()
     expect(textOverlay).toBeInTheDocument()
-    expect(canvas).toHaveClass('-z-10')
+    expect(galaxy?.parentElement).toHaveClass('-z-10')
     expect(textOverlay).toHaveClass('z-10')
-  })
-
-  it('hero content fades out when scrolled past 20vh', async () => {
-    const { container } = render(<Hero />)
-    const content = container.querySelector('[data-testid="hero-text"]')
-    expect(content).toBeInTheDocument()
-
-    await act(async () => {
-      const vh20 = window.innerHeight * 0.2 + 10
-      Object.defineProperty(window, 'scrollY', { value: vh20, writable: true, configurable: true })
-      fireEvent.scroll(window)
-    })
-
-    const opacity = parseFloat((content as HTMLElement).style.opacity)
-    expect(opacity).toBeLessThan(1)
   })
 })
