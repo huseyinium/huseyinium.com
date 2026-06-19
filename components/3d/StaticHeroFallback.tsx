@@ -1,6 +1,6 @@
 export function StaticHeroFallback() {
   return (
-    <div aria-hidden="true" className="fixed inset-0 -z-10 bg-[--color-bg]">
+    <div aria-hidden="true" className="fixed inset-0 -z-10 bg-(--color-bg)">
       <span role="img" aria-label="Hero background" className="sr-only" />
       <div
         data-glow

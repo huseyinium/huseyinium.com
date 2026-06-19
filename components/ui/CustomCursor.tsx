@@ -34,7 +34,7 @@ export function CustomCursor() {
     <div
       data-cursor
       className={cn(
-        'pointer-events-none fixed z-[9999] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[--color-accent] transition-[width,height,opacity] duration-150',
+        'pointer-events-none fixed z-[9999] -translate-x-1/2 -translate-y-1/2 rounded-full bg-(--color-accent) transition-[width,height,opacity] duration-150',
         hovered ? CURSOR_HOVER_SIZE : CURSOR_DEFAULT_SIZE
       )}
       // left/top must be inline — these are runtime-computed pixel values

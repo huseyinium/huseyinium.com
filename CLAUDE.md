@@ -31,7 +31,7 @@ IMPORTANT: always use `bun run test`, never `bun test`. `bun test` invokes bun's
 
 **Styling:** Tailwind CSS v4 with all design tokens as CSS custom properties in `globals.css`. Never hardcode colors — always use `var(--color-*)`. The accent is `#B8E04A`. Changing the palette means changing CSS variables only, no component edits.
 
-**CSS token warning:** `globals.css` runs shadcn's token system alongside the portfolio's own `--color-*` tokens. The `@theme inline` block maps Tailwind's `accent` and `border` utility classes to shadcn's tokens (not the portfolio's). Always use CSS variable syntax (`bg-[--color-accent]`, `border-[--color-border]`) — NEVER use `bg-accent` or `border-border` for portfolio UI.
+**CSS tokens:** `globals.css` retheme's shadcn's component tokens (`--primary`, `--accent`, `--border`, `--ring`, `--card`, etc.) to resolve to the portfolio's `--color-*` values, so shadcn primitives (Card, Badge, Tabs, Sheet, Accordion, Progress) render in the site's dark/lime palette with no per-component overrides. `bg-accent`/`border-border`/`bg-primary` are safe to use on shadcn components. Portfolio-bespoke surfaces (Hero, Navbar desktop bar) still use `bg-[--color-accent]`/`border-[--color-border]` directly since they predate the shadcn primitives. The site has no light/dark toggle — there is one token set in `:root`, no `.dark` override block.
 
 **Fonts:** Geist (body/UI via `next/font/google`) + Geist Mono (code/labels) + Cal Sans (hero heading and section H2s only — self-hosted woff2 via `next/font/local`).
 

@@ -50,28 +50,28 @@ describe('Projects', () => {
 
   it('renders All / Startups / Hackathons / Freelance filter tabs — no Personal tab', () => {
     render(<Projects />)
-    expect(screen.getByRole('button', { name: /^all$/i })).toBeInTheDocument()
-    expect(screen.getByRole('button', { name: /^startups$/i })).toBeInTheDocument()
-    expect(screen.getByRole('button', { name: /^hackathons$/i })).toBeInTheDocument()
-    expect(screen.getByRole('button', { name: /^freelance$/i })).toBeInTheDocument()
-    expect(screen.queryByRole('button', { name: /personal/i })).not.toBeInTheDocument()
+    expect(screen.getByRole('tab', { name: /^all$/i })).toBeInTheDocument()
+    expect(screen.getByRole('tab', { name: /^startups$/i })).toBeInTheDocument()
+    expect(screen.getByRole('tab', { name: /^hackathons$/i })).toBeInTheDocument()
+    expect(screen.getByRole('tab', { name: /^freelance$/i })).toBeInTheDocument()
+    expect(screen.queryByRole('tab', { name: /personal/i })).not.toBeInTheDocument()
   })
 
   it('Startups filter shows 2 cards', () => {
     render(<Projects />)
-    fireEvent.click(screen.getByRole('button', { name: /^startups$/i }))
+    fireEvent.click(screen.getByRole('tab', { name: /^startups$/i }))
     expect(screen.getAllByRole('article')).toHaveLength(2)
   })
 
   it('Hackathons filter shows 3 cards', () => {
     render(<Projects />)
-    fireEvent.click(screen.getByRole('button', { name: /^hackathons$/i }))
+    fireEvent.click(screen.getByRole('tab', { name: /^hackathons$/i }))
     expect(screen.getAllByRole('article')).toHaveLength(3)
   })
 
   it('Freelance filter shows 2 cards', () => {
     render(<Projects />)
-    fireEvent.click(screen.getByRole('button', { name: /^freelance$/i }))
+    fireEvent.click(screen.getByRole('tab', { name: /^freelance$/i }))
     expect(screen.getAllByRole('article')).toHaveLength(2)
   })
 

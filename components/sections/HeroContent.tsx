@@ -6,7 +6,7 @@ import { buttonVariants } from '@/components/ui/button'
 import Link from 'next/link'
 import { cn } from '@/lib/utils'
 
-const WORDS = ['Huseyin', 'Karatas.']
+const WORDS = ['Huseyin', 'Karatas']
 
 const wordVariants = {
   hidden: { opacity: 0, y: 20 },
@@ -47,12 +47,12 @@ export function HeroContent() {
       style={{ opacity, pointerEvents: opacity === 0 ? 'none' : 'auto' }}
     >
       <motion.p
-        className="font-mono text-sm tracking-widest text-[--color-accent] uppercase mb-6"
+        className="font-mono text-sm tracking-widest text-(--color-accent) uppercase mb-6"
         initial={{ opacity: 0, y: -8 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4 }}
       >
-        Co-Founder &amp; CEO · Full-Stack Engineer
+        Full-Stack Engineer & Entrepreneur
       </motion.p>
 
       <h1 className="font-display text-6xl md:text-8xl font-bold text-white leading-tight mb-6">
@@ -71,7 +71,7 @@ export function HeroContent() {
       </h1>
 
       <motion.p
-        className="max-w-xl text-lg text-[--color-text-muted] mb-10"
+        className="max-w-xl text-lg text-(--color-text-muted) mb-10"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.4, duration: 0.5 }}
@@ -88,7 +88,7 @@ export function HeroContent() {
       >
         <Link
           href={process.env.NEXT_PUBLIC_CALENDLY_URL ?? '#contact'}
-          className={cn(buttonVariants(), 'bg-[--color-accent] text-black hover:opacity-90')}
+          className={cn(buttonVariants(), 'bg-(--color-accent) text-black hover:opacity-90')}
         >
           Book a call
         </Link>

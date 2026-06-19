@@ -3,7 +3,7 @@ import { HeroContent } from './HeroContent'
 
 export function Hero() {
   return (
-    <section className="relative h-[100dvh] overflow-hidden">
+    <section className="relative h-screen overflow-hidden">
       <HeroCanvas />
       <HeroContent />
     </section>
