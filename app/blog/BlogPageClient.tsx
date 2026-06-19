@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
+import { ChevronLeft } from 'lucide-react'
 import { BlogCard } from '@/components/ui/BlogCard'
 import type { Post } from '@/lib/blog'
 
@@ -23,9 +24,10 @@ export function BlogPageClient({ posts, tags }: { posts: Post[]; tags: string[] 
       <div className="container mx-auto px-6 max-w-5xl">
         <Link
           href="/"
-          className="text-sm text-(--color-text-muted) hover:text-(--color-accent) transition-colors mb-10 inline-block"
+          className="inline-flex items-center gap-1 text-sm text-(--color-text-muted) hover:text-(--color-accent) transition-colors mb-10"
         >
-          ← Back to home
+          <ChevronLeft className="size-4" aria-hidden="true" />
+          Back to home
         </Link>
 
         <h1 className="font-cal text-4xl md:text-5xl text-(--color-text-primary) mb-4">Writing</h1>

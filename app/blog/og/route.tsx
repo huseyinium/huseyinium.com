@@ -28,7 +28,7 @@ export async function GET(request: Request) {
       <div
         style={{
           fontSize: 14,
-          color: '#B8E04A',
+          color: '#F97316',
           letterSpacing: 4,
           textTransform: 'uppercase',
           marginBottom: 20,

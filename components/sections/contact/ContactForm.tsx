@@ -104,7 +104,7 @@ export function ContactForm() {
             clearFieldError('name')
           }}
           className="rounded-lg border border-(--color-border) bg-(--color-bg-elevated)
-            px-3 py-2 text-sm text-(--color-text-primary) outline-none
+            px-3 py-2 text-sm text-foreground outline-none
             focus:border-(--color-accent) transition-colors"
         />
         {validationErrors.name && (
@@ -125,7 +125,7 @@ export function ContactForm() {
             clearFieldError('email')
           }}
           className="rounded-lg border border-(--color-border) bg-(--color-bg-elevated)
-            px-3 py-2 text-sm text-(--color-text-primary) outline-none
+            px-3 py-2 text-sm text-foreground outline-none
             focus:border-(--color-accent) transition-colors"
         />
         {validationErrors.email && (
@@ -146,7 +146,7 @@ export function ContactForm() {
             clearFieldError('message')
           }}
           className="rounded-lg border border-(--color-border) bg-(--color-bg-elevated)
-            px-3 py-2 text-sm text-(--color-text-primary) outline-none resize-none
+            px-3 py-2 text-sm text-foreground outline-none resize-none
             focus:border-(--color-accent) transition-colors"
         />
         {validationErrors.message && (
@@ -158,14 +158,13 @@ export function ContactForm() {
         type="submit"
         disabled={state === 'loading'}
         className="flex items-center justify-center gap-2 rounded-lg
-          bg-(--color-accent) text-(--color-bg) font-medium px-4 py-2.5 text-sm
+          bg-gradient-accent text-background font-medium px-4 py-2.5 text-sm
           hover:opacity-90 transition-opacity disabled:opacity-60"
       >
         {state === 'loading' && (
           <span
             data-loading
-            className="h-4 w-4 rounded-full border-2 border-(--color-bg)
-              border-t-transparent animate-spin"
+            className="h-4 w-4 rounded-full border-2 border-background border-t-transparent animate-spin"
           />
         )}
         Send message

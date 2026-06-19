@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { ChevronRight } from 'lucide-react'
 import type { Post } from '@/lib/blog'
 
 export function BlogCard({ post }: { post: Post }) {
@@ -30,8 +31,12 @@ export function BlogCard({ post }: { post: Post }) {
           {post.date}
           {post.readingTime ? ` · ${post.readingTime} min read` : ''}
         </span>
-        <Link href={href} className="text-xs text-(--color-accent) hover:underline">
-          Read more →
+        <Link
+          href={href}
+          className="inline-flex items-center gap-0.5 text-xs text-(--color-accent) hover:underline"
+        >
+          Read more
+          <ChevronRight className="size-3" aria-hidden="true" />
         </Link>
       </div>
     </article>

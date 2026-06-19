@@ -10,10 +10,20 @@
   --color-bg-elevated: #111111;
   --color-bg-subtle: #1a1a1a;
 
-  /* Accent */
-  --color-accent: #b8e04a;
-  --color-accent-dim: #8aaf2e;
-  --color-accent-glow: #b8e04a33;
+  /* Accent — solid fallback is the orange stop from the hero gradient below,
+     used wherever a CSS property can't take a gradient (borders, rings,
+     icons, focus states). For prominent highlight moments, use
+     var(--gradient-accent) directly or the .text-gradient-accent /
+     .bg-gradient-accent utilities instead. */
+  --color-accent: #f97316;
+  --color-accent-dim: #c2570f;
+  --color-accent-glow: #f9731633;
+
+  /* Hero-inspired gradient — same palette as the Strands canvas
+     (components/react-bits/Strands.tsx). Reusable across components via
+     var(--gradient-accent) or the .text-gradient-accent / .bg-gradient-accent
+     utilities below. */
+  --gradient-accent: linear-gradient(90deg, #7c3aed 0%, #f97316 50%, #06b6d4 100%);
 
   /* Text */
   --color-text-primary: #f0f0f0;
@@ -22,14 +32,14 @@
 
   /* Borders */
   --color-border: #222222;
-  --color-border-accent: #b8e04a44;
+  --color-border-accent: #f9731644;
 
   /* Surface aliases */
   --color-surface: #111111;
   --color-surface-2: #1a1a1a;
 
   /* Semantic */
-  --color-success: #b8e04a;
+  --color-success: #f97316;
   --color-error: #ff4444;
 
   /* Typography — CSS vars wired to next/font variables injected by layout.tsx */
@@ -133,6 +143,35 @@
   --radius-2xl: calc(var(--radius) * 1.8);
   --radius-3xl: calc(var(--radius) * 2.2);
   --radius-4xl: calc(var(--radius) * 2.6);
+  --animate-orbit: orbit calc(var(--duration) * 1s) linear infinite;
+  @keyframes orbit {
+    0% {
+      transform: rotate(calc(var(--angle) * 1deg)) translateY(calc(var(--radius) * 1px))
+        rotate(calc(var(--angle) * -1deg));
+    }
+    100% {
+      transform: rotate(calc(var(--angle) * 1deg + 360deg)) translateY(calc(var(--radius) * 1px))
+        rotate(calc((var(--angle) * -1deg) - 360deg));
+    }
+  }
+  --animate-marquee: marquee var(--duration) infinite linear;
+  --animate-marquee-vertical: marquee-vertical var(--duration) linear infinite;
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(calc(-100% - var(--gap)));
+    }
+  }
+  @keyframes marquee-vertical {
+    from {
+      transform: translateY(0);
+    }
+    to {
+      transform: translateY(calc(-100% - var(--gap)));
+    }
+  }
 }
 
 *,
@@ -152,6 +191,18 @@ body {
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+/* Reusable hero-gradient utilities — see --gradient-accent above. */
+.text-gradient-accent {
+  background: var(--gradient-accent);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.bg-gradient-accent {
+  background: var(--gradient-accent);
 }
 
 /* Hero lens glow — soft chromatic-feeling blur behind the hero heading.

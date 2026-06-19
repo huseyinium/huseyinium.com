@@ -6,7 +6,7 @@ import Strands from '../react-bits/Strands'
 import { WebglErrorBoundary } from '../react-bits/WebglErrorBoundary'
 
 //const WORDS = ['I build,', 'therefore I am.']
-const WORDS = ['I build', 'what modern software capable of.']
+const WORDS = ['I build', 'what modern software is capable of.']
 // const WORDS = ['I imagine,', 'so I build.']
 
 const wordVariants = {
@@ -30,7 +30,7 @@ export function HeroContent() {
   return (
     <>
       <div className="absolute inset-0 -z-10 rounded-3xl!">
-        <WebglErrorBoundary fallback={<div className="absolute inset-0 bg-(--color-bg)" />}>
+        <WebglErrorBoundary fallback={<div className="absolute inset-0 bg-background" />}>
           <Strands
             colors={['#F97316', '#7C3AED', '#06B6D4']}
             count={3}
@@ -58,12 +58,12 @@ export function HeroContent() {
         className="absolute inset-0 z-10 flex flex-col items-center justify-center px-6 text-center pointer-events-none"
       >
         <motion.p className="relative inline-block  text-sm mb-6" transition={{ duration: 0.4 }}>
-          I&apos;m Huseyin Karatas, a Full-Stack Engineer & Entrepreneur
+          I&apos;m Huseyin Karatas - Full-Stack Engineer & Entrepreneur
           <span
             aria-hidden
             className="pointer-events-none absolute inset-0 bg-linear-to-b from-gray-100 via-gray-500 to-gray-900 bg-clip-text text-transparent mix-blend-overlay blur-[1.5px]"
           >
-            I&apos;m Huseyin Karatas, a Full-Stack Engineer & Entrepreneur
+            I&apos;m Huseyin Karatas - Full-Stack Engineer & Entrepreneur
           </span>
         </motion.p>
 

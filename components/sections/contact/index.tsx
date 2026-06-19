@@ -89,7 +89,7 @@ export function Contact() {
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 rounded-full
-              bg-(--color-accent) text-(--color-bg) font-medium px-6 py-3 text-sm
+              bg-gradient-accent text-(--color-bg) font-medium px-6 py-3 text-sm
               hover:opacity-90 transition-opacity mb-12"
           >
             Book a 15-min call

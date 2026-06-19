@@ -26,7 +26,7 @@ export async function GET() {
         style={{
           width: 48,
           height: 4,
-          background: '#B8E04A',
+          background: 'linear-gradient(90deg, #7C3AED 0%, #F97316 50%, #06B6D4 100%)',
           marginBottom: 32,
           borderRadius: 2,
         }}
@@ -49,7 +49,7 @@ export async function GET() {
         style={{
           marginTop: 48,
           fontSize: 16,
-          color: '#B8E04A',
+          color: '#F97316',
           letterSpacing: 4,
           textTransform: 'uppercase',
           fontFamily: 'Geist',

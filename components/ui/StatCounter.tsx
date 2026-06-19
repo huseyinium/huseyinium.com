@@ -28,7 +28,7 @@ export function StatCounter({ value, label }: StatCounterProps) {
 
   return (
     <div ref={ref} className="flex flex-col gap-1" data-value={value}>
-      <span className="text-2xl font-bold text-(--color-accent)">
+      <span className="text-2xl font-bold text-gradient-accent">
         {numeric !== null ? <motion.span>{rounded}</motion.span> : value}
         {suffix}
       </span>
