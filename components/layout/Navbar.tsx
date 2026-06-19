@@ -19,15 +19,9 @@ export function Navbar() {
 
   return (
     <header className="fixed inset-x-0 top-0 z-50">
-      <nav
-        className={`transition-all duration-300 ${
-          scrolled
-            ? 'border-b border-(--color-border) bg-(--color-bg)/80 backdrop-blur-md'
-            : 'bg-transparent'
-        }`}
-      >
+      <nav className={`transition-all duration-300`}>
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-8">
-          <Link href="/" className="font-mono text-sm font-semibold text-(--color-text-primary)">
+          <Link href="/" className="font-mono text-sm font-semibold text-foreground">
             huseyinium
           </Link>
 

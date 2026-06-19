@@ -55,7 +55,7 @@ export function HeroContent() {
         Full-Stack Agentic Engineer & Entrepreneur
       </motion.p>
 
-      <h1 className="font-display text-6xl md:text-8xl font-bold text-white leading-tight mb-6">
+      <h1 className="font-display text-6xl md:text-9xl font-bold text-white leading-tight mb-6">
         {WORDS.map((word, i) => (
           <motion.span
             key={word}
