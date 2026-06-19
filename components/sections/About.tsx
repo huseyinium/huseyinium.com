@@ -1,18 +1,18 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { StatCounter } from '@/components/ui/StatCounter'
+import CurvedLoop from '../react-bits/CurvedLoopText'
 
-const STATS = [
-  { value: '2+', label: 'Startups founded' },
-  { value: '5+', label: 'Years engineering' },
-  { value: '10+', label: 'Hackathons attended' },
-  { value: 'Multiple', label: 'Prizes won' },
-  { value: '16K+', label: 'LinkedIn followers' },
-  { value: '200K+', label: 'YouTube views' },
-  { value: '100K+', label: 'Monthly IG views' },
-  { value: 'METU', label: 'METU student' },
-]
+// const STATS = [
+//   { value: '2+', label: 'Startups founded' },
+//   { value: '5+', label: 'Years engineering' },
+//   { value: '10+', label: 'Hackathons attended' },
+//   { value: 'Multiple', label: 'Prizes won' },
+//   { value: '16K+', label: 'LinkedIn followers' },
+//   { value: '200K+', label: 'YouTube views' },
+//   { value: '100K+', label: 'Monthly IG views' },
+//   { value: 'METU', label: 'METU student' },
+// ]
 
 const SOCIAL_LINKS = [
   { label: 'LinkedIn', href: 'https://linkedin.com/in/huseyinlorakaratas' },
@@ -30,11 +30,11 @@ export function About() {
   return (
     <section id="about" className="relative overflow-hidden py-24 md:py-32">
       <div className="container mx-auto px-6 max-w-6xl">
-        <h2 className="font-cal text-4xl md:text-5xl text-foreground mb-16">About</h2>
+        <h2 className="font-cal text-4xl md:text-5xl text-foreground mb-16 text-center">About</h2>
 
-        <div className="grid md:grid-cols-2 gap-12 md:gap-20">
+        <div className="grid  gap-12 md:gap-20">
           {/* Left — story */}
-          <div className="flex flex-col gap-6 text-(--color-text-muted) leading-relaxed">
+          <div className="flex flex-col gap-6 text-(--color-text-muted) leading-relaxed ">
             {[
               {
                 id: 'about-para-builder' as const,
@@ -55,7 +55,7 @@ export function About() {
                 custom={i}
                 variants={paragraphVariants}
                 initial="hidden"
-                className="text-gray-300"
+                className="text-gray-300 text-center"
                 whileInView="visible"
                 viewport={{ once: true }}
               >
@@ -63,16 +63,16 @@ export function About() {
               </motion.p>
             ))}
           </div>
-
-          {/* Right — stats + social */}
-          <div className="flex flex-col gap-10">
-            <div className="grid grid-cols-2 gap-6">
-              {STATS.map((stat) => (
-                <StatCounter key={stat.label} value={stat.value} label={stat.label} />
-              ))}
-            </div>
-          </div>
         </div>
+      </div>
+      <div className="relative left-1/2 mt-12 w-screen -translate-x-1/2 lg:pb-48 lg:pt-52">
+        <CurvedLoop
+          marqueeText="⚡ I BUILT, THEREFORE I AM."
+          speed={1.5}
+          curveAmount={200}
+          direction="right"
+          interactive
+        />
       </div>
     </section>
   )
