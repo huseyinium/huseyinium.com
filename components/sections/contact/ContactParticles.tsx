@@ -1,8 +1,21 @@
 'use client'
 
-import { Component, useRef, type ReactNode } from 'react'
+import { Component, useRef, useState, type ReactNode } from 'react'
 import { Canvas, useFrame } from '@react-three/fiber'
 import * as THREE from 'three'
+
+// @react-three/fiber creates the WebGLRenderer asynchronously, so a context
+// creation failure (no GPU, sandboxed browser, etc.) surfaces as an
+// unhandled promise rejection that no error boundary can catch. Feature-test
+// WebGL before mounting <Canvas> at all to avoid that crash path.
+function supportsWebGL(): boolean {
+  try {
+    const canvas = document.createElement('canvas')
+    return !!(canvas.getContext('webgl2') || canvas.getContext('webgl'))
+  } catch {
+    return false
+  }
+}
 
 const PARTICLE_COUNT_DESKTOP = 50
 const PARTICLE_COUNT_MOBILE = 15
@@ -53,6 +66,10 @@ function Particles() {
 }
 
 export function ContactParticles() {
+  const [canRender] = useState(supportsWebGL)
+
+  if (!canRender) return null
+
   return (
     <div aria-hidden="true" className="absolute inset-0 pointer-events-none z-0">
       <ParticlesErrorBoundary>
