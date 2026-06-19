@@ -17,10 +17,6 @@ vi.mock('framer-motion', () => {
   }
 })
 
-vi.mock('@/components/3d/ProjectMicroCanvas', () => ({
-  ProjectMicroCanvas: () => <div data-testid="micro-canvas" />,
-}))
-
 import ProjectsPage from '@/app/projects/page'
 
 describe('/projects page', () => {

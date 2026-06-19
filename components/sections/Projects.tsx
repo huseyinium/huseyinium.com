@@ -1,97 +1,106 @@
 'use client'
 
-import { useState } from 'react'
-import dynamic from 'next/dynamic'
+import Image from 'next/image'
 import Link from 'next/link'
-import { motion, AnimatePresence } from 'framer-motion'
+import { ChevronRight } from 'lucide-react'
 import { PROJECTS, type Project } from '@/content/projects'
 import { Card, CardContent } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
-import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs'
+import { Marquee } from '@/components/ui/marquee'
+import { Lens } from '@/components/ui/lens'
+import { buttonVariants } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
 
-const ProjectMicroCanvas = dynamic(
-  () => import('@/components/3d/ProjectMicroCanvas').then((m) => m.ProjectMicroCanvas),
-  { ssr: false }
-)
+const TECH_LOGOS: Record<string, string> = {
+  'next.js': '/logos/svg/nextjs.svg',
+  react: '/logos/svg/react.svg',
+  'react native': '/logos/svg/react.svg',
+  nestjs: '/logos/svg/nestjs.svg',
+  'node.js': '/logos/svg/nodejs.svg',
+  postgresql: '/logos/svg/postgresql.svg',
+  typescript: '/logos/svg/typescript.svg',
+  javascript: '/logos/svg/javascript.svg',
+  github: '/logos/svg/github.svg',
+  docker: '/logos/svg/docker.svg',
+  redis: '/logos/svg/redis.svg',
+  prisma: '/logos/svg/prisma-orm.svg',
+  expo: '/logos/svg/expo.svg',
+  firebase: '/logos/svg/firebase.svg',
+  'tailwind css': '/logos/svg/tailwind-css.svg',
+  vercel: '/logos/svg/vercel.svg',
+  'amazon web services': '/logos/svg/amazon-web-services.svg',
+  aws: '/logos/svg/amazon-web-services.svg',
+}
 
-type Filter = 'all' | 'startup' | 'hackathon' | 'freelance'
-
-const FILTERS: { label: string; value: Filter }[] = [
-  { label: 'All', value: 'all' },
-  { label: 'Startups', value: 'startup' },
-  { label: 'Hackathons', value: 'hackathon' },
-  { label: 'Freelance', value: 'freelance' },
-]
-
-const supportsHover = typeof window !== 'undefined' && window.matchMedia('(hover:hover)').matches
+function techLogo(tech: string) {
+  return TECH_LOGOS[tech.toLowerCase()]
+}
 
 export function ProjectCard({ project }: { project: Project }) {
-  const [hovered, setHovered] = useState(false)
-
   return (
     <Card
       as="article"
       data-featured={project.featured ? 'true' : undefined}
-      className={cn(
-        'rounded-xl bg-(--color-surface) py-0 ring-1 ring-(--color-border)',
-        project.featured && 'md:col-span-2 xl:col-span-3'
-      )}
-      onMouseEnter={() => supportsHover && setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
+      className="w-85 shrink-0 rounded-xl bg-(--color-surface) py-0 ring-1 ring-(--color-border)"
     >
-      {/* Cover / micro-canvas */}
-      <div className="relative h-48 bg-(--color-surface-2) overflow-hidden">
-        {hovered && (
-          <div className="absolute inset-0 z-10">
-            <ProjectMicroCanvas />
-          </div>
-        )}
-      </div>
+      <Lens zoomFactor={2} lensSize={175}>
+        <div className="relative h-48 w-full overflow-hidden bg-(--color-surface-2)">
+          <Image
+            src={project.coverImage}
+            alt={project.title}
+            fill
+            sizes="340px"
+            className="object-cover"
+          />
+        </div>
+      </Lens>
 
       <CardContent className="flex flex-col gap-3 p-6 flex-1">
-        <span className="text-xs uppercase tracking-widest text-(--color-accent)">
-          {project.category}
-        </span>
-        <h3 className="font-cal text-xl text-(--color-text-primary)">{project.title}</h3>
+        <h3 className="font-cal text-xl font-bold! border-accent/30">{project.title}</h3>
         <p className="text-sm text-(--color-text-muted) leading-relaxed">{project.description}</p>
 
         <div className="flex flex-wrap gap-2 mt-1">
-          {project.stack.map((tech, i) => (
-            <Badge key={`${tech}-${i}`} variant="outline" className="text-(--color-text-muted)">
-              {tech}
-            </Badge>
-          ))}
+          {project.stack.map((tech, i) => {
+            const logo = techLogo(tech)
+            return (
+              <Badge
+                key={`${tech}-${i}`}
+                variant="outline"
+                className="p-2.5! text-(--color-text-muted)"
+              >
+                {logo && (
+                  <Image
+                    src={logo}
+                    alt=""
+                    width={12}
+                    height={12}
+                    data-icon="inline-start"
+                    className="size-3 object-contain"
+                  />
+                )}
+                {tech}
+              </Badge>
+            )
+          })}
         </div>
 
         {project.prize && (
           <Badge
             data-testid={`prize-${project.id}`}
             variant="outline"
-            className="w-fit border-(--color-accent)/30 text-(--color-accent) hover:border-(--color-accent)"
+            className="w-fit border-accent/30 text-(--color-accent) hover:border-(--color-accent)"
           >
             {project.prize}
           </Badge>
         )}
 
-        <div className="flex items-center gap-4 mt-auto pt-4">
+        <div className="mt-auto pt-4!">
           <Link
             href={`/projects/${project.id}`}
-            className="text-sm font-medium text-(--color-text-primary) hover:text-(--color-accent) transition-colors"
+            className={cn(buttonVariants({ variant: 'secondary', size: 'lg' }), 'w-fit')}
           >
             Read case study
           </Link>
-          {project.githubUrl && (
-            <a
-              href={project.githubUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="GitHub"
-              className="text-(--color-text-muted) hover:text-(--color-accent) transition-colors"
-            >
-              GH
-            </a>
-          )}
         </div>
       </CardContent>
     </Card>
@@ -99,59 +108,38 @@ export function ProjectCard({ project }: { project: Project }) {
 }
 
 export function Projects() {
-  const [active, setActive] = useState<Filter>('all')
-
   const mainProjects = PROJECTS.filter((p) => p.category !== 'personal')
-  const filtered =
-    active === 'all' ? mainProjects : mainProjects.filter((p) => p.category === active)
+  const half = Math.ceil(mainProjects.length / 2)
+  const rowOne = mainProjects.slice(0, half)
+  const rowTwo = mainProjects.slice(half)
 
   return (
-    <section id="projects" className="py-24 md:py-32">
+    <section id="projects" className="pb-24 md:pb-32 ">
       <div className="container mx-auto px-6 max-w-6xl">
-        <h2 className="font-cal text-4xl md:text-5xl text-(--color-text-primary) mb-10">
+        <h2 className="font-cal text-4xl md:text-5xl text-center text-foreground mb-10">
           Projects
         </h2>
 
-        <Tabs
-          value={active}
-          onValueChange={(value) => setActive(value as Filter)}
-          className="mb-12"
-        >
-          <TabsList className="flex-wrap h-auto bg-transparent p-0 gap-2">
-            {FILTERS.map(({ label, value }) => (
-              <TabsTrigger
-                key={value}
-                value={value}
-                className="rounded-full border border-(--color-border) px-4 py-1.5 text-sm text-(--color-text-muted) data-active:border-(--color-accent) data-active:bg-(--color-accent) data-active:text-black dark:data-active:border-(--color-accent) dark:data-active:bg-(--color-accent) dark:data-active:text-black"
-              >
-                {label}
-              </TabsTrigger>
-            ))}
-          </TabsList>
-        </Tabs>
-
-        {/* Grid */}
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={active}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
-            className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6"
-          >
-            {filtered.map((project) => (
+        <div className="flex flex-col gap-6 -mx-6">
+          <Marquee pauseOnHover className="[--duration:50s]">
+            {rowOne.map((project) => (
               <ProjectCard key={project.id} project={project} />
             ))}
-          </motion.div>
-        </AnimatePresence>
+          </Marquee>
+          <Marquee pauseOnHover reverse className="[--duration:50s]">
+            {rowTwo.map((project) => (
+              <ProjectCard key={project.id} project={project} />
+            ))}
+          </Marquee>
+        </div>
 
         <div className="mt-12 text-center">
           <Link
             href="/projects"
-            className="text-sm text-(--color-text-muted) hover:text-(--color-accent) transition-colors"
+            className="inline-flex items-center gap-0.5 text-sm text-(--color-text-muted) hover:text-(--color-accent) transition-colors"
           >
-            View all projects →
+            View all projects
+            <ChevronRight className="size-4" aria-hidden="true" />
           </Link>
         </div>
       </div>

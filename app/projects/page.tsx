@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import { ChevronLeft } from 'lucide-react'
 import { PROJECTS } from '@/content/projects'
 import { ProjectCard } from '@/components/sections/Projects'
 
@@ -12,16 +13,17 @@ export default function ProjectsPage() {
       <div className="container mx-auto px-6 max-w-6xl">
         <Link
           href="/#projects"
-          className="text-sm text-(--color-text-muted) hover:text-(--color-accent) transition-colors mb-10 inline-block"
+          className="inline-flex items-center gap-1 text-sm text-(--color-text-muted) hover:text-(--color-accent) transition-colors mb-10"
         >
-          ← Back
+          <ChevronLeft className="size-4" aria-hidden="true" />
+          Back
         </Link>
 
         <h1 className="font-cal text-4xl md:text-5xl text-(--color-text-primary) mb-12">
           All Projects
         </h1>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+        <div className="flex flex-wrap justify-center gap-6 md:justify-start">
           {sorted.map((project) => (
             <ProjectCard key={project.id} project={project} />
           ))}
