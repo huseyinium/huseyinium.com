@@ -6,7 +6,7 @@ import { buttonVariants } from '@/components/ui/button'
 import Link from 'next/link'
 import { cn } from '@/lib/utils'
 
-const WORDS = ['Huseyin', 'Karatas']
+const WORDS = ['I imagine,', 'so I build.']
 
 const wordVariants = {
   hidden: { opacity: 0, y: 20 },
@@ -52,7 +52,7 @@ export function HeroContent() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4 }}
       >
-        Full-Stack Engineer & Entrepreneur
+        Full-Stack Agentic Engineer & Entrepreneur
       </motion.p>
 
       <h1 className="font-display text-6xl md:text-8xl font-bold text-white leading-tight mb-6">
