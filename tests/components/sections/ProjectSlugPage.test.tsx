@@ -44,7 +44,7 @@ const mockStudy = {
   category: 'startup' as const,
   stack: ['Next.js', 'NestJS', 'PostgreSQL'],
   coverImage: '/images/projects/arcy-ai.png',
-  date: '2024-01',
+  startDate: '2024-01',
   liveUrl: 'https://arcy.ai',
   featured: true,
   Component: MockContent,

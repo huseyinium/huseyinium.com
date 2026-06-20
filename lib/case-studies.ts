@@ -32,8 +32,14 @@ const CONTENT: Record<string, ComponentType> = {
   verifyworld: VerifyWorld,
 }
 
+function sortableDate(project: Project) {
+  return project.startDate ?? project.endDate ?? ''
+}
+
 export function getAllCaseStudies(): Project[] {
-  return [...PROJECTS].filter((p) => p.id in CONTENT).sort((a, b) => b.date.localeCompare(a.date))
+  return [...PROJECTS]
+    .filter((p) => p.id in CONTENT)
+    .sort((a, b) => sortableDate(b).localeCompare(sortableDate(a)))
 }
 
 export function getCaseStudyBySlug(slug: string): CaseStudyEntry | null {
