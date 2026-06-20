@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useCallback, useMemo, useRef, useState } from 'react'
-import { AnimatePresence, motion, useMotionTemplate } from 'motion/react'
+import { motion, useMotionTemplate } from 'motion/react'
 
 interface Position {
   /** The x coordinate of the lens */
@@ -75,14 +75,15 @@ export function Lens({
     lensSize / 2
   }px at ${currentPosition.x}px ${currentPosition.y}px, ${lensColor} 100%, transparent 100%)`
 
+  const isVisible = isStatic || defaultPosition || isHovering
+
   const LensContent = useMemo(() => {
     const { x, y } = currentPosition
 
     return (
       <motion.div
-        initial={{ opacity: 0, scale: 0.58 }}
-        animate={{ opacity: 1, scale: 1 }}
-        exit={{ opacity: 0, scale: 0.8 }}
+        initial={false}
+        animate={{ opacity: isVisible ? 1 : 0, scale: isVisible ? 1 : 0.58 }}
         transition={{ duration }}
         className="absolute inset-0 overflow-hidden"
         style={{
@@ -103,7 +104,7 @@ export function Lens({
         </div>
       </motion.div>
     )
-  }, [currentPosition, maskImage, zoomFactor, children, duration])
+  }, [currentPosition, maskImage, zoomFactor, children, duration, isVisible])
 
   return (
     <div
@@ -118,11 +119,7 @@ export function Lens({
       tabIndex={0}
     >
       {children}
-      {isStatic || defaultPosition ? (
-        LensContent
-      ) : (
-        <AnimatePresence mode="popLayout">{isHovering && LensContent}</AnimatePresence>
-      )}
+      {LensContent}
     </div>
   )
 }
