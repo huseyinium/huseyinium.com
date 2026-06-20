@@ -13,13 +13,13 @@ export default function ProjectsPage() {
       <div className="container mx-auto px-6 max-w-6xl">
         <Link
           href="/#projects"
-          className="inline-flex items-center gap-1 text-sm text-(--color-text-muted) hover:text-(--color-accent) transition-colors mb-10"
+          className="flex items-center justify-center gap-1 text-sm text-(--color-text-muted) hover:text-(--color-accent) transition-colors mb-10"
         >
           <ChevronLeft className="size-4" aria-hidden="true" />
           Back
         </Link>
 
-        <h1 className="font-cal text-4xl md:text-5xl text-(--color-text-primary) mb-12">
+        <h1 className="font-cal text-4xl md:text-5xl text-foreground text-center mb-12">
           All Projects
         </h1>
 
