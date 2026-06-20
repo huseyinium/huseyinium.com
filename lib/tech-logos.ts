@@ -127,6 +127,9 @@ export const TECH_LOGOS: Record<string, string> = {
   base: '/logos/svg/base.svg',
   solidity: '/logos/svg/solidity.svg',
   npm: '/logos/svg/npm.svg',
+  ipfs: '/logos/svg/ipfs.svg',
+  oneinch: '/logos/svg/oneinch.svg',
+  layerzero: '/logos/svg/layerzero.svg',
 }
 
 export function techLogo(tech: string) {
