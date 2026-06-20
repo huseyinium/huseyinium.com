@@ -17,51 +17,93 @@ interface Orbit {
   logos: OrbitLogo[]
 }
 
-// Innermost orbit = daily-driver fundamentals, outermost = deployment/infra & tooling.
+// Innermost orbit = core languages, outermost = deployment & tooling.
+// Sourced 1:1 from public/logos/svg, grouped into one ring per layer of the
+// stack. The 12 granular aws-* service icons are deliberately left out here
+// (they're used for per-project tech badges in Projects.tsx) in favor of the
+// single umbrella Amazon Web Services mark — a dozen AWS micro-icons in one
+// ring would read as noise rather than signal in a skills overview.
 const ORBITS: Orbit[] = [
   {
-    radius: 88,
-    iconSize: 65,
-    duration: 24,
+    radius: 80,
+    iconSize: 60,
+    duration: 20,
     logos: [
       { name: 'TypeScript', src: '/logos/svg/typescript.svg' },
-      { name: 'Claude Code', src: '/logos/svg/claude-code.svg' },
+      { name: 'JavaScript', src: '/logos/svg/javascript.svg' },
+      { name: 'Python', src: '/logos/svg/python.svg' },
+      { name: 'PHP', src: '/logos/svg/php.svg' },
     ],
   },
   {
-    radius: 175,
-    iconSize: 75,
-    duration: 36,
+    radius: 155,
+    iconSize: 68,
+    duration: 34,
     reverse: true,
     logos: [
       { name: 'React', src: '/logos/svg/react.svg' },
       { name: 'Next.js', src: '/logos/svg/nextjs.svg' },
-      { name: 'Node.js', src: '/logos/svg/nodejs.svg' },
-      { name: 'NestJS', src: '/logos/svg/nestjs.svg' },
+      { name: 'Tailwind CSS', src: '/logos/svg/tailwind-css.svg' },
+      { name: 'CSS', src: '/logos/svg/css.svg' },
+      { name: 'Bootstrap', src: '/logos/svg/bootstrap.svg' },
+      { name: 'Redux', src: '/logos/svg/redux.svg' },
+      { name: 'GSAP', src: '/logos/svg/gsap.svg' },
+      { name: 'shadcn/ui', src: '/logos/svg/shadcn.svg' },
+      { name: 'Vite', src: '/logos/svg/vitejs.svg' },
+      { name: 'Expo', src: '/logos/svg/expo.svg' },
     ],
   },
   {
-    radius: 263,
-    iconSize: 80,
+    radius: 230,
+    iconSize: 72,
     duration: 48,
     logos: [
+      { name: 'Node.js', src: '/logos/svg/nodejs.svg' },
+      { name: 'NestJS', src: '/logos/svg/nestjs.svg' },
+      { name: 'Express', src: '/logos/svg/express.svg' },
+      { name: 'Laravel', src: '/logos/svg/laravel%201.svg' },
+      { name: 'Livewire', src: '/logos/svg/livewire.svg' },
       { name: 'PostgreSQL', src: '/logos/svg/postgresql.svg' },
       { name: 'Prisma', src: '/logos/svg/prisma-orm.svg' },
-      { name: 'TailwindCSS', src: '/logos/svg/tailwind-css.svg' },
       { name: 'Redis', src: '/logos/svg/redis.svg' },
+      { name: 'Socket.io', src: '/logos/svg/socketio.svg' },
+      { name: 'Firebase', src: '/logos/svg/firebase.svg' },
+      { name: 'NextAuth', src: '/logos/svg/nextauth.svg' },
+      { name: 'Apache', src: '/logos/svg/apache.svg' },
+      { name: 'Nginx', src: '/logos/svg/nginx.svg' },
+      { name: 'NumPy', src: '/logos/svg/numpy.svg' },
     ],
   },
   {
-    radius: 350,
-    iconSize: 85,
-    duration: 64,
+    radius: 300,
+    iconSize: 78,
+    duration: 60,
     reverse: true,
+    logos: [
+      { name: 'OpenAI', src: '/logos/svg/openai.svg' },
+      { name: 'Claude', src: '/logos/svg/claude.svg' },
+      { name: 'Claude Code', src: '/logos/svg/claude-code.svg' },
+    ],
+  },
+  {
+    radius: 375,
+    iconSize: 82,
+    duration: 74,
     logos: [
       { name: 'Amazon Web Services', src: '/logos/svg/amazon-web-services.svg' },
       { name: 'Vercel', src: '/logos/svg/vercel.svg' },
       { name: 'Docker', src: '/logos/svg/docker.svg' },
       { name: 'Git', src: '/logos/svg/git.svg' },
       { name: 'GitHub', src: '/logos/svg/github.svg' },
+      { name: 'Bun', src: '/logos/svg/bun.svg' },
+      { name: 'ESLint', src: '/logos/svg/eslint.svg' },
+      { name: 'Babel', src: '/logos/svg/babel.svg' },
+      { name: 'Jest', src: '/logos/svg/jest.svg' },
+      { name: 'Postman', src: '/logos/svg/postman.svg' },
+      { name: 'Figma', src: '/logos/svg/figma.svg' },
+      { name: 'Xcode', src: '/logos/svg/xcode.svg' },
+      { name: 'Stripe', src: '/logos/svg/stripe.svg' },
+      { name: 'Resend', src: '/logos/svg/resend.svg' },
     ],
   },
 ]
@@ -131,7 +173,7 @@ function SkillsExplanation() {
 function SkillsOrbit() {
   return (
     <div className="relative flex size-82.5 shrink-0 items-center justify-center overflow-hidden sm:size-102.5 md:size-133.75 lg:size-125 xl:size-205">
-      <div className="relative size-205 scale-[0.3] sm:scale-[0.375] md:scale-[0.4875] lg:scale-[0.6] xl:scale-75">
+      <div className="relative size-208 scale-[0.296] sm:scale-[0.37] md:scale-[0.4805] lg:scale-[0.591] xl:scale-[0.739]">
         {ORBITS.map((orbit) => (
           <OrbitingCircles
             key={orbit.radius}
@@ -155,12 +197,12 @@ export function Skills() {
     <section id="skills" className="py-24 md:py-32">
       <div className="container mx-auto px-6 max-w-7xl">
         <h2 className="font-cal text-4xl md:text-5xl text-foreground mb-8 text-center">Skills</h2>
-        <p className="text-gray-300 leading-relaxed text-center mb-16">
+        {/*  <p className="text-gray-300 leading-relaxed text-center mb-16">
           I build across the full stack — React and Next.js on the front end, Node.js and PostgreSQL
           underneath — then ship it on AWS and Vercel with Docker and CI/CD wired in. The orbit
           mirrors that: the languages and frameworks I reach for daily sit closest to the center,
           while the deployment and tooling layers that get it into production sit further out.
-        </p>
+        </p> */}
 
         <div className="flex flex-col items-center gap-16 xl:flex-row xl:items-center xl:justify-center xl:gap-12">
           {/* <SkillsExplanation /> */}
