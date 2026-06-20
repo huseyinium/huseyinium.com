@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://huseyinium.com
+
+# Sitemaps
+Sitemap: https://huseyinium.com/sitemap.xml
