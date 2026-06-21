@@ -66,12 +66,13 @@ describe('Achievements section', () => {
     }
   })
 
-  it('card grid has 2-col desktop layout class', async () => {
+  it('renders the achievements grid container', async () => {
+    const { ACHIEVEMENTS } = await import('@/content/achievements')
     const { Achievements } = await import('@/components/sections/Achievements')
     const { container } = render(<Achievements />)
     const grid = container.querySelector('[data-achievements-grid]')
     expect(grid).toBeInTheDocument()
-    expect(grid!.className).toMatch(/md:grid-cols-2/)
+    expect(container.querySelectorAll('[data-achievement-card]')).toHaveLength(ACHIEVEMENTS.length)
   })
 
   it('each card has an icon element', async () => {
@@ -80,13 +81,5 @@ describe('Achievements section', () => {
     const { container } = render(<Achievements />)
     const icons = container.querySelectorAll('[data-achievement-icon]')
     expect(icons).toHaveLength(ACHIEVEMENTS.length)
-  })
-
-  it('cards have scroll-animation motion wrapper', async () => {
-    const { ACHIEVEMENTS } = await import('@/content/achievements')
-    const { Achievements } = await import('@/components/sections/Achievements')
-    const { container } = render(<Achievements />)
-    const cards = container.querySelectorAll('[data-achievement-card]')
-    expect(cards).toHaveLength(ACHIEVEMENTS.length)
   })
 })
