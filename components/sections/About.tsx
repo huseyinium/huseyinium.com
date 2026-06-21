@@ -38,15 +38,11 @@ export function About() {
             {[
               {
                 id: 'about-para-builder' as const,
-                text: "I've been building things since 2021 — from procedural PHP to AI agents, always focused on what actually ships and matters.",
+                text: "I'm Huseyin Karatas, a 22 year old full-stack engineer and entrepreneur.",
               },
               {
-                id: 'about-para-founder' as const,
-                text: 'Two startups, one incubator, one accelerator, one grant. Failure taught me that conviction and velocity compound — so I keep building.',
-              },
-              {
-                id: 'about-para-beyond' as const,
-                text: 'METU student, community leader, published writer, and content creator. Engineering is one dimension — I care about the full picture.',
+                id: 'about-para-builder' as const,
+                text: "I've been building since I'm 17.",
               },
             ].map((para, i) => (
               <motion.p
@@ -65,15 +61,15 @@ export function About() {
           </div>
         </div>
       </div>
-      <div className="relative left-1/2 mt-12 w-screen -translate-x-1/2 lg:pb-48 lg:pt-52">
+      {/*  <div className="relative left-1/2 mt-12 w-screen -translate-x-1/2 lg:pb-48 lg:pt-52">
         <CurvedLoop
           marqueeText="⚡ I BUILT, THEREFORE I AM."
           speed={1.5}
-          curveAmount={200}
+          curveAmount={100}
           direction="right"
           interactive
         />
-      </div>
+      </div> */}
     </section>
   )
 }
