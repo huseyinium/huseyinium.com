@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from 'next/font/google'
 import localFont from 'next/font/local'
 import { Analytics } from '@vercel/analytics/react'
 import { PageTransition } from '@/components/providers/PageTransition'
+import { Navbar } from '@/components/Navbar'
 import { TooltipProvider } from '@/components/ui/tooltip'
 import './globals.css'
 import '@/styles/mdx.css'
@@ -84,6 +85,7 @@ export default function RootLayout({
     >
       <body className="flex min-h-full flex-col">
         <TooltipProvider>
+          <Navbar />
           <main className="flex-1">
             <PageTransition>{children}</PageTransition>
           </main>
