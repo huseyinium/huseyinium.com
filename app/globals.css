@@ -19,11 +19,19 @@
   --color-accent-dim: #c2570f;
   --color-accent-glow: #f9731633;
 
-  /* Hero-inspired gradient — same palette as the Strands canvas
-     (components/react-bits/Strands.tsx). Reusable across components via
+  /* Premium "darkius flame" gradient — black edges burning into deep red,
+     orange, and a hot highlight. Reusable across components via
      var(--gradient-accent) or the .text-gradient-accent / .bg-gradient-accent
      utilities below. */
-  --gradient-accent: linear-gradient(90deg, #7c3aed 0%, #f97316 50%, #06b6d4 100%);
+  --gradient-accent: linear-gradient(
+    135deg,
+    #1a0500 0%,
+    #7a1505 22%,
+    #c2370c 45%,
+    #f0590f 65%,
+    #f97316 82%,
+    #ffb454 100%
+  );
 
   /* Text */
   --color-text-primary: #f0f0f0;
@@ -208,7 +216,7 @@ body {
 /* Hero lens glow — soft chromatic-feeling blur behind the hero heading.
    Two stacked radial gradients (white-hot core + lime ambient) fake the
    lens-flare-ribbon look while staying inside the existing accent token. */
-.hero-lens-glow {
+/* .hero-lens-glow {
   background:
     radial-gradient(ellipse 45% 55% at 50% 50%, rgba(255, 255, 255, 0.85), transparent 70%),
     radial-gradient(ellipse 70% 90% at 50% 50%, var(--color-accent), transparent 70%);
@@ -216,8 +224,8 @@ body {
   mix-blend-mode: screen;
   animation: hero-glow-pulse 10s ease-in-out infinite;
 }
-
-@keyframes hero-glow-pulse {
+ */
+/* @keyframes hero-glow-pulse {
   0%,
   100% {
     opacity: 0.5;
@@ -227,7 +235,7 @@ body {
     opacity: 0.8;
     transform: scaleX(1.02);
   }
-}
+} */
 
 /* Reduced motion */
 @media (prefers-reduced-motion: reduce) {

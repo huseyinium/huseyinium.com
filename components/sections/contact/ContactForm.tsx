@@ -158,8 +158,8 @@ export function ContactForm() {
         type="submit"
         disabled={state === 'loading'}
         className="flex items-center justify-center gap-2 rounded-lg
-          bg-gradient-accent text-background font-medium px-4 py-2.5 text-sm
-          hover:opacity-90 transition-opacity disabled:opacity-60"
+          bg-gradient-accent  font-medium px-4 py-2.5 text-sm
+          hover:opacity-90 transition-opacity disabled:opacity-60 text-white!"
       >
         {state === 'loading' && (
           <span

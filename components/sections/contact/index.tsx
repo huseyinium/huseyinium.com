@@ -1,12 +1,6 @@
 'use client'
 
-import dynamic from 'next/dynamic'
 import { ContactForm } from './ContactForm'
-
-const ContactParticles = dynamic(
-  () => import('./ContactParticles').then((m) => m.ContactParticles),
-  { ssr: false }
-)
 
 function IconLinkedin() {
   return (
@@ -70,13 +64,7 @@ const SOCIAL_LINKS = [
 export function Contact() {
   return (
     <section id="contact" className="relative py-24 md:py-32 overflow-hidden">
-      <ContactParticles />
-
       <div className="relative z-10 container mx-auto px-6 max-w-2xl text-center">
-        <p className="text-sm font-mono text-(--color-accent) uppercase tracking-widest mb-4">
-          Get in touch
-        </p>
-
         <h2 className="font-cal text-4xl md:text-5xl text-(--color-text-primary) mb-6">Contact</h2>
 
         <p className="text-(--color-text-secondary) mb-8">
@@ -89,7 +77,7 @@ export function Contact() {
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 rounded-full
-              bg-gradient-accent text-(--color-bg) font-medium px-6 py-3 text-sm
+              bg-gradient-accent text-white font-medium px-6 py-3 text-sm
               hover:opacity-90 transition-opacity mb-12"
           >
             Book a 15-min call
@@ -117,8 +105,6 @@ export function Contact() {
             </a>
           ))}
         </div>
-
-        <p className="text-xs text-(--color-text-muted)">Usually responds within 24 hours.</p>
       </div>
     </section>
   )
