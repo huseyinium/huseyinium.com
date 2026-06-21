@@ -175,9 +175,10 @@ export function Projects() {
   return (
     <section id="projects" className="pb-24 md:pb-32 ">
       <div className="container mx-auto px-6 max-w-6xl">
-        <h2 className="font-cal text-4xl md:text-5xl text-center text-foreground mb-10">
-          Projects
-        </h2>
+        <h2 className="font-cal text-4xl md:text-5xl text-center text-foreground">Projects</h2>
+        <p className="text-(--color-text-muted) text-center mb-10">
+          A selection of products and tools I&apos;ve built and shipped.
+        </p>
 
         <div className="flex flex-col gap-6 -mx-6">
           <Marquee pauseOnHover className="[--duration:50s]">

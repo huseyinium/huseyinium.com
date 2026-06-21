@@ -31,8 +31,6 @@ const ORBITS: Orbit[] = [
     logos: [
       { name: 'TypeScript', src: '/logos/svg/typescript.svg' },
       { name: 'JavaScript', src: '/logos/svg/javascript.svg' },
-      { name: 'Python', src: '/logos/svg/python.svg' },
-      { name: 'PHP', src: '/logos/svg/php.svg' },
     ],
   },
   {
@@ -45,10 +43,9 @@ const ORBITS: Orbit[] = [
       { name: 'Next.js', src: '/logos/svg/nextjs.svg' },
       { name: 'Tailwind CSS', src: '/logos/svg/tailwind-css.svg' },
       { name: 'CSS', src: '/logos/svg/css.svg' },
-      { name: 'Bootstrap', src: '/logos/svg/bootstrap.svg' },
       { name: 'Redux', src: '/logos/svg/redux.svg' },
-      { name: 'GSAP', src: '/logos/svg/gsap.svg' },
       { name: 'shadcn/ui', src: '/logos/svg/shadcn.svg' },
+      { name: 'Framer Motion', src: '/logos/svg/framer-motion.svg' },
       { name: 'Vite', src: '/logos/svg/vitejs.svg' },
       { name: 'Expo', src: '/logos/svg/expo.svg' },
     ],
@@ -61,17 +58,11 @@ const ORBITS: Orbit[] = [
       { name: 'Node.js', src: '/logos/svg/nodejs.svg' },
       { name: 'NestJS', src: '/logos/svg/nestjs.svg' },
       { name: 'Express', src: '/logos/svg/express.svg' },
-      { name: 'Laravel', src: '/logos/svg/laravel%201.svg' },
-      { name: 'Livewire', src: '/logos/svg/livewire.svg' },
       { name: 'PostgreSQL', src: '/logos/svg/postgresql.svg' },
       { name: 'Prisma', src: '/logos/svg/prisma-orm.svg' },
       { name: 'Redis', src: '/logos/svg/redis.svg' },
       { name: 'Socket.io', src: '/logos/svg/socketio.svg' },
-      { name: 'Firebase', src: '/logos/svg/firebase.svg' },
-      { name: 'NextAuth', src: '/logos/svg/nextauth.svg' },
-      { name: 'Apache', src: '/logos/svg/apache.svg' },
       { name: 'Nginx', src: '/logos/svg/nginx.svg' },
-      { name: 'NumPy', src: '/logos/svg/numpy.svg' },
     ],
   },
   {
@@ -101,9 +92,9 @@ const ORBITS: Orbit[] = [
       { name: 'Jest', src: '/logos/svg/jest.svg' },
       { name: 'Postman', src: '/logos/svg/postman.svg' },
       { name: 'Figma', src: '/logos/svg/figma.svg' },
-      { name: 'Xcode', src: '/logos/svg/xcode.svg' },
       { name: 'Stripe', src: '/logos/svg/stripe.svg' },
       { name: 'Resend', src: '/logos/svg/resend.svg' },
+      { name: 'npm', src: '/logos/svg/npm.svg' },
     ],
   },
 ]
@@ -196,7 +187,10 @@ export function Skills() {
   return (
     <section id="skills" className="py-24 md:py-32">
       <div className="container mx-auto px-6 max-w-7xl">
-        <h2 className="font-cal text-4xl md:text-5xl text-foreground mb-8 text-center">Skills</h2>
+        <h2 className="font-cal text-4xl md:text-5xl text-foreground text-center">Skills</h2>
+        <p className="text-(--color-text-muted) text-center mb-8">
+          The languages, frameworks, and tools I reach for most often.
+        </p>
         {/*  <p className="text-gray-300 leading-relaxed text-center mb-16">
           I build across the full stack — React and Next.js on the front end, Node.js and PostgreSQL
           underneath — then ship it on AWS and Vercel with Docker and CI/CD wired in. The orbit
