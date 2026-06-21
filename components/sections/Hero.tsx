@@ -2,7 +2,7 @@ import { HeroContent } from './HeroContent'
 
 export function Hero() {
   return (
-    <section className="relative h-screen overflow-hidden">
+    <section className="relative min-h-screen my-auto overflow-hidden">
       <HeroContent />
     </section>
   )

@@ -2,11 +2,11 @@
 
 import { motion } from 'framer-motion'
 import Link from 'next/link'
-import Strands from '../react-bits/Strands'
+import LightRays from '../react-bits/LightRays'
 import { WebglErrorBoundary } from '../react-bits/WebglErrorBoundary'
 
 //const WORDS = ['I build,', 'therefore I am.']
-const WORDS = ['I build', 'what modern software is capable of.']
+const WORDS = ['I build what', 'modern software is capable of.']
 // const WORDS = ['I imagine,', 'so I build.']
 
 const wordVariants = {
@@ -29,27 +29,24 @@ const ctaVariants = {
 export function HeroContent() {
   return (
     <>
-      <div className="absolute inset-0 -z-10 rounded-3xl!">
-        <WebglErrorBoundary fallback={<div className="absolute inset-0 bg-background" />}>
-          <Strands
-            colors={['#F97316', '#7C3AED', '#06B6D4']}
-            count={3}
-            speed={0.5}
-            amplitude={1}
-            waviness={1}
-            thickness={0.7}
-            glow={2.6}
-            taper={3}
-            spread={1}
-            intensity={0.6}
-            saturation={2}
-            opacity={1}
-            scale={1.5}
-            glass={false}
-            refraction={1}
-            dispersion={1}
-            glassSize={1}
-            hueShift={0}
+      <div className="absolute inset-0 z-0 h-full w-full rounded-3xl! bg-background">
+        <WebglErrorBoundary
+          fallback={<div className="absolute inset-0 rounded-3xl! bg-background" />}
+        >
+          <LightRays
+            className="h-full w-full opacity-60"
+            raysOrigin="top-center"
+            raysColor="#fff"
+            raysSpeed={1}
+            lightSpread={0.5}
+            rayLength={3}
+            followMouse={true}
+            mouseInfluence={0.1}
+            noiseAmount={0}
+            distortion={0}
+            pulsating={false}
+            fadeDistance={1}
+            saturation={1}
           />
         </WebglErrorBoundary>
       </div>
@@ -57,7 +54,7 @@ export function HeroContent() {
         data-testid="hero-text"
         className="absolute inset-0 z-10 flex flex-col items-center justify-center px-6 text-center pointer-events-none"
       >
-        <motion.p className="relative inline-block  text-sm mb-6" transition={{ duration: 0.4 }}>
+        {/*  <motion.p className="relative inline-block  text-sm mb-6" transition={{ duration: 0.4 }}>
           I&apos;m Huseyin Karatas - Full-Stack Engineer & Entrepreneur
           <span
             aria-hidden
@@ -65,7 +62,7 @@ export function HeroContent() {
           >
             I&apos;m Huseyin Karatas - Full-Stack Engineer & Entrepreneur
           </span>
-        </motion.p>
+        </motion.p> */}
 
         <div
           aria-hidden
