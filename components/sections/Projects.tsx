@@ -129,13 +129,12 @@ export function ProjectCard({ project }: { project: Project }) {
                     render={
                       <span
                         data-testid={i === 0 && project.prize ? `prize-${project.id}` : undefined}
-                        className="inline-flex size-5 items-center justify-center"
+                        className="inline-flex size-7 b items-center justify-center"
                       >
                         {achievement.icon === 'trophy' ? (
-                          <Trophy
-                            className="size-5 text-(--color-gold) drop-shadow-[0_0_6px_var(--color-gold-glow)]"
-                            aria-hidden="true"
-                          />
+                          <div className="border border-gray-700 p-1 size-7! rounded-full flex justify-center items-center">
+                            <Trophy className="size-3 text-(--color-gold)" aria-hidden="true" />
+                          </div>
                         ) : (
                           <Image
                             src={achievement.icon.image}
