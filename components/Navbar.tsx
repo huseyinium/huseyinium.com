@@ -79,7 +79,7 @@ export function Navbar() {
         </div>
 
         <Link
-          href="#contact"
+          href="/#contact"
           className="hidden rounded-full bg-white px-4 py-1.5 text-sm font-medium text-black transition-colors hover:bg-white/90 md:inline-block"
         >
           Contact
@@ -103,7 +103,14 @@ export function Navbar() {
         >
           <SheetTitle className="sr-only">Navigation</SheetTitle>
           <div className="flex items-center justify-between px-4 pt-4">
-            <span className="font-display text-sm font-semibold text-white">huseyinium</span>
+            <Link
+              href="/#"
+              onClick={() => setOpen(false)}
+              className="flex items-center gap-2 shrink-0"
+            >
+              <Image src={'/images/my-pp.svg'} alt="Huseyin Karatas PP" width={40} height={40} />
+              <span className="font-display text-sm font-semibold text-white">Huseyin Karatas</span>
+            </Link>
             <button
               type="button"
               aria-label="Close menu"
@@ -125,7 +132,7 @@ export function Navbar() {
               </Link>
             ))}
             <Link
-              href="#contact"
+              href="/#contact"
               onClick={() => setOpen(false)}
               className="mt-3 rounded-full bg-white px-4 py-2 text-center text-sm font-medium text-black transition-colors hover:bg-white/90"
             >
