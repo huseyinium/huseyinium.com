@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import { Menu, X } from 'lucide-react'
 import { Sheet, SheetContent, SheetTitle } from '@/components/ui/sheet'
@@ -15,11 +15,50 @@ const NAV_LINKS = [
   // { label: 'Achievements', href: '/#achievements' },
 ]
 
+// Below this scroll offset the navbar always stays visible, so it doesn't
+// flicker away on the tiny bounce/rubber-band scrolls near the top.
+const REVEAL_THRESHOLD_PX = 80
+
+function useScrollDirectionVisibility() {
+  const [visible, setVisible] = useState(true)
+  const lastScrollY = useRef(0)
+  const frame = useRef<number | null>(null)
+
+  useEffect(() => {
+    lastScrollY.current = window.scrollY
+
+    function onScroll() {
+      if (frame.current !== null) return
+      frame.current = requestAnimationFrame(() => {
+        frame.current = null
+        const currentY = window.scrollY
+        const scrolledDown = currentY > lastScrollY.current
+        setVisible(currentY < REVEAL_THRESHOLD_PX || !scrolledDown)
+        lastScrollY.current = currentY
+      })
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => {
+      window.removeEventListener('scroll', onScroll)
+      if (frame.current !== null) cancelAnimationFrame(frame.current)
+    }
+  }, [])
+
+  return visible
+}
+
 export function Navbar() {
   const [open, setOpen] = useState(false)
+  const scrollVisible = useScrollDirectionVisibility()
+  const visible = scrollVisible || open
 
   return (
-    <header className="fixed inset-x-0 top-4 z-50 flex justify-center px-4">
+    <header
+      className={`fixed inset-x-0 top-4 z-50 flex justify-center px-4 transition-transform duration-500 ease-out ${
+        visible ? 'translate-y-0' : '-translate-y-24'
+      }`}
+    >
       <nav className="flex w-full max-w-4xl items-center justify-between gap-4 rounded-full border border-white/10 bg-black/40 px-4 py-2.5 shadow-lg backdrop-blur-xl">
         <Link href="/#" className="flex items-center gap-2 shrink-0">
           {/* TODO: swap for <Image> logo once provided */}
