@@ -54,7 +54,7 @@ export function HeroContent() {
               variants={introVariants}
               initial="hidden"
               animate="visible"
-              className="font-mono text-sm w-[80%] md:w-full mx-auto text-center text-white/60 mb-3"
+              className="font-mono text-sm w-[80%] md:w-full mx-auto text-center text-primary mb-3"
             >
               Full-Stack Engineer &amp; Entrepreneur
             </motion.p>
