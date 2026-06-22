@@ -53,7 +53,7 @@ function formatDateRange(project: Project) {
 }
 
 const MAX_VISIBLE_STACK = 5
-const MAX_VISIBLE_ACHIEVEMENTS = 4
+const MAX_VISIBLE_ACHIEVEMENTS = 3
 
 function getAchievements(project: Project): Achievement[] {
   return [
@@ -240,6 +240,7 @@ export function ProjectCard({ project }: { project: Project }) {
                 render={
                   <Link href={project.websiteUrl} target="_blank" rel="noopener noreferrer" />
                 }
+                nativeButton={false}
                 variant="secondary"
                 className={'rounded-full'}
                 size="sm"
@@ -253,6 +254,7 @@ export function ProjectCard({ project }: { project: Project }) {
                 render={
                   <Link href={project.liveDemoUrl} target="_blank" rel="noopener noreferrer" />
                 }
+                nativeButton={false}
                 variant="secondary"
                 className={'rounded-full'}
                 size="sm"
@@ -264,6 +266,7 @@ export function ProjectCard({ project }: { project: Project }) {
             {project.githubUrl && (
               <Button
                 render={<Link href={project.githubUrl} target="_blank" rel="noopener noreferrer" />}
+                nativeButton={false}
                 variant="outline"
                 className={'rounded-full '}
                 size="sm"
@@ -284,6 +287,7 @@ export function ProjectCard({ project }: { project: Project }) {
                 render={
                   <Link href={project.appStoreUrl} target="_blank" rel="noopener noreferrer" />
                 }
+                nativeButton={false}
                 variant="outline"
                 className={'rounded-full '}
                 size="sm"
@@ -304,6 +308,7 @@ export function ProjectCard({ project }: { project: Project }) {
                 render={
                   <Link href={project.googlePlayUrl} target="_blank" rel="noopener noreferrer" />
                 }
+                nativeButton={false}
                 variant="outline"
                 className={'rounded-full '}
                 size="sm"
@@ -336,9 +341,20 @@ export function Projects() {
     <section id="projects" className="pb-24 md:pb-32 ">
       <div className="container mx-auto px-6 max-w-7xl">
         <h2 className="font-cal text-4xl md:text-5xl text-center text-foreground">Projects</h2>
-        <p className="text-(--color-text-muted) text-center mb-10 mt-2">
+        <p className="text-(--color-text-muted) text-center mb-4 mt-2">
           A selection of products and tools I&apos;ve built and shipped.
         </p>
+        <div className="mb-12 text-center">
+          <Link
+            href="/projects"
+            className="inline-flex items-center gap-0.5 text-sm rounded-full
+              border border-(--color-border) text-muted-foreground font-medium px-4 py-2
+              hover:border-(--color-accent) hover:text-(--color-accent) transition-colors"
+          >
+            View all projects
+            <ChevronRight className="size-4" aria-hidden="true" />
+          </Link>
+        </div>
 
         <div className="flex flex-col gap-6 -mx-6">
           <Marquee pauseOnHover className="[--duration:50s]">
@@ -351,16 +367,6 @@ export function Projects() {
               <ProjectCard key={project.id} project={project} />
             ))}
           </Marquee>
-        </div>
-
-        <div className="mt-12 text-center">
-          <Link
-            href="/projects"
-            className="inline-flex items-center gap-0.5 text-sm text-(--color-text-muted) hover:text-(--color-accent) transition-colors"
-          >
-            View all projects
-            <ChevronRight className="size-4" aria-hidden="true" />
-          </Link>
         </div>
       </div>
     </section>
