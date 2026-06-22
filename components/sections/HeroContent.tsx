@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion'
 import Link from 'next/link'
-import SideRays from '../react-bits/SideRays'
+import LightRays from '../react-bits/LightRays'
 import { WebglErrorBoundary } from '../react-bits/WebglErrorBoundary'
 
 const introVariants = {
@@ -34,21 +34,19 @@ export function HeroContent() {
         <WebglErrorBoundary
           fallback={<div className="absolute inset-0 rounded-3xl! bg-background" />}
         >
-          <SideRays
+          <LightRays
             className="opacity-60"
-            origin="top-right"
-            rayColor1="#f97316"
-            rayColor2="#96c8ff"
-            speed={1.5}
-            intensity={1.5}
-            spread={1.5}
+            raysOrigin="top-center"
+            raysColor="#96c8ff"
+            raysSpeed={1.5}
+            lightSpread={1.5}
             saturation={1}
           />
         </WebglErrorBoundary>
       </div>
       <div
         data-testid="hero-text"
-        className="absolute inset-0 z-10 flex items-center px-6 md:px-16"
+        className="absolute inset-0 z-10 flex items-center justify-center px-6 md:px-16"
       >
         <div className="mx-auto w-full max-w-6xl">
           <div className="pointer-events-none text-left">
@@ -56,7 +54,7 @@ export function HeroContent() {
               variants={introVariants}
               initial="hidden"
               animate="visible"
-              className="font-mono text-sm text-white/60 mb-3"
+              className="font-mono text-sm w-[80%] md:w-full mx-auto text-center text-white/60 mb-3"
             >
               👋 I&apos;m Huseyin Karatas, full-stack engineer &amp; entrepreneur
             </motion.p>
@@ -65,13 +63,13 @@ export function HeroContent() {
               variants={headingVariants}
               initial="hidden"
               animate="visible"
-              className="font-display text-4xl md:text-6xl font-bold text-white leading-tight mb-6"
+              className="font-display text-center text-4xl md:text-6xl font-bold text-white leading-tight mb-6"
             >
               I build what modern software <br /> makes possible.
             </motion.h1>
 
             <motion.div
-              className="pointer-events-auto flex flex-row items-center gap-3"
+              className="pointer-events-auto flex flex-row justify-center items-center gap-3"
               variants={ctaVariants}
               initial="hidden"
               animate="visible"
@@ -83,7 +81,7 @@ export function HeroContent() {
                 Book a call
               </Link>
               <a
-                href="#contact"
+                href="mailto:huseyinium.biz@gmail.com"
                 className="rounded-full border border-white/20 bg-black/40 px-5 py-2.5 text-sm font-medium text-white backdrop-blur-md transition-colors hover:bg-black/55"
               >
                 Email me
