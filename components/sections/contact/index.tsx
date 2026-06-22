@@ -37,9 +37,9 @@ function IconInstagram() {
 const SOCIAL_LINKS = [
   {
     label: 'LinkedIn',
-    href: 'https://www.linkedin.com/in/huseyinium',
+    href: 'https://www.linkedin.com/in/huseyinlorakaratas',
     icon: <IconLinkedin />,
-    handle: 'huseyinium',
+    handle: 'huseyinlorakaratas',
   },
   {
     label: 'GitHub',
