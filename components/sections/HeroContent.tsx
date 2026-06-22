@@ -56,7 +56,7 @@ export function HeroContent() {
               animate="visible"
               className="font-mono text-sm w-[80%] md:w-full mx-auto text-center text-white/60 mb-3"
             >
-              👋 I&apos;m Huseyin Karatas, full-stack engineer &amp; entrepreneur
+              👋 I&apos;m Huseyin Karatas, Full-Stack Engineer &amp; Entrepreneur
             </motion.p>
 
             <motion.h1
