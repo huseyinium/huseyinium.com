@@ -29,7 +29,7 @@
      var(--gradient-accent) or the .text-gradient-accent / .bg-gradient-accent
      utilities below. */
   --gradient-accent: linear-gradient(
-    135deg,
+    245deg,
     #1a0500 0%,
     #7a1505 22%,
     #c2370c 45%,
