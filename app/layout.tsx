@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     default: 'Huseyin Karatas',
     template: '%s | Huseyin Karatas',
   },
-  description: 'Full-Stack Engineer & Entrepreneur.',
+  description: 'Huseyin Karatas - Full-Stack Engineer & Entrepreneur.',
   keywords: [
     'Huseyin Karatas',
     'ARCY AI',
