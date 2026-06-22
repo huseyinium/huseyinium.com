@@ -30,11 +30,10 @@ const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://huseyinium.com'
 
 export const metadata: Metadata = {
   title: {
-    default: 'Huseyin Karatas — Full-Stack Engineer & Entrepreneur',
+    default: 'Huseyin Karatas',
     template: '%s | Huseyin Karatas',
   },
-  description:
-    'Co-Founder & CEO at ARCY AI. Full-stack engineer, serial founder, and content creator based in Istanbul. Building AI agents that close the product-market fit loop.',
+  description: 'Full-Stack Engineer & Entrepreneur.',
   keywords: [
     'Huseyin Karatas',
     'ARCY AI',
@@ -55,14 +54,14 @@ export const metadata: Metadata = {
     locale: 'en_US',
     url: siteUrl,
     siteName: 'Huseyin Karatas',
-    title: 'Huseyin Karatas — Full-Stack Engineer & Entrepreneur',
-    description: 'Building AI agents that close the product-market fit loop.',
+    title: 'Full-Stack Engineer & Entrepreneur',
+    description: '',
     images: [{ url: '/og', width: 1200, height: 630 }],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Huseyin Karatas — Full-Stack Engineer & Entrepreneur',
-    description: 'Building AI agents that close the product-market fit loop.',
+    description: '',
     images: ['/og'],
   },
   robots: {
