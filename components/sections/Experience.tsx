@@ -49,7 +49,7 @@ export function Experience() {
     <section id="experience" className="py-24 md:py-32">
       <div className="mx-auto px-6 w-full">
         <h2 className="font-cal text-4xl md:text-5xl text-foreground text-center">Experience</h2>
-        <p className="text-(--color-text-muted) text-center mb-8">
+        <p className="text-(--color-text-muted) text-center mb-8 mt-2">
           Companies and programs I&apos;ve built with along the way.
         </p>
       </div>

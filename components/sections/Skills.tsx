@@ -188,7 +188,7 @@ export function Skills() {
     <section id="skills" className="py-24 md:py-32">
       <div className="container mx-auto px-6 max-w-7xl">
         <h2 className="font-cal text-4xl md:text-5xl text-foreground text-center">Skills</h2>
-        <p className="text-(--color-text-muted) text-center mb-8">
+        <p className="text-(--color-text-muted) text-center mb-8 mt-2">
           The languages, frameworks, and tools I reach for most often.
         </p>
         {/*  <p className="text-gray-300 leading-relaxed text-center mb-16">
