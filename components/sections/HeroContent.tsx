@@ -70,29 +70,24 @@ export function HeroContent() {
         />
 
         <h1 className="font-display text-4xl md:text-7xl font-bold text-white leading-tight mb-6">
-          {WORDS.map((word, i) => {
-            const isHighlighted = word === 'modern software'
-            return (
-              <motion.span
-                key={word}
-                custom={i}
-                variants={wordVariants}
-                initial="hidden"
-                animate="visible"
-                className={`relative inline-block mr-4 ${isHighlighted ? 'text-gradient-accent' : ''}`}
+          {WORDS.map((word, i) => (
+            <motion.span
+              key={word}
+              custom={i}
+              variants={wordVariants}
+              initial="hidden"
+              animate="visible"
+              className="relative inline-block mr-4"
+            >
+              {word}
+              <span
+                aria-hidden
+                className="pointer-events-none absolute inset-0 bg-linear-to-b from-gray-100 via-gray-500 to-gray-900 bg-clip-text text-transparent mix-blend-overlay blur-[1.5px]"
               >
                 {word}
-                {!isHighlighted && (
-                  <span
-                    aria-hidden
-                    className="pointer-events-none absolute inset-0 bg-linear-to-b from-gray-100 via-gray-500 to-gray-900 bg-clip-text text-transparent mix-blend-overlay blur-[1.5px]"
-                  >
-                    {word}
-                  </span>
-                )}
-              </motion.span>
-            )
-          })}
+              </span>
+            </motion.span>
+          ))}
         </h1>
 
         <motion.div
