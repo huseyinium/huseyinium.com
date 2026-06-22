@@ -19,7 +19,7 @@ export function BlogCard({ post }: { post: Post }) {
       </div>
 
       <Link href={href} className="block">
-        <h3 className="font-cal text-lg text-(--color-text-primary) group-hover:text-(--color-accent) transition-colors line-clamp-2">
+        <h3 className="font-cal text-lg text-foreground group-hover:text-(--color-accent) transition-colors line-clamp-2">
           {post.title}
         </h3>
       </Link>

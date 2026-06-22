@@ -55,9 +55,7 @@ export default async function ProjectSlugPage({ params }: { params: Promise<{ sl
             <span className="text-xs uppercase tracking-widest text-(--color-accent) mb-4 block">
               {study.category}
             </span>
-            <h1 className="font-cal text-4xl md:text-5xl text-(--color-text-primary) mb-4">
-              {study.title}
-            </h1>
+            <h1 className="font-cal text-4xl md:text-5xl text-foreground mb-4">{study.title}</h1>
             <p className="text-lg text-(--color-text-muted)">{study.description}</p>
           </div>
 

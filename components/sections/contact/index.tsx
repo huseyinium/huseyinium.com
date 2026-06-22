@@ -65,7 +65,7 @@ export function Contact() {
   return (
     <section id="contact" className="relative py-24 md:py-32 overflow-hidden">
       <div className="relative z-10 container mx-auto px-6 max-w-2xl text-center">
-        <h2 className="font-cal text-4xl md:text-5xl text-(--color-text-primary) mb-6">Contact</h2>
+        <h2 className="font-cal text-4xl md:text-5xl text-foreground mb-2">Contact</h2>
 
         <p className="text-(--color-text-secondary) mb-8">
           Have a project in mind or want to collaborate? I&apos;d love to hear from you.

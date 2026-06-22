@@ -70,9 +70,7 @@ export default async function BlogSlugPage({ params }: { params: Promise<{ slug:
                 </span>
               ))}
             </div>
-            <h1 className="font-cal text-4xl md:text-5xl text-(--color-text-primary) mb-4">
-              {post.title}
-            </h1>
+            <h1 className="font-cal text-4xl md:text-5xl text-foreground mb-4">{post.title}</h1>
             <p className="text-(--color-text-muted)">
               {post.date}
               {post.readingTime ? ` · ${post.readingTime} min read` : ''}
@@ -129,11 +127,11 @@ export default async function BlogSlugPage({ params }: { params: Promise<{ slug:
 
           {related.length > 0 && (
             <section className="pt-8 border-t border-(--color-border)">
-              <h2 className="font-cal text-xl text-(--color-text-primary) mb-6">Related Posts</h2>
+              <h2 className="font-cal text-xl text-foreground mb-6">Related Posts</h2>
               <div className="space-y-4">
                 {related.map((p) => (
                   <Link key={p.slug} href={`/blog/${p.slug}`} className="block group">
-                    <p className="text-(--color-text-primary) group-hover:text-(--color-accent) transition-colors font-medium">
+                    <p className="text-foreground group-hover:text-(--color-accent) transition-colors font-medium">
                       {p.title}
                     </p>
                     <p className="text-sm text-(--color-text-muted) mt-1">{p.excerpt}</p>

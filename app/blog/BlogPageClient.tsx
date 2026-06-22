@@ -30,7 +30,7 @@ export function BlogPageClient({ posts, tags }: { posts: Post[]; tags: string[] 
           Back to home
         </Link>
 
-        <h1 className="font-cal text-4xl md:text-5xl text-(--color-text-primary) mb-4">Writing</h1>
+        <h1 className="font-cal text-4xl md:text-5xl text-foreground mb-4">Writing</h1>
         <p className="text-(--color-text-muted) mb-12">
           Thoughts on AI, startups, engineering, and building in public.
         </p>
