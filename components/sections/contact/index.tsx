@@ -1,5 +1,7 @@
 'use client'
 
+import Link from 'next/link'
+
 // import { ContactForm } from './ContactForm'
 
 const CONTACT_EMAIL = 'huseyinium.biz@gmail.com'
@@ -75,7 +77,7 @@ export function Contact() {
 
         <div className="flex flex-wrap items-center justify-center gap-3 mb-12">
           {process.env.NEXT_PUBLIC_CALENDLY_URL && (
-            <a
+            <Link
               href={process.env.NEXT_PUBLIC_CALENDLY_URL}
               target="_blank"
               rel="noopener noreferrer"
@@ -84,17 +86,17 @@ export function Contact() {
                 hover:opacity-90 transition-opacity"
             >
               Book a 15-min call
-            </a>
+            </Link>
           )}
 
-          <a
+          <Link
             href={`mailto:${CONTACT_EMAIL}`}
             className="inline-flex items-center gap-2 rounded-full
               border border-(--color-border) text-(--color-text-primary) font-medium px-6 py-3 text-sm
               hover:border-(--color-accent) hover:text-(--color-accent) transition-colors"
           >
             Email me
-          </a>
+          </Link>
         </div>
 
         {/* <div className="text-left mb-12">
