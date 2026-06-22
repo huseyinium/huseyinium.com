@@ -1,22 +1,6 @@
 // @vitest-environment happy-dom
-import { describe, it, expect, vi, beforeEach } from 'vitest'
-import { render, screen, fireEvent, waitFor } from '@testing-library/react'
-import userEvent from '@testing-library/user-event'
-
-vi.mock('next/dynamic', () => ({
-  default: () => () => null,
-}))
-
-vi.mock('next/navigation', () => ({
-  useRouter: () => ({ push: vi.fn() }),
-}))
-
-let fetchMock: ReturnType<typeof vi.fn>
-
-beforeEach(() => {
-  fetchMock = vi.fn()
-  global.fetch = fetchMock
-})
+import { describe, it, expect } from 'vitest'
+import { render, screen } from '@testing-library/react'
 
 async function renderContact() {
   const { Contact } = await import('@/components/sections/contact')
@@ -47,15 +31,10 @@ describe('Contact section layout', () => {
     expect(screen.queryByRole('link', { name: /book a 15.min call/i })).not.toBeInTheDocument()
   })
 
-  it('renders "Usually responds within 24 hours"', async () => {
+  it('renders an "Email me" mailto link next to the call button', async () => {
     await renderContact()
-    expect(screen.getByText(/usually responds within 24 hours/i)).toBeInTheDocument()
-  })
-
-  it('has no mailto link', async () => {
-    const { container } = await renderContact()
-    const mailtoLinks = container.querySelectorAll('a[href^="mailto:"]')
-    expect(mailtoLinks.length).toBe(0)
+    const link = screen.getByRole('link', { name: /email me/i })
+    expect(link).toHaveAttribute('href', expect.stringMatching(/^mailto:/))
   })
 })
 
@@ -86,94 +65,5 @@ describe('Social links', () => {
     const link = screen.getByRole('link', { name: /instagram/i })
     expect(link).toHaveAttribute('target', '_blank')
     expect(link).toHaveAttribute('href', expect.stringContaining('instagram.com'))
-  })
-})
-
-describe('ContactForm', () => {
-  it('renders Name, Email, Message fields and submit button', async () => {
-    await renderContact()
-    expect(screen.getByLabelText(/name/i)).toBeInTheDocument()
-    expect(screen.getByLabelText(/email/i)).toBeInTheDocument()
-    expect(screen.getByLabelText(/message/i)).toBeInTheDocument()
-    expect(screen.getByRole('button', { name: /send message/i })).toBeInTheDocument()
-  })
-
-  it('blocks submit when fields are empty', async () => {
-    await renderContact()
-    const button = screen.getByRole('button', { name: /send message/i })
-    fireEvent.click(button)
-    expect(fetchMock).not.toHaveBeenCalled()
-  })
-
-  it('blocks submit when email format is invalid', async () => {
-    const user = userEvent.setup()
-    await renderContact()
-    await user.type(screen.getByLabelText(/name/i), 'Alice')
-    await user.type(screen.getByLabelText(/email/i), 'not-an-email')
-    await user.type(screen.getByLabelText(/message/i), 'Hello')
-    fireEvent.click(screen.getByRole('button', { name: /send message/i }))
-    expect(fetchMock).not.toHaveBeenCalled()
-  })
-
-  it('shows spinner while request is in-flight', async () => {
-    fetchMock.mockReturnValue(new Promise(() => {}))
-    const user = userEvent.setup()
-    await renderContact()
-    await user.type(screen.getByLabelText(/name/i), 'Alice')
-    await user.type(screen.getByLabelText(/email/i), 'alice@example.com')
-    await user.type(screen.getByLabelText(/message/i), 'Hello')
-    await user.click(screen.getByRole('button', { name: /send message/i }))
-    expect(screen.getByRole('button', { name: /send message/i })).toBeDisabled()
-    expect(document.querySelector('[data-loading]')).toBeInTheDocument()
-  })
-
-  it('shows timeout message when fetch is aborted', async () => {
-    fetchMock.mockRejectedValue(Object.assign(new DOMException('aborted', 'AbortError')))
-    const user = userEvent.setup()
-    await renderContact()
-    await user.type(screen.getByLabelText(/name/i), 'Alice')
-    await user.type(screen.getByLabelText(/email/i), 'alice@example.com')
-    await user.type(screen.getByLabelText(/message/i), 'Hello')
-    await user.click(screen.getByRole('button', { name: /send message/i }))
-    await waitFor(() => expect(screen.getByText(/request timed out/i)).toBeInTheDocument())
-    expect(screen.getByRole('button', { name: /send message/i })).toBeInTheDocument()
-  })
-
-  it('shows success message after delivery', async () => {
-    fetchMock.mockResolvedValue({
-      ok: true,
-      json: async () => ({ success: true }),
-    })
-    const user = userEvent.setup()
-    await renderContact()
-    await user.type(screen.getByLabelText(/name/i), 'Alice')
-    await user.type(screen.getByLabelText(/email/i), 'alice@example.com')
-    await user.type(screen.getByLabelText(/message/i), 'Hello')
-    await user.click(screen.getByRole('button', { name: /send message/i }))
-    await waitFor(() =>
-      expect(
-        screen.getByText(/message sent.*i'll get back to you within 24 hours/i)
-      ).toBeInTheDocument()
-    )
-  })
-
-  it('shows error message on API failure and keeps form visible', async () => {
-    fetchMock.mockResolvedValue({
-      ok: false,
-      json: async () => ({ error: 'Something broke' }),
-    })
-    const user = userEvent.setup()
-    await renderContact()
-    await user.type(screen.getByLabelText(/name/i), 'Alice')
-    await user.type(screen.getByLabelText(/email/i), 'alice@example.com')
-    await user.type(screen.getByLabelText(/message/i), 'Hello')
-    await user.click(screen.getByRole('button', { name: /send message/i }))
-    await waitFor(() =>
-      expect(
-        screen.getByText(/something went wrong.*try emailing me directly/i)
-      ).toBeInTheDocument()
-    )
-    // form stays visible so user can retry
-    expect(screen.getByRole('button', { name: /send message/i })).toBeInTheDocument()
   })
 })

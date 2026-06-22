@@ -1,6 +1,8 @@
 'use client'
 
-import { ContactForm } from './ContactForm'
+// import { ContactForm } from './ContactForm'
+
+const CONTACT_EMAIL = 'huseyinium.biz@gmail.com'
 
 function IconLinkedin() {
   return (
@@ -71,22 +73,33 @@ export function Contact() {
           Have a project in mind or want to collaborate? I&apos;d love to hear from you.
         </p>
 
-        {process.env.NEXT_PUBLIC_CALENDLY_URL && (
-          <a
-            href={process.env.NEXT_PUBLIC_CALENDLY_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 rounded-full
-              bg-gradient-accent text-white font-medium px-6 py-3 text-sm
-              hover:opacity-90 transition-opacity mb-12"
-          >
-            Book a 15-min call
-          </a>
-        )}
+        <div className="flex flex-wrap items-center justify-center gap-3 mb-12">
+          {process.env.NEXT_PUBLIC_CALENDLY_URL && (
+            <a
+              href={process.env.NEXT_PUBLIC_CALENDLY_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-full
+                bg-gradient-accent text-white font-medium px-6 py-3 text-sm
+                hover:opacity-90 transition-opacity"
+            >
+              Book a 15-min call
+            </a>
+          )}
 
-        <div className="text-left mb-12">
-          <ContactForm />
+          <a
+            href={`mailto:${CONTACT_EMAIL}`}
+            className="inline-flex items-center gap-2 rounded-full
+              border border-(--color-border) text-(--color-text-primary) font-medium px-6 py-3 text-sm
+              hover:border-(--color-accent) hover:text-(--color-accent) transition-colors"
+          >
+            Email me
+          </a>
         </div>
+
+        {/* <div className="text-left mb-12">
+          <ContactForm />
+        </div> */}
 
         <div className="flex flex-wrap justify-center gap-6 mb-6">
           {SOCIAL_LINKS.map(({ label, href, icon, handle }) => (
