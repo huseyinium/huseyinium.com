@@ -1,3 +1,11 @@
+/** Built-in icon keys render a lucide icon; the object form renders a custom image (e.g. an org's logo). */
+export type AchievementIcon = 'trophy' | { image: string; alt: string }
+
+export interface Achievement {
+  icon: AchievementIcon
+  tooltip: string
+}
+
 export interface Project {
   id: string
   title: string
@@ -8,7 +16,10 @@ export interface Project {
   coverImage: string
   liveUrl?: string
   githubUrl?: string
+  /** Rendered as a trophy-icon achievement next to the title, tooltip = this text. */
   prize?: string
+  /** Additional achievements (e.g. accelerator/program acceptances) shown next to the title. */
+  achievements?: Achievement[]
   featured: boolean
   /** YYYY-MM, omit for single-date events (e.g. hackathons) — use endDate only */
   startDate?: string
@@ -23,10 +34,8 @@ export const PROJECTS: Project[] = [
   {
     id: 'arcy-ai',
     title: 'ARCY AI',
-    description:
-      'AI-powered recruitment platform that automates sourcing, screening, and outreach at scale.',
-    longDescription:
-      'ARCY AI replaces manual recruiting workflows with an end-to-end AI agent — from job spec to qualified candidate pipeline in hours, not weeks.',
+    description: 'AI agent layer for B2B software products that prevents churn before it happens.',
+    longDescription: '',
     category: 'startup',
     stack: [
       'Monorepo',
@@ -69,16 +78,26 @@ export const PROJECTS: Project[] = [
       '/images/projects/arcy-ai.jpg',
     ],
     liveUrl: 'https://arcy.ai',
+    achievements: [
+      {
+        icon: { image: '/logos/svg/nvidia.svg', alt: 'NVIDIA' },
+        tooltip: 'Member of the NVIDIA Inception Program',
+      },
+      {
+        icon: { image: '/logos/svg/founder-institute.svg', alt: 'Founder Institute' },
+        tooltip: "Accepted to Founder Institute's Go Beyond Lab 2026",
+      },
+    ],
     featured: true,
-    startDate: '2024-01',
+    startDate: '2026-03',
   },
   {
     id: 'campus-arc',
     title: 'Campus Arc',
-    description: ' connecting students to events, clubs, and opportunities.',
-    longDescription:
-      'Campus Arc is the operating system for campus life — events, clubs, internships, and peer connections in one place.',
-    category: 'professional',
+    description:
+      'Campus ecosystem platform that connects students with carrer opportunities through events, clubs, and opportunities.',
+    longDescription: '',
+    category: 'startup',
     stack: [
       'Next.js',
       'React',
@@ -109,14 +128,29 @@ export const PROJECTS: Project[] = [
       '/images/projects/campus-arc.jpg',
       '/images/projects/campus-arc.jpg',
     ],
+    achievements: [
+      {
+        icon: { image: '/logos/svg/odtu-teknokent.svg', alt: 'ODTÜ Teknokent' },
+        tooltip: 'Accepted to ODTÜ Teknokent',
+      },
+      {
+        icon: { image: '/logos/svg/open-campus.svg', alt: 'OC-I Cohort 1 graduation' },
+        tooltip: 'Graduated from Open Campus Incubator Cohort 1 with $25,000 grant approved',
+      },
+      {
+        icon: { image: '/logos/svg/founder-institute.svg', alt: 'Founder Institute' },
+        tooltip: 'Accepted to Founder Institute',
+      },
+    ],
     featured: true,
-    startDate: '2023-09',
+    startDate: '2024-09',
+    endDate: '2026-03',
   },
   {
     id: 'misyon-kripto',
     title: 'misyon.kripto',
     description:
-      'Crypto education platform for Turkish retail investors entering Web3 for the first time.',
+      'The first product in Turkiye to let traditional investors access tokenized instruments with the regulatory assurance of conventional investment banking',
     category: 'professional',
     stack: [
       'Vite.js',
@@ -150,15 +184,31 @@ export const PROJECTS: Project[] = [
       '/images/projects/misyon-kripto.jpg',
     ],
     liveUrl: 'https://misyon.com/kripto',
+    achievements: [
+      {
+        icon: { image: '/logos/svg/misyon.svg', alt: 'Misyon Bank' },
+        tooltip: 'PoC received board approval from Misyon Bank',
+      },
+      {
+        icon: { image: '/logos/svg/spk.svg', alt: 'SPK' },
+        tooltip: 'Received regulatory approval from SPK (Capital Markets Board of Türkiye)',
+      },
+      {
+        icon: { image: '/logos/svg/inveo.svg', alt: 'Inveo' },
+        tooltip: 'Acquired by Inveo Investment Holding and rebranded as Inveo Kripto',
+      },
+    ],
     featured: false,
-    startDate: '2023-06',
+    startDate: '2025-03',
+    endDate: '2025-05',
   },
   {
     id: 'misyon-bond',
     title: 'misyon.bond',
     description:
-      'Fixed-income investment product UI for Misyon Bank — bonds made accessible to everyday savers.',
-    category: 'freelance',
+      'Bond tokenization platform letting global investors access tokenized real-world assets in a few clicks.',
+    longDescription: '',
+    category: 'professional',
     stack: [
       'Next.js',
       'React',
@@ -191,26 +241,61 @@ export const PROJECTS: Project[] = [
       '/images/projects/misyonbond.jpg',
     ],
     liveUrl: 'https://misyon.com/bond',
+    achievements: [
+      {
+        icon: { image: '/logos/svg/avalanche.svg', alt: 'Avalanche' },
+        tooltip: 'In collaboration with Avalanche',
+      },
+      {
+        icon: { image: '/logos/svg/taurus.svg', alt: 'Taurus' },
+        tooltip: 'In collaboration with Taurus',
+      },
+      {
+        icon: { image: '/logos/svg/bt-guru.svg', alt: 'bt.guru' },
+        tooltip: 'In collaboration with bt.guru',
+      },
+      {
+        icon: { image: '/logos/svg/amani-ai.svg', alt: 'Amani' },
+        tooltip: 'In collaboration with Amani',
+      },
+      {
+        icon: { image: '/logos/svg/acuris.svg', alt: 'Acuris' },
+        tooltip: 'In collaboration with Acuris',
+      },
+      {
+        icon: { image: '/logos/svg/xalts.svg', alt: 'X Alts' },
+        tooltip: 'In collaboration with X Alts',
+      },
+      {
+        icon: {
+          image: '/logos/svg/blockchain-intelligence-group.svg',
+          alt: 'Blockchain Intelligence Group',
+        },
+        tooltip: 'In collaboration with Blockchain Intelligence Group',
+      },
+    ],
     featured: false,
-    startDate: '2023-08',
+    startDate: '2024-01',
+    endDate: '2025-01',
   },
   {
     id: 'carrot-beta',
     title: 'Carrot BETA',
-    description:
-      'Web3-powered community engagement protocol rewarding on-chain actions with token incentives.',
+    description: 'Web3-powered community engagement tools for blockchain companies.',
     category: 'hackathon',
     stack: ['Solidity', 'Next.js', 'World ID SDK', 'Base'],
     coverImage: '/images/projects/carrot.png',
     githubUrl: 'https://github.com/huseyinium/carrot-beta',
     prize: 'ETHGlobal Cannes — Worldcoin Pool Prize',
     featured: false,
+    startDate: '2025-07',
     endDate: '2025-07',
   },
   {
     id: 'swapzilla',
     title: 'SwapZilla',
-    description: 'Cross-chain DEX aggregator with intent-based routing for optimal swap execution.',
+    description:
+      'Blockscout pool-prize-winning dApp enabling cross-chain swaps via LayerZero without bridging assets.',
     category: 'hackathon',
     stack: ['Solidity', 'React', 'OneInch', 'LayerZero'],
     coverImage: '/images/projects/swapzilla.png',
@@ -221,13 +306,14 @@ export const PROJECTS: Project[] = [
     ],
     prize: 'ETHGlobal Brussels — OneInch Pool Prize',
     featured: false,
+    startDate: '2024-07',
     endDate: '2024-07',
   },
   {
     id: 'verifyworld',
     title: 'VerifyWorld',
     description:
-      'Decentralized identity verification layer using World ID proofs for Sybil-resistant access.',
+      'Blockchain-secured document signing dApp. World ID SDK for identity verification and IPFS storage.',
     category: 'hackathon',
     stack: ['Solidity', 'Next.js', 'World ID SDK', 'IPFS'],
     coverImage: '/images/projects/verifyworld.jpg',
@@ -238,13 +324,14 @@ export const PROJECTS: Project[] = [
     ],
     prize: 'ETHGlobal Istanbul — Worldcoin Pool Prize',
     featured: false,
+    startDate: '2023-11',
     endDate: '2023-11',
   },
   {
     id: 'rent3',
     title: 'Rent3',
     description:
-      'Web3-powered rental marketplace letting tenants pay rent with crypto and on-chain deposit escrow.',
+      'Decentralized rental platform providing secure, transparent rentals via Worldcoin and Blockscout.',
     category: 'personal',
     stack: [
       'Next.js',
@@ -274,13 +361,13 @@ export const PROJECTS: Project[] = [
       '/images/projects/rent3.jpg',
     ],
     featured: false,
-    startDate: '2023-04',
+    startDate: '2024-08',
+    endDate: '2024-08',
   },
   {
     id: 'odtu-bdays',
     title: 'bdays.org',
-    description:
-      "Official website of ODTU Blockchain Days -- Turkiye's biggest blockchain event organized by a student community.",
+    description: 'Official website of ODTÜ Blockchain Days 2024.',
     category: 'personal',
     stack: [
       'Next.js',
@@ -307,13 +394,14 @@ export const PROJECTS: Project[] = [
       '/images/projects/bdaysorg.jpg',
     ],
     featured: false,
-    startDate: '2024-03',
+    startDate: '2023-06',
+    endDate: '2024-03',
   },
   {
     id: 'investbuddy',
     title: 'InvestBuddy',
     description:
-      'Portfolio tracking and investment insight tool for early-stage retail investors in Turkey.',
+      'Real-world asset tokenization web3 startup; PoC accepted to Cohort 2 of thirdweb.',
     category: 'freelance',
     stack: [
       'Next.js',
@@ -336,13 +424,20 @@ export const PROJECTS: Project[] = [
       '/images/projects/investbuddy.jpg',
       '/images/projects/investbuddy.jpg',
     ],
+    achievements: [
+      {
+        icon: { image: '/logos/svg/thirdweb.svg', alt: 'thirdweb' },
+        tooltip: "Accepted to thirdweb's Accelerator Program (Cohort 2)",
+      },
+    ],
     featured: false,
-    startDate: '2023-02',
+    startDate: '2024-01',
+    endDate: '2024-06',
   },
   {
     id: 'type-i-fast',
     title: 'Type-i Fast',
-    description: '10-finger typing speed training game.',
+    description: 'A typing speed test game developed to practice 10-finger typing.',
     category: 'personal',
     stack: ['Next.js', 'React', 'TypeScript', 'TailwindCSS', 'Framer Motion', 'PostCSS'],
     coverImage: '/images/projects/type-i-fast.png',
@@ -352,7 +447,8 @@ export const PROJECTS: Project[] = [
       '/images/projects/type-i-fast.png',
     ],
     featured: false,
-    startDate: '',
+    startDate: '2023-11',
+    endDate: '2024-02',
   },
   {
     id: 'hushboard',
@@ -370,17 +466,19 @@ export const PROJECTS: Project[] = [
   {
     id: 'hilink',
     title: 'Hilink',
-    description: '',
+    description: 'A fully responsive & modern UI/UX app of an imaginary travel agent.',
     category: 'personal',
     stack: ['Next.js', 'React', 'TypeScript', 'TailwindCSS', 'PostCSS', 'Git', 'GitHub'],
     coverImage: '/images/projects/',
     featured: false,
-    startDate: '2026-04',
+    startDate: '2023-11',
+    endDate: '2023-12',
   },
   {
     id: 'tic-tac-go',
     title: 'Tic-Tac-Go!',
-    description: '',
+    description:
+      'A web-based, multiplayer Tic-Tac-Toe game with configurable grid size, per-player time limits, and round counts. (Not finished)',
     category: 'personal',
     // DONE
     stack: [
@@ -400,7 +498,8 @@ export const PROJECTS: Project[] = [
     ],
     coverImage: '/images/projects/',
     featured: false,
-    startDate: '2026-04',
+    startDate: '2024-07',
+    endDate: '2024-09',
   },
   {
     id: 'unreadme',
@@ -425,7 +524,8 @@ export const PROJECTS: Project[] = [
   {
     id: 'qr-manager',
     title: 'QR Manager',
-    description: '',
+    description:
+      'Event management tool for GDSC METU enabling quick QR check-ins and automated follow-up email notifications.',
     category: 'personal',
     // DONE
     stack: [
@@ -452,7 +552,8 @@ export const PROJECTS: Project[] = [
     ],
     coverImage: '/images/projects/',
     featured: false,
-    startDate: '',
+    startDate: '2024-08',
+    endDate: '2024-08',
   },
   {
     id: 'fstack',
@@ -468,18 +569,20 @@ export const PROJECTS: Project[] = [
   {
     id: 'detective',
     title: 'det(ective)',
-    description: '',
+    description:
+      'A Python program that calculates the determinant of square matrices of any size recursively.',
     category: 'personal',
     // DONE
     stack: ['Python', 'NumPy', 'Git', 'GitHub'],
     coverImage: '/images/projects/',
     featured: false,
-    startDate: '',
+    startDate: '2023-11',
+    endDate: '2023-11',
   },
   {
     id: 'campus-arc-beta',
     title: 'Campus Arc BETA',
-    description: '',
+    description: 'Rank #1 winner in the EduFi category at the EDU Chain Hackathon.',
     category: 'hackathon',
     // DONE
     stack: [
@@ -502,6 +605,8 @@ export const PROJECTS: Project[] = [
     ],
     coverImage: '/images/projects/campus-arc-beta.jpg',
     featured: false,
+    prize: 'EDU Chain Hackathon — EduFi Category, Rank #1',
+    startDate: '2024-08',
     endDate: '2024-08',
   },
   {

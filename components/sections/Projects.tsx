@@ -3,8 +3,8 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import dynamic from 'next/dynamic'
-import { ChevronRight } from 'lucide-react'
-import { PROJECTS, type Project } from '@/content/projects'
+import { ChevronRight, Trophy } from 'lucide-react'
+import { PROJECTS, type Achievement, type Project } from '@/content/projects'
 import { Card, CardContent } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Marquee } from '@/components/ui/marquee'
@@ -33,6 +33,7 @@ function formatDateRange(project: Project) {
   if (!project.endDate) return `${startMonth}-${startYear} / Present`
 
   const [endYear, endMonth] = project.endDate.split('-')
+  if (startMonth === endMonth && startYear === endYear) return `${startMonth} ${startYear}`
   if (startYear === endYear) return `${startMonth}-${endMonth} ${startYear}`
 
   return `${startMonth}-${startYear} / ${endMonth}-${endYear}`
@@ -40,9 +41,17 @@ function formatDateRange(project: Project) {
 
 const MAX_VISIBLE_STACK = 5
 
+function getAchievements(project: Project): Achievement[] {
+  return [
+    ...(project.prize ? [{ icon: 'trophy' as const, tooltip: project.prize }] : []),
+    ...(project.achievements ?? []),
+  ]
+}
+
 export function ProjectCard({ project }: { project: Project }) {
   const visibleStack = project.stack.slice(0, MAX_VISIBLE_STACK)
   const hiddenStack = project.stack.slice(MAX_VISIBLE_STACK)
+  const achievements = getAchievements(project)
 
   return (
     <Card
@@ -94,10 +103,44 @@ export function ProjectCard({ project }: { project: Project }) {
             </span>
           )}
         </div>
-        <h3 className="font-cal text-xl font-bold! border-accent/30 -mt-2">{project.title}</h3>
+        <div className="flex items-center gap-2 -mt-2">
+          <h3 className="font-cal text-xl font-bold! border-accent/30">{project.title}</h3>
+          {achievements.length > 0 && (
+            <div className="flex items-center gap-0.5">
+              {achievements.map((achievement, i) => (
+                <Tooltip key={i}>
+                  <TooltipTrigger
+                    render={
+                      <span
+                        data-testid={i === 0 && project.prize ? `prize-${project.id}` : undefined}
+                        className="inline-flex size-5 items-center justify-center"
+                      >
+                        {achievement.icon === 'trophy' ? (
+                          <Trophy
+                            className="size-5 text-(--color-gold) drop-shadow-[0_0_6px_var(--color-gold-glow)]"
+                            aria-hidden="true"
+                          />
+                        ) : (
+                          <Image
+                            src={achievement.icon.image}
+                            alt={achievement.icon.alt}
+                            width={16}
+                            height={16}
+                            className="size-5 object-contain"
+                          />
+                        )}
+                      </span>
+                    }
+                  />
+                  <TooltipContent>{achievement.tooltip}</TooltipContent>
+                </Tooltip>
+              ))}
+            </div>
+          )}
+        </div>
         <p className="text-sm text-(--color-text-muted) leading-relaxed">{project.description}</p>
 
-        <div className="flex flex-wrap gap-2 mt-1">
+        <div className="flex flex-wrap gap-1 mt-1">
           {visibleStack.map((tech, i) => {
             const logo = techLogo(tech)
             if (!logo) {
@@ -143,16 +186,6 @@ export function ProjectCard({ project }: { project: Project }) {
           )}
         </div>
 
-        {project.prize && (
-          <Badge
-            data-testid={`prize-${project.id}`}
-            variant="outline"
-            className="w-fit border-accent/30 text-(--color-accent) hover:border-(--color-accent)"
-          >
-            {project.prize}
-          </Badge>
-        )}
-
         {/*  <div className="mt-auto pt-4!">
           <Link
             href={`/projects/${project.id}`}
@@ -174,7 +207,7 @@ export function Projects() {
 
   return (
     <section id="projects" className="pb-24 md:pb-32 ">
-      <div className="container mx-auto px-6 max-w-6xl">
+      <div className="container mx-auto px-6 max-w-7xl">
         <h2 className="font-cal text-4xl md:text-5xl text-center text-foreground">Projects</h2>
         <p className="text-(--color-text-muted) text-center mb-10">
           A selection of products and tools I&apos;ve built and shipped.

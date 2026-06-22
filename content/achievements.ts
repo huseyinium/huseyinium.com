@@ -37,13 +37,7 @@ export const ACHIEVEMENTS: Achievement[] = [
     description: 'Won a Blockscout pool prize at ETHGlobal Brussels 2024 with SwapZilla.',
     icon: 'medal',
   },
-  {
-    title: 'Worldcoin Pool Prize',
-    issuer: 'VerifyWorld / ETHGlobal Istanbul 2023',
-    date: 'Nov 2023',
-    description: 'Won a Worldcoin pool prize at ETHGlobal Istanbul 2023 with VerifyWorld.',
-    icon: 'medal',
-  },
+
   {
     title: 'McKinsey Forward Program',
     issuer: 'McKinsey.org',
@@ -72,11 +66,11 @@ export const ACHIEVEMENTS: Achievement[] = [
     description: 'Accepted into the NVIDIA Developer Program for AI and GPU computing.',
     icon: 'star',
   },
-  {
+  /*  {
     title: 'Published Author',
     issuer: 'Manevra Magazine / METU YWC',
     date: 'Fall 2023',
     description: 'Published writing in Manevra Magazine through METU Young Writers Club.',
     icon: 'star',
-  },
+  }, */
 ]
