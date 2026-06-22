@@ -253,7 +253,7 @@ Section       3D Intensity    Technique
 Hero          ████████████    Full procedural scene (R3F canvas, full-screen)
 About         ██░░░░░░░░░░    Particle drift in background (lightweight)
 Projects      ███░░░░░░░░░    Isolated micro-canvases per card (on hover only)
-Experience    ░░░░░░░░░░░░    No 3D (pure CSS/Framer Motion timeline)
+Experience    ░░░░░░░░░░░░    No 3D (static CSS card grid)
 Skills        ██░░░░░░░░░░    Subtle floating icons or particle burst on hover
 Achievements  ░░░░░░░░░░░░    No 3D
 Blog          ░░░░░░░░░░░░    No 3D
@@ -735,19 +735,19 @@ interface CaseStudyFrontmatter {
 
 **Purpose:** Validate credibility for recruiters and investors. Timeline of professional history.
 
-**Layout:** Vertical timeline, centered axis line. Left/right alternating on desktop, left-aligned on mobile.
+**Layout:** Static grid of cards, one per company. Single column on mobile, two columns on `md+`. No scroll-driven animation.
 
-**Timeline Entry Anatomy:**
+**Card Anatomy:**
 
 ```
-        ●  [Company logo placeholder/icon]
-        │
-        │  [Date range]           [Location badge]
-        │  [Role Title]           H4
-        │  [Company Name]         accent color, linked
-        │  [Description]          2-3 sentences, what you built/shipped
-        │  [Key tech badges]      optional
-        │
+┌─────────────────────────────┐
+│  [Company logo / name]       │
+│  ─────────────────────────   │
+│  [Role Title]                │
+│  [Date range]   accent color │
+│  [Description]  optional     │
+│  ─ (repeat per role) ─        │
+└─────────────────────────────┘
 ```
 
 **Entries (chronological, newest first):**
@@ -763,8 +763,7 @@ Note: McKinsey Forward Program, Microsoft AI Innovators Program, and NVIDIA Deve
 
 **Interactions:**
 
-- Entries animate in on scroll (Framer Motion `whileInView`)
-- Timeline axis line draws down as user scrolls (SVG `stroke-dasharray` animation)
+- Static — no scroll-driven animation
 - Company name hover → subtle accent underline
 
 **Volunteer / Community** (separate subsection, collapsed by default):

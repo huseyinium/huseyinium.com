@@ -93,7 +93,7 @@ export const EXPERIENCE: ExperienceCompany[] = [
     logoWidth: 200,
     roles: [
       {
-        title: 'Full-Stack Software Engineer (Misyon Kripto)',
+        title: 'Full-Stack Software Engineer',
         period: 'Mar 2025 - May 2025 · 3 mos',
         description: '',
       },
@@ -115,6 +115,36 @@ export const EXPERIENCE: ExperienceCompany[] = [
       {
         title: 'Software Engineer (Front-End)',
         period: 'Jan 2024 - Jun 2024 · 6 mos',
+        description: '',
+      },
+    ],
+  },
+  {
+    company: 'iDateBuddy',
+    roles: [
+      {
+        title: 'Laravel Back-End Developer',
+        period: 'Jun 2023 - Oct 2023 · 5 mos',
+        description: '',
+      },
+    ],
+  },
+  {
+    company: 'Hotelasistan',
+    roles: [
+      {
+        title: 'Full-Stack PHP Developer',
+        period: 'Jan 2023 - Jul 2023 · 7 mos',
+        description: '',
+      },
+    ],
+  },
+  {
+    company: 'Epifanik',
+    roles: [
+      {
+        title: 'Founder & Front-End Developer',
+        period: 'Sep 2021 - Jan 2023 · 1 yr 5 mos',
         description: '',
       },
     ],
