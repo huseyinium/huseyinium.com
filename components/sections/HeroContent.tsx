@@ -2,27 +2,28 @@
 
 import { motion } from 'framer-motion'
 import Link from 'next/link'
-import LightRays from '../react-bits/LightRays'
+import SideRays from '../react-bits/SideRays'
 import { WebglErrorBoundary } from '../react-bits/WebglErrorBoundary'
 
-//const WORDS = ['I build,', 'therefore I am.']
-const WORDS = ['I build what', 'modern software', 'is capable of.']
-// const WORDS = ['I imagine,', 'so I build.']
+const introVariants = {
+  hidden: { opacity: 0, y: 10 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' as const } },
+}
 
-const wordVariants = {
+const headingVariants = {
   hidden: { opacity: 0, y: 20 },
-  visible: (i: number) => ({
+  visible: {
     opacity: 1,
     y: 0,
-    transition: { delay: i * 0.1, duration: 0.5, ease: 'easeOut' as const },
-  }),
+    transition: { delay: 0.1, duration: 0.6, ease: 'easeOut' as const },
+  },
 }
 
 const ctaVariants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    transition: { delay: WORDS.length * 0.1 + 0.3, duration: 0.4 },
+    transition: { delay: 0.5, duration: 0.4 },
   },
 }
 
@@ -33,82 +34,63 @@ export function HeroContent() {
         <WebglErrorBoundary
           fallback={<div className="absolute inset-0 rounded-3xl! bg-background" />}
         >
-          <LightRays
-            className="h-full w-full opacity-60"
-            raysOrigin="top-center"
-            raysColor="#fff"
-            raysSpeed={1}
-            lightSpread={0.5}
-            rayLength={3}
-            followMouse={true}
-            mouseInfluence={0.1}
-            noiseAmount={0}
-            distortion={0}
-            pulsating={false}
-            fadeDistance={1}
+          <SideRays
+            className="opacity-60"
+            origin="top-right"
+            rayColor1="#f97316"
+            rayColor2="#96c8ff"
+            speed={1.5}
+            intensity={1.5}
+            spread={1.5}
             saturation={1}
           />
         </WebglErrorBoundary>
       </div>
       <div
         data-testid="hero-text"
-        className="absolute inset-0 z-10 flex flex-col items-center justify-center px-6 text-center pointer-events-none"
+        className="absolute inset-0 z-10 flex items-center px-6 md:px-16"
       >
-        {/*  <motion.p className="relative inline-block  text-sm mb-6" transition={{ duration: 0.4 }}>
-          I&apos;m Huseyin Karatas - Full-Stack Engineer & Entrepreneur
-          <span
-            aria-hidden
-            className="pointer-events-none absolute inset-0 bg-linear-to-b from-gray-100 via-gray-500 to-gray-900 bg-clip-text text-transparent mix-blend-overlay blur-[1.5px]"
-          >
-            I&apos;m Huseyin Karatas - Full-Stack Engineer & Entrepreneur
-          </span>
-        </motion.p> */}
-
-        <div
-          aria-hidden
-          className="hero-lens-glow absolute top-1/2 left-1/2 h-32 w-[min(90vw,900px)] -translate-x-1/2 -translate-y-1/2 md:h-48"
-        />
-
-        <h1 className="font-display text-4xl md:text-7xl font-bold text-white leading-tight mb-6">
-          {WORDS.map((word, i) => (
-            <motion.span
-              key={word}
-              custom={i}
-              variants={wordVariants}
+        <div className="mx-auto w-full max-w-6xl">
+          <div className="pointer-events-none text-left">
+            <motion.p
+              variants={introVariants}
               initial="hidden"
               animate="visible"
-              className="relative inline-block mr-4"
+              className="font-mono text-sm text-white/60 mb-3"
             >
-              {word}
-              <span
-                aria-hidden
-                className="pointer-events-none absolute inset-0 bg-linear-to-b from-gray-100 via-gray-500 to-gray-900 bg-clip-text text-transparent mix-blend-overlay blur-[1.5px]"
-              >
-                {word}
-              </span>
-            </motion.span>
-          ))}
-        </h1>
+              👋 I&apos;m Huseyin Karatas, full-stack engineer &amp; entrepreneur
+            </motion.p>
 
-        <motion.div
-          className="pointer-events-auto flex flex-row items-center gap-3"
-          variants={ctaVariants}
-          initial="hidden"
-          animate="visible"
-        >
-          <Link
-            href={process.env.NEXT_PUBLIC_CALENDLY_URL ?? '#contact'}
-            className="rounded-full bg-white px-5 py-2.5 text-sm font-medium text-black transition-colors hover:bg-white/90"
-          >
-            Book a call
-          </Link>
-          <a
-            href="#contact"
-            className="rounded-full border border-white/20 bg-black/40 px-5 py-2.5 text-sm font-medium text-white backdrop-blur-md transition-colors hover:bg-black/55"
-          >
-            Email me
-          </a>
-        </motion.div>
+            <motion.h1
+              variants={headingVariants}
+              initial="hidden"
+              animate="visible"
+              className="font-display text-4xl md:text-6xl font-bold text-white leading-tight mb-6"
+            >
+              I build what modern software <br /> makes possible.
+            </motion.h1>
+
+            <motion.div
+              className="pointer-events-auto flex flex-row items-center gap-3"
+              variants={ctaVariants}
+              initial="hidden"
+              animate="visible"
+            >
+              <Link
+                href={process.env.NEXT_PUBLIC_CALENDLY_URL ?? '#contact'}
+                className="rounded-full bg-white px-5 py-2.5 text-sm font-medium text-black transition-colors hover:bg-white/90"
+              >
+                Book a call
+              </Link>
+              <a
+                href="#contact"
+                className="rounded-full border border-white/20 bg-black/40 px-5 py-2.5 text-sm font-medium text-white backdrop-blur-md transition-colors hover:bg-black/55"
+              >
+                Email me
+              </a>
+            </motion.div>
+          </div>
+        </div>
       </div>
     </>
   )
