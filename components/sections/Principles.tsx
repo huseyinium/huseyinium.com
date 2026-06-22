@@ -1,15 +1,15 @@
 'use client'
 
-import { Flame, ShieldCheck, Eye, HandHeart, Gem } from 'lucide-react'
+import { Flame, ShieldCheck, Eye, HandHeart, Gem, ClipboardCheck, Shield } from 'lucide-react'
 import BorderGlowCard from '@/components/react-bits/BorderGlowCard'
 import { PRINCIPLES, type Principle, type PrincipleIcon } from '@/content/principles'
 
 const ICONS: Record<PrincipleIcon, React.ReactNode> = {
   devotion: <Flame className="w-full h-full" />,
-  honesty: <ShieldCheck className="w-full h-full" />,
+  honesty: <Shield className="w-full h-full" />,
   transparency: <Eye className="w-full h-full" />,
-  responsibility: <HandHeart className="w-full h-full" />,
-  quality: <Gem className="w-full h-full" />,
+  responsibility: <ClipboardCheck className="w-full h-full" />,
+  quality: <Gem className="w-full h-full" absoluteStrokeWidth={true} />,
 }
 
 function PrincipleIconBadge({ icon, size }: { icon: PrincipleIcon; size: 'lg' | 'sm' }) {

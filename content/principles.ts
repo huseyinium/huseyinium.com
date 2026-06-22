@@ -30,7 +30,7 @@ export const PRINCIPLES: Principle[] = [
   {
     title: 'Transparency',
     description:
-      'I share my reasoning and progress openly so others can trust the process, not just the result.',
+      'I share my reasoning & progress openly so you can trust the process, not just the result.',
     icon: 'transparency',
   },
   {
