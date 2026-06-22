@@ -24,7 +24,7 @@ export function Achievements() {
               key={`${achievement.title}-${achievement.date}`}
               data-achievement-card
               className="rounded-xl bg-(--color-bg-elevated) ring-1 ring-(--color-border) p-6 flex gap-4
-                hover:ring-(--color-accent)/40 hover:shadow-[0_0_24px_var(--color-accent-glow)]
+                hover:ring-accent/40 hover:shadow-[0_0_24px_var(--color-accent-glow)]
                 transition-all duration-200"
             >
               <div data-achievement-icon className="mt-0.5 shrink-0">

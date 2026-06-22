@@ -19,6 +19,11 @@
   --color-accent-dim: #c2570f;
   --color-accent-glow: #f9731633;
 
+  /* Achievement icons (trophy, program badges) — glowy gold, distinct from the
+     orange brand accent so wins stand out next to a project title. */
+  --color-gold: #ffd45e;
+  --color-gold-glow: #ffd45e80;
+
   /* Premium "darkius flame" gradient — black edges burning into deep red,
      orange, and a hot highlight. Reusable across components via
      var(--gradient-accent) or the .text-gradient-accent / .bg-gradient-accent
