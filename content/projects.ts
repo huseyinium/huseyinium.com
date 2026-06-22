@@ -25,6 +25,7 @@ export interface Project {
   stack: string[]
   coverImage: string
   websiteUrl?: string
+  liveDemoUrl?: string
   githubUrl?: string
   appStoreUrl?: string
   googlePlayUrl?: string
@@ -133,6 +134,7 @@ export const PROJECTS: Project[] = [
     coverImage: '/images/projects/arcy-ai.jpg',
     githubUrl: '',
     websiteUrl: 'https://arcy.ai',
+    liveDemoUrl: 'https://demo.arcyai.com',
     achievements: [
       {
         icon: { image: '/logos/svg/nvidia.svg', alt: 'NVIDIA' },
@@ -144,22 +146,6 @@ export const PROJECTS: Project[] = [
       },
     ],
     featured: true,
-    startDate: '2026-04',
-  },
-  {
-    id: 'hushboard',
-    title: 'Hushboard',
-    description:
-      'A macOS menu bar app that auto-mutes your microphone while you type, auto-unmutes when you stop.',
-    category: 'personal',
-    scope: 'Desktop',
-    stack: ['Swift', 'Claude Code', 'xCode'],
-    coverImage: 'https://img.youtube.com/vi/cGKs4567Th0/maxresdefault.jpg',
-    websiteUrl: '',
-    githubUrl: 'https://github.com/huseyinium/hushboard',
-    isVideo: true,
-    videoUrl: 'https://youtu.be/cGKs4567Th0',
-    featured: false,
     startDate: '2026-04',
   },
   {
@@ -195,7 +181,23 @@ export const PROJECTS: Project[] = [
     githubUrl: 'https://github.com/huseyinium/huseyinium.com',
     featured: false,
     startDate: '2026-06',
-    endDate: '2026-06',
+  },
+  {
+    id: 'hushboard',
+    title: 'Hushboard',
+    description:
+      'A macOS menu bar app that auto-mutes your microphone while you type, auto-unmutes when you stop.',
+    category: 'personal',
+    scope: 'Desktop',
+    stack: ['Swift', 'Claude Code', 'xCode'],
+    coverImage: 'https://img.youtube.com/vi/cGKs4567Th0/maxresdefault.jpg',
+    websiteUrl: '',
+    githubUrl: 'https://github.com/huseyinium/hushboard',
+    isVideo: true,
+    videoUrl: 'https://youtu.be/cGKs4567Th0',
+    featured: false,
+    startDate: '2026-04',
+    endDate: '2026-04',
   },
   {
     id: 'unreadme',

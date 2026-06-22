@@ -90,6 +90,16 @@ export default async function ProjectSlugPage({ params }: { params: Promise<{ sl
                   Live site →
                 </a>
               )}
+              {study.liveDemoUrl && (
+                <a
+                  href={study.liveDemoUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm font-medium text-(--color-accent) hover:underline"
+                >
+                  Live demo →
+                </a>
+              )}
               {study.githubUrl && (
                 <a
                   href={study.githubUrl}

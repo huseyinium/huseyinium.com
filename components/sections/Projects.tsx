@@ -3,7 +3,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import dynamic from 'next/dynamic'
-import { ChevronRight, ExternalLink, Layers, Trophy } from 'lucide-react'
+import { ChevronRight, ExternalLink, Layers, MonitorPlay, Trophy } from 'lucide-react'
 import { PROJECTS, type Achievement, type Project } from '@/content/projects'
 import { Card, CardContent } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
@@ -231,6 +231,7 @@ export function ProjectCard({ project }: { project: Project }) {
         </div>
 
         {(project.websiteUrl ||
+          project.liveDemoUrl ||
           project.githubUrl ||
           project.appStoreUrl ||
           project.googlePlayUrl) && (
@@ -246,6 +247,19 @@ export function ProjectCard({ project }: { project: Project }) {
               >
                 <ExternalLink className="size-3.5" aria-hidden="true" />
                 Website
+              </Button>
+            )}
+            {project.liveDemoUrl && (
+              <Button
+                render={
+                  <Link href={project.liveDemoUrl} target="_blank" rel="noopener noreferrer" />
+                }
+                variant="secondary"
+                className={'rounded-full'}
+                size="sm"
+              >
+                <MonitorPlay className="size-3.5" aria-hidden="true" />
+                Live Demo
               </Button>
             )}
             {project.githubUrl && (
