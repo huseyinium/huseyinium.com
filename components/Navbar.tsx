@@ -10,6 +10,7 @@ const NAV_LINKS = [
   /*  { label: 'About', href: '/#about' }, */
   { label: 'Projects', href: '/#projects' },
   { label: 'Skills', href: '/#skills' },
+  { label: 'Experience', href: '/#experience' },
   { label: 'Achievements', href: '/#achievements' },
 ]
 
@@ -18,7 +19,7 @@ export function Navbar() {
 
   return (
     <header className="fixed inset-x-0 top-4 z-50 flex justify-center px-4">
-      <nav className="flex w-full max-w-3xl items-center justify-between gap-4 rounded-full border border-white/10 bg-black/40 px-4 py-2.5 shadow-lg backdrop-blur-xl">
+      <nav className="flex w-full max-w-4xl items-center justify-between gap-4 rounded-full border border-white/10 bg-black/40 px-4 py-2.5 shadow-lg backdrop-blur-xl">
         <Link href="/#" className="flex items-center gap-2 shrink-0">
           {/* TODO: swap for <Image> logo once provided */}
           <Image src={'/images/my-pp.svg'} alt="Huseyin Karatas PP" width={40} height={40} />
