@@ -52,6 +52,9 @@ function formatDateRange(project: Project) {
   return `${formatMonthYear(project.startDate)} - ${formatMonthYear(project.endDate)}`
 }
 
+const PROJECT_LINK_BUTTON_CLASS =
+  'rounded-full border-(--color-accent-dim) hover:border-(--color-accent) hover:text-(--color-accent)'
+
 const MAX_VISIBLE_STACK = 5
 const MAX_VISIBLE_ACHIEVEMENTS = 3
 
@@ -62,7 +65,13 @@ function getAchievements(project: Project): Achievement[] {
   ]
 }
 
-export function ProjectCard({ project }: { project: Project }) {
+export function ProjectCard({
+  project,
+  showTechStack = false,
+}: {
+  project: Project
+  showTechStack?: boolean
+}) {
   const visibleStack = project.stack.slice(0, MAX_VISIBLE_STACK)
   const hiddenStack = project.stack.slice(MAX_VISIBLE_STACK)
   const achievements = getAchievements(project)
@@ -173,159 +182,168 @@ export function ProjectCard({ project }: { project: Project }) {
         </div>
         <ProjectDescription text={project.description} />
 
-        <div className="mt-auto pt-1">
-          <span className="inline-flex items-center gap-1 mb-1.5 font-mono text-[10px] uppercase tracking-wide text-(--color-text-muted)">
-            <Layers className="size-3" aria-hidden="true" />
-            {project.scope}
-          </span>
-          <div className="flex flex-wrap gap-1">
-            {visibleStack.map((tech, i) => {
-              const logo = techLogo(tech)
-              if (!logo) {
-                return (
-                  <Badge
-                    key={`${tech}-${i}`}
-                    variant="outline"
-                    className="text-(--color-text-muted)"
-                  >
-                    {tech}
-                  </Badge>
-                )
-              }
-              return (
-                <Tooltip key={`${tech}-${i}`}>
-                  <TooltipTrigger
-                    render={
-                      <Badge variant="outline" className="size-9 p-1! text-(--color-text-muted)">
-                        <Image
-                          src={logo}
-                          alt={tech}
-                          width={16}
-                          height={16}
-                          className="size-9 object-contain"
-                        />
+        <div className="mt-auto flex flex-col gap-3">
+          {showTechStack && (
+            <div className="pt-1">
+              <span className="inline-flex items-center gap-1 mb-1.5 font-mono text-[10px] uppercase tracking-wide text-(--color-text-muted)">
+                <Layers className="size-3" aria-hidden="true" />
+                {project.scope}
+              </span>
+              <div className="flex flex-wrap gap-1">
+                {visibleStack.map((tech, i) => {
+                  const logo = techLogo(tech)
+                  if (!logo) {
+                    return (
+                      <Badge
+                        key={`${tech}-${i}`}
+                        variant="outline"
+                        className="text-(--color-text-muted)"
+                      >
+                        {tech}
                       </Badge>
-                    }
-                  />
-                  <TooltipContent>{tech}</TooltipContent>
-                </Tooltip>
-              )
-            })}
-            {hiddenStack.length > 0 && (
-              <Tooltip>
-                <TooltipTrigger
-                  render={
-                    <Badge
-                      variant="outline"
-                      className="size-9 justify-center p-1! text-xs text-(--color-text-muted)"
-                    >
-                      +{hiddenStack.length}
-                    </Badge>
+                    )
                   }
-                />
-                <TooltipContent>{hiddenStack.join(', ')}</TooltipContent>
-              </Tooltip>
-            )}
-          </div>
-        </div>
+                  return (
+                    <Tooltip key={`${tech}-${i}`}>
+                      <TooltipTrigger
+                        render={
+                          <Badge
+                            variant="outline"
+                            className="size-9 p-1! text-(--color-text-muted)"
+                          >
+                            <Image
+                              src={logo}
+                              alt={tech}
+                              width={16}
+                              height={16}
+                              className="size-9 object-contain"
+                            />
+                          </Badge>
+                        }
+                      />
+                      <TooltipContent>{tech}</TooltipContent>
+                    </Tooltip>
+                  )
+                })}
+                {hiddenStack.length > 0 && (
+                  <Tooltip>
+                    <TooltipTrigger
+                      render={
+                        <Badge
+                          variant="outline"
+                          className="size-9 justify-center p-1! text-xs text-(--color-text-muted)"
+                        >
+                          +{hiddenStack.length}
+                        </Badge>
+                      }
+                    />
+                    <TooltipContent>{hiddenStack.join(', ')}</TooltipContent>
+                  </Tooltip>
+                )}
+              </div>
+            </div>
+          )}
 
-        {(project.websiteUrl ||
-          project.liveDemoUrl ||
-          project.githubUrl ||
-          project.appStoreUrl ||
-          project.googlePlayUrl) && (
-          <div className="flex flex-wrap gap-2 pt-1">
-            {project.websiteUrl && (
-              <Button
-                render={
-                  <Link href={project.websiteUrl} target="_blank" rel="noopener noreferrer" />
-                }
-                nativeButton={false}
-                variant="secondary"
-                className={'rounded-full'}
-                size="sm"
-              >
-                <ExternalLink className="size-3.5" aria-hidden="true" />
-                Website
-              </Button>
-            )}
-            {project.liveDemoUrl && (
-              <Button
-                render={
-                  <Link href={project.liveDemoUrl} target="_blank" rel="noopener noreferrer" />
-                }
-                nativeButton={false}
-                variant="secondary"
-                className={'rounded-full'}
-                size="sm"
-              >
-                <MonitorPlay className="size-3.5" aria-hidden="true" />
-                Live Demo
-              </Button>
-            )}
-            {project.githubUrl && (
-              <Button
-                render={<Link href={project.githubUrl} target="_blank" rel="noopener noreferrer" />}
-                nativeButton={false}
-                variant="outline"
-                className={'rounded-full '}
-                size="sm"
-              >
-                <Image
-                  src="/logos/svg/github.svg"
-                  alt=""
-                  width={14}
-                  height={14}
-                  className="size-4.5"
-                  aria-hidden="true"
-                />
-                GitHub
-              </Button>
-            )}
-            {project.appStoreUrl && (
-              <Button
-                render={
-                  <Link href={project.appStoreUrl} target="_blank" rel="noopener noreferrer" />
-                }
-                nativeButton={false}
-                variant="outline"
-                className={'rounded-full '}
-                size="sm"
-              >
-                <Image
-                  src="/logos/svg/app-store.svg"
-                  alt=""
-                  width={14}
-                  height={14}
-                  className="size-4.5"
-                  aria-hidden="true"
-                />
-                App Store
-              </Button>
-            )}
-            {project.googlePlayUrl && (
-              <Button
-                render={
-                  <Link href={project.googlePlayUrl} target="_blank" rel="noopener noreferrer" />
-                }
-                nativeButton={false}
-                variant="outline"
-                className={'rounded-full '}
-                size="sm"
-              >
-                <Image
-                  src="/logos/svg/google-play-store.svg"
-                  alt=""
-                  width={14}
-                  height={14}
-                  className="size-4.5"
-                  aria-hidden="true"
-                />
-                Google Play
-              </Button>
-            )}
-          </div>
-        )}
+          {(project.websiteUrl ||
+            project.liveDemoUrl ||
+            project.githubUrl ||
+            project.appStoreUrl ||
+            project.googlePlayUrl) && (
+            <div className="flex flex-wrap gap-2">
+              {project.websiteUrl && (
+                <Button
+                  render={
+                    <Link href={project.websiteUrl} target="_blank" rel="noopener noreferrer" />
+                  }
+                  nativeButton={false}
+                  variant="secondary"
+                  className={PROJECT_LINK_BUTTON_CLASS}
+                  size="sm"
+                >
+                  <ExternalLink className="size-3.5" aria-hidden="true" />
+                  Website
+                </Button>
+              )}
+              {project.liveDemoUrl && (
+                <Button
+                  render={
+                    <Link href={project.liveDemoUrl} target="_blank" rel="noopener noreferrer" />
+                  }
+                  nativeButton={false}
+                  variant="secondary"
+                  className={PROJECT_LINK_BUTTON_CLASS}
+                  size="sm"
+                >
+                  <MonitorPlay className="size-3.5" aria-hidden="true" />
+                  Live Demo
+                </Button>
+              )}
+              {project.githubUrl && (
+                <Button
+                  render={
+                    <Link href={project.githubUrl} target="_blank" rel="noopener noreferrer" />
+                  }
+                  nativeButton={false}
+                  variant="secondary"
+                  className={PROJECT_LINK_BUTTON_CLASS}
+                  size="sm"
+                >
+                  <Image
+                    src="/logos/svg/github.svg"
+                    alt=""
+                    width={14}
+                    height={14}
+                    className="size-4.5"
+                    aria-hidden="true"
+                  />
+                  GitHub
+                </Button>
+              )}
+              {project.appStoreUrl && (
+                <Button
+                  render={
+                    <Link href={project.appStoreUrl} target="_blank" rel="noopener noreferrer" />
+                  }
+                  nativeButton={false}
+                  variant="secondary"
+                  className={PROJECT_LINK_BUTTON_CLASS}
+                  size="sm"
+                >
+                  <Image
+                    src="/logos/svg/app-store.svg"
+                    alt=""
+                    width={14}
+                    height={14}
+                    className="size-4.5"
+                    aria-hidden="true"
+                  />
+                  App Store
+                </Button>
+              )}
+              {project.googlePlayUrl && (
+                <Button
+                  render={
+                    <Link href={project.googlePlayUrl} target="_blank" rel="noopener noreferrer" />
+                  }
+                  nativeButton={false}
+                  variant="secondary"
+                  className={PROJECT_LINK_BUTTON_CLASS}
+                  size="sm"
+                >
+                  <Image
+                    src="/logos/svg/google-play-store.svg"
+                    alt=""
+                    width={14}
+                    height={14}
+                    className="size-4.5"
+                    aria-hidden="true"
+                  />
+                  Google Play
+                </Button>
+              )}
+            </div>
+          )}
+        </div>
       </CardContent>
     </Card>
   )

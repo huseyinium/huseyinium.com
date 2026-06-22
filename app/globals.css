@@ -16,7 +16,7 @@
      var(--gradient-accent) directly or the .text-gradient-accent /
      .bg-gradient-accent utilities instead. */
   --color-accent: #f97316;
-  --color-accent-dim: #c2570f;
+  --color-accent-dim: #49230a;
   --color-accent-glow: #f9731633;
 
   /* Achievement icons (trophy, program badges) — glowy gold, distinct from the

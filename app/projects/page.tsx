@@ -29,7 +29,7 @@ export default function ProjectsPage() {
 
         <div className="flex flex-wrap justify-center gap-6 md:justify-center">
           {sorted.map((project) => (
-            <ProjectCard key={project.id} project={project} />
+            <ProjectCard key={project.id} project={project} showTechStack />
           ))}
         </div>
       </div>
