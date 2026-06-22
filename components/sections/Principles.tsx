@@ -56,7 +56,7 @@ export function Principles() {
   const rest = PRINCIPLES.filter((p) => !p.featured)
 
   return (
-    <section id="principles" className="py-24 md:py-32">
+    <section id="principles" className="py-24 md:py-24">
       <div className="mx-auto px-6 w-full max-w-6xl">
         <h2 className="font-cal text-4xl md:text-5xl text-foreground text-center">Principles</h2>
         <p className="text-(--color-text-muted) text-center mb-8 mt-2">
