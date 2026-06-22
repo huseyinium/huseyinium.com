@@ -165,9 +165,10 @@ export const PROJECTS: Project[] = [
   {
     id: 'portfolio',
     title: 'huseyinium.com',
-    description: 'This website.',
+    description:
+      'My personal portfolio: projects, skills, experience, achievements, and a way to reach me.',
     category: 'personal',
-    scope: 'Frontend',
+    scope: 'Full-Stack',
     // DONE
     stack: [
       'TypeScript',
