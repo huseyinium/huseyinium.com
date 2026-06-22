@@ -61,13 +61,16 @@ const SOCIAL_LINKS = [
     label: 'Instagram',
     href: 'https://www.instagram.com/huseyinium',
     icon: <IconInstagram />,
-    handle: '@huseyinium',
+    handle: 'huseyinium',
   },
 ]
 
 export function Contact() {
   return (
-    <section id="contact" className="relative py-24 md:py-32 overflow-hidden">
+    <section
+      id="contact"
+      className="relative py-24 md:py-32 overflow-hidden  flex flex-col justify-center items-center"
+    >
       <div className="relative z-10 container mx-auto px-6 max-w-2xl text-center">
         <h2 className="font-cal text-4xl md:text-5xl text-foreground mb-2">Contact</h2>
 
@@ -102,24 +105,23 @@ export function Contact() {
         {/* <div className="text-left mb-12">
           <ContactForm />
         </div> */}
-
-        <div className="flex flex-wrap justify-center gap-6 mb-6">
-          {SOCIAL_LINKS.map(({ label, href, icon, handle }) => (
-            <a
-              key={label}
-              href={href}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={label}
-              className="flex items-center gap-2 text-sm text-(--color-text-secondary)
+      </div>
+      <div className="flex flex-wrap justify-center gap-6 mb-6 max-w-5xl!">
+        {SOCIAL_LINKS.map(({ label, href, icon, handle }) => (
+          <Link
+            key={label}
+            href={href}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={label}
+            className="flex items-center gap-2 text-sm text-(--color-text-secondary)
                 hover:text-(--color-accent) transition-colors group"
-            >
-              <span className="group-hover:drop-shadow-[0_0_6px_var(--color-accent)]">{icon}</span>
-              <span>{label}</span>
-              <span className="text-(--color-text-muted)">{handle}</span>
-            </a>
-          ))}
-        </div>
+          >
+            <span className="group-hover:drop-shadow-[0_0_6px_var(--color-accent)]">{icon}</span>
+            <span>{label}</span>
+            <span className="text-(--color-text-muted)">{handle}</span>
+          </Link>
+        ))}
       </div>
     </section>
   )
