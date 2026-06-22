@@ -176,11 +176,12 @@ export const PROJECTS: Project[] = [
       'Bun',
       'ESLint',
     ],
-    coverImage: '/images/projects/',
+    coverImage: '/images/projects/huseyinium.jpg',
     websiteUrl: 'https://huseyinium.com',
     githubUrl: 'https://github.com/huseyinium/huseyinium.com',
     featured: false,
     startDate: '2026-06',
+    endDate: '2026-06',
   },
   {
     id: 'hushboard',
