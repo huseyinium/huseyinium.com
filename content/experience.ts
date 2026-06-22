@@ -20,7 +20,7 @@ export const EXPERIENCE: ExperienceCompany[] = [
     logoWidth: 200,
     roles: [
       {
-        title: 'Co-Founder & CEO',
+        title: 'Co-Founder & CEO & Founding Engineer',
         period: 'Apr 2026 - Present · 3 mos',
         description:
           'Building embedded AI agents that close the Product-Market Fit loop autonomously.',
