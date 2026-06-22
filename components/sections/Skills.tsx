@@ -163,7 +163,7 @@ function SkillsExplanation() {
 // rendered footprint still fits next to the explanation text.
 function SkillsOrbit() {
   return (
-    <div className="relative flex size-82.5 shrink-0 items-center justify-center overflow-hidden sm:size-102.5 md:size-133.75 lg:size-125 xl:size-205">
+    <div className="relative flex size-82.5 shrink-0 items-center justify-center overflow-hidden sm:size-102.5 md:size-133.75 lg:size-125 xl:size-170">
       <div className="relative size-208 scale-[0.296] sm:scale-[0.37] md:scale-[0.4805] lg:scale-[0.591] xl:scale-[0.739]">
         {ORBITS.map((orbit) => (
           <OrbitingCircles
