@@ -35,6 +35,8 @@ function PrincipleCard({ principle }: { principle: Principle }) {
         backgroundColor="var(--color-bg-elevated)"
         colors={['#f97316', '#ffd45e', '#c2570f']}
         glowColor="24 95 53"
+        glowIntensity={100}
+        glowRadius={100}
         className={`flex flex-col gap-3 h-full ${isFeatured ? 'p-8' : 'p-6'}`}
       >
         <PrincipleIconBadge icon={principle.icon} size={isFeatured ? 'lg' : 'sm'} />

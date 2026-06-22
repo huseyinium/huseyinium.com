@@ -35,7 +35,7 @@ export async function GET(request: Request) {
           fontFamily: 'Geist',
         }}
       >
-        huseyinium.com / blog
+        huseyinium.com
       </div>
       <div
         style={{
