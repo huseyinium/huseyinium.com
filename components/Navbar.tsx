@@ -134,7 +134,7 @@ export function Navbar() {
             <Link
               href="/#contact"
               onClick={() => setOpen(false)}
-              className="mt-3 rounded-full bg-white px-4 py-2 text-center text-sm font-medium text-black transition-colors hover:bg-white/90"
+              className="mt-3 rounded-full bg-white w-[90%] mx-auto  px-4 py-2 text-center text-sm font-medium text-black transition-colors hover:bg-white/90"
             >
               Contact
             </Link>
