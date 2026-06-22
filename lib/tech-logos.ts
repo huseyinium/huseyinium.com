@@ -35,6 +35,7 @@ export const TECH_LOGOS: Record<string, string> = {
   bun: '/logos/svg/bun.svg',
   'node.js': '/logos/svg/nodejs.svg',
   nodejs: '/logos/svg/nodejs.svg',
+  "garry tan's gstack": '/logos/svg/gstack.svg',
 
   // Frontend
   react: '/logos/svg/react.svg',
@@ -82,6 +83,7 @@ export const TECH_LOGOS: Record<string, string> = {
 
   // AI
   openai: '/logos/svg/openai.svg',
+  chatgpt: '/logos/svg/openai.svg',
   claude: '/logos/svg/claude.svg',
   'claude code': '/logos/svg/claude-code.svg',
   'claude api': '/logos/svg/claude.svg',
@@ -108,6 +110,7 @@ export const TECH_LOGOS: Record<string, string> = {
   zod: '/logos/svg/zod.svg',
   'react hook form': '/logos/svg/react-hook-form.svg',
   gemini: '/logos/svg/gemini.svg',
+  'gemini api': '/logos/svg/gemini.svg',
   'google maps': '/logos/svg/google-maps.svg',
   clerk: '/logos/svg/clerk.svg',
   cursor: '/logos/svg/cursor.svg',

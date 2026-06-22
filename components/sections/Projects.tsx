@@ -3,7 +3,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import dynamic from 'next/dynamic'
-import { ChevronRight, Trophy } from 'lucide-react'
+import { ChevronRight, ExternalLink, Layers, Trophy } from 'lucide-react'
 import { PROJECTS, type Achievement, type Project } from '@/content/projects'
 import { Card, CardContent } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
@@ -11,7 +11,9 @@ import { Marquee } from '@/components/ui/marquee'
 import { Lens } from '@/components/ui/lens'
 import { HeroVideoDialog } from '@/components/ui/hero-video-dialog'
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip'
+import { Button } from '@/components/ui/button'
 import { techLogo } from '@/lib/tech-logos'
+import { ProjectDescription } from './ProjectDescription'
 
 const Carousel = dynamic(() => import('@/components/Carousel'), { ssr: false })
 
@@ -20,26 +22,38 @@ function youtubeEmbedUrl(videoUrl: string) {
   return id ? `https://www.youtube.com/embed/${id}` : videoUrl
 }
 
+const MONTH_NAMES = [
+  'Jan',
+  'Feb',
+  'Mar',
+  'Apr',
+  'May',
+  'Jun',
+  'Jul',
+  'Aug',
+  'Sep',
+  'Oct',
+  'Nov',
+  'Dec',
+]
+
+function formatMonthYear(date: string) {
+  const [year, month] = date.split('-')
+  return `${MONTH_NAMES[Number(month) - 1]} ${year}`
+}
+
 function formatDateRange(project: Project) {
   if (!project.startDate && !project.endDate) return null
 
-  if (!project.startDate) {
-    const [endYear, endMonth] = project.endDate!.split('-')
-    return `${endMonth} ${endYear}`
-  }
+  if (!project.startDate) return formatMonthYear(project.endDate!)
+  if (!project.endDate) return `${formatMonthYear(project.startDate)} - Present`
+  if (project.startDate === project.endDate) return formatMonthYear(project.startDate)
 
-  const [startYear, startMonth] = project.startDate.split('-')
-
-  if (!project.endDate) return `${startMonth}-${startYear} / Present`
-
-  const [endYear, endMonth] = project.endDate.split('-')
-  if (startMonth === endMonth && startYear === endYear) return `${startMonth} ${startYear}`
-  if (startYear === endYear) return `${startMonth}-${endMonth} ${startYear}`
-
-  return `${startMonth}-${startYear} / ${endMonth}-${endYear}`
+  return `${formatMonthYear(project.startDate)} - ${formatMonthYear(project.endDate)}`
 }
 
 const MAX_VISIBLE_STACK = 5
+const MAX_VISIBLE_ACHIEVEMENTS = 4
 
 function getAchievements(project: Project): Achievement[] {
   return [
@@ -52,6 +66,8 @@ export function ProjectCard({ project }: { project: Project }) {
   const visibleStack = project.stack.slice(0, MAX_VISIBLE_STACK)
   const hiddenStack = project.stack.slice(MAX_VISIBLE_STACK)
   const achievements = getAchievements(project)
+  const visibleAchievements = achievements.slice(0, MAX_VISIBLE_ACHIEVEMENTS)
+  const hiddenAchievements = achievements.slice(MAX_VISIBLE_ACHIEVEMENTS)
 
   return (
     <Card
@@ -95,7 +111,7 @@ export function ProjectCard({ project }: { project: Project }) {
       <CardContent className="flex flex-col gap-3 p-6 pt-0! flex-1">
         <div className="flex items-center justify-between gap-2">
           <span className="font-mono text-[10px] uppercase tracking-wide text-gray-300">
-            {project.category.replace('-', ' ')}
+            {project.category.replaceAll('-', ' ')}
           </span>
           {formatDateRange(project) && (
             <span className="font-mono text-[10px] uppercase tracking-wide text-(--color-text-muted)">
@@ -107,7 +123,7 @@ export function ProjectCard({ project }: { project: Project }) {
           <h3 className="font-cal text-xl font-bold! border-accent/30">{project.title}</h3>
           {achievements.length > 0 && (
             <div className="flex items-center gap-0.5">
-              {achievements.map((achievement, i) => (
+              {visibleAchievements.map((achievement, i) => (
                 <Tooltip key={i}>
                   <TooltipTrigger
                     render={
@@ -135,65 +151,163 @@ export function ProjectCard({ project }: { project: Project }) {
                   <TooltipContent>{achievement.tooltip}</TooltipContent>
                 </Tooltip>
               ))}
+
+              {hiddenAchievements.length > 0 && (
+                <Tooltip>
+                  <TooltipTrigger
+                    render={
+                      <Badge
+                        variant={'outline'}
+                        className="size-6 justify-center p-1! text-[10px] text-(--color-text-muted)"
+                      >
+                        +{hiddenAchievements.length}
+                      </Badge>
+                    }
+                  />
+                  <TooltipContent>
+                    {hiddenAchievements.map((a) => a.tooltip).join(', ')}
+                  </TooltipContent>
+                </Tooltip>
+              )}
             </div>
           )}
         </div>
-        <p className="text-sm text-(--color-text-muted) leading-relaxed">{project.description}</p>
+        <ProjectDescription text={project.description} />
 
-        <div className="flex flex-wrap gap-1 mt-1">
-          {visibleStack.map((tech, i) => {
-            const logo = techLogo(tech)
-            if (!logo) {
+        <div className="mt-auto pt-1">
+          <span className="inline-flex items-center gap-1 mb-1.5 font-mono text-[10px] uppercase tracking-wide text-(--color-text-muted)">
+            <Layers className="size-3" aria-hidden="true" />
+            {project.scope}
+          </span>
+          <div className="flex flex-wrap gap-1">
+            {visibleStack.map((tech, i) => {
+              const logo = techLogo(tech)
+              if (!logo) {
+                return (
+                  <Badge
+                    key={`${tech}-${i}`}
+                    variant="outline"
+                    className="text-(--color-text-muted)"
+                  >
+                    {tech}
+                  </Badge>
+                )
+              }
               return (
-                <Badge key={`${tech}-${i}`} variant="outline" className="text-(--color-text-muted)">
-                  {tech}
-                </Badge>
+                <Tooltip key={`${tech}-${i}`}>
+                  <TooltipTrigger
+                    render={
+                      <Badge variant="outline" className="size-9 p-1! text-(--color-text-muted)">
+                        <Image
+                          src={logo}
+                          alt={tech}
+                          width={16}
+                          height={16}
+                          className="size-9 object-contain"
+                        />
+                      </Badge>
+                    }
+                  />
+                  <TooltipContent>{tech}</TooltipContent>
+                </Tooltip>
               )
-            }
-            return (
-              <Tooltip key={`${tech}-${i}`}>
+            })}
+            {hiddenStack.length > 0 && (
+              <Tooltip>
                 <TooltipTrigger
                   render={
-                    <Badge variant="outline" className="size-9 p-1! text-(--color-text-muted)">
-                      <Image
-                        src={logo}
-                        alt={tech}
-                        width={16}
-                        height={16}
-                        className="size-9 object-contain"
-                      />
+                    <Badge
+                      variant="outline"
+                      className="size-9 justify-center p-1! text-xs text-(--color-text-muted)"
+                    >
+                      +{hiddenStack.length}
                     </Badge>
                   }
                 />
-                <TooltipContent>{tech}</TooltipContent>
+                <TooltipContent>{hiddenStack.join(', ')}</TooltipContent>
               </Tooltip>
-            )
-          })}
-          {hiddenStack.length > 0 && (
-            <Tooltip>
-              <TooltipTrigger
-                render={
-                  <Badge
-                    variant="outline"
-                    className="size-9 justify-center p-1! text-xs text-(--color-text-muted)"
-                  >
-                    +{hiddenStack.length}
-                  </Badge>
-                }
-              />
-              <TooltipContent>{hiddenStack.join(', ')}</TooltipContent>
-            </Tooltip>
-          )}
+            )}
+          </div>
         </div>
 
-        {/*  <div className="mt-auto pt-4!">
-          <Link
-            href={`/projects/${project.id}`}
-            className={cn(buttonVariants({ variant: 'secondary', size: 'lg' }), 'w-fit')}
-          >
-            Read case study
-          </Link>
-        </div> */}
+        {(project.websiteUrl ||
+          project.githubUrl ||
+          project.appStoreUrl ||
+          project.googlePlayUrl) && (
+          <div className="flex flex-wrap gap-2 pt-1">
+            {project.websiteUrl && (
+              <Button
+                render={
+                  <Link href={project.websiteUrl} target="_blank" rel="noopener noreferrer" />
+                }
+                variant="secondary"
+                className={'rounded-full'}
+                size="sm"
+              >
+                <ExternalLink className="size-3.5" aria-hidden="true" />
+                Website
+              </Button>
+            )}
+            {project.githubUrl && (
+              <Button
+                render={<Link href={project.githubUrl} target="_blank" rel="noopener noreferrer" />}
+                variant="outline"
+                className={'rounded-full '}
+                size="sm"
+              >
+                <Image
+                  src="/logos/svg/github.svg"
+                  alt=""
+                  width={14}
+                  height={14}
+                  className="size-4.5"
+                  aria-hidden="true"
+                />
+                GitHub
+              </Button>
+            )}
+            {project.appStoreUrl && (
+              <Button
+                render={
+                  <Link href={project.appStoreUrl} target="_blank" rel="noopener noreferrer" />
+                }
+                variant="outline"
+                className={'rounded-full '}
+                size="sm"
+              >
+                <Image
+                  src="/logos/svg/app-store.svg"
+                  alt=""
+                  width={14}
+                  height={14}
+                  className="size-4.5"
+                  aria-hidden="true"
+                />
+                App Store
+              </Button>
+            )}
+            {project.googlePlayUrl && (
+              <Button
+                render={
+                  <Link href={project.googlePlayUrl} target="_blank" rel="noopener noreferrer" />
+                }
+                variant="outline"
+                className={'rounded-full '}
+                size="sm"
+              >
+                <Image
+                  src="/logos/svg/google-play-store.svg"
+                  alt=""
+                  width={14}
+                  height={14}
+                  className="size-4.5"
+                  aria-hidden="true"
+                />
+                Google Play
+              </Button>
+            )}
+          </div>
+        )}
       </CardContent>
     </Card>
   )

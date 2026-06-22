@@ -80,9 +80,9 @@ export default async function ProjectSlugPage({ params }: { params: Promise<{ sl
             </div>
 
             <div className="flex gap-4">
-              {study.liveUrl && (
+              {study.websiteUrl && (
                 <a
-                  href={study.liveUrl}
+                  href={study.websiteUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-sm font-medium text-(--color-accent) hover:underline"

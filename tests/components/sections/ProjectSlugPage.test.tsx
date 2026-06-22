@@ -42,10 +42,11 @@ const mockStudy = {
   title: 'ARCY AI',
   description: 'AI-powered recruitment platform',
   category: 'startup' as const,
+  scope: 'Full-Stack' as const,
   stack: ['Next.js', 'NestJS', 'PostgreSQL'],
   coverImage: '/images/projects/arcy-ai.png',
   startDate: '2024-01',
-  liveUrl: 'https://arcy.ai',
+  websiteUrl: 'https://arcy.ai',
   featured: true,
   Component: MockContent,
 }
@@ -84,7 +85,7 @@ describe('/projects/[slug] page', () => {
     expect(back).toHaveAttribute('href', '/projects')
   })
 
-  it('renders a live site link when liveUrl is provided', async () => {
+  it('renders a live site link when websiteUrl is provided', async () => {
     const Page = await ProjectSlugPage({ params: Promise.resolve({ slug: 'arcy-ai' }) })
     render(Page as React.ReactElement)
     const link = screen.getByRole('link', { name: /live site/i })

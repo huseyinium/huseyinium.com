@@ -10,7 +10,7 @@ const sorted = [...PROJECTS.filter((p) => p.featured), ...PROJECTS.filter((p) =>
 export default function ProjectsPage() {
   return (
     <main className="min-h-screen py-24 md:py-32">
-      <div className="container mx-auto px-6 max-w-6xl">
+      <div className="container mx-auto px-6 max-w-7xl">
         <Link
           href="/#projects"
           className="flex items-center justify-center gap-1 text-sm text-(--color-text-muted) hover:text-(--color-accent) transition-colors mb-10"
@@ -23,7 +23,7 @@ export default function ProjectsPage() {
           All Projects
         </h1>
 
-        <div className="flex flex-wrap justify-center gap-6 md:justify-start">
+        <div className="flex flex-wrap justify-center gap-6 md:justify-center">
           {sorted.map((project) => (
             <ProjectCard key={project.id} project={project} />
           ))}
