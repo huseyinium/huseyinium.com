@@ -38,8 +38,8 @@ export default async function Home() {
       <Hero />
       {/* <About /> */}
       <Projects />
-      <Skills />
       <Experience />
+      <Skills />
       <Principles />
       {/*  <Achievements /> */}
       {/* <BlogSection posts={recentPosts} /> */}

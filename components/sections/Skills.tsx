@@ -16,7 +16,7 @@ export function Skills() {
   const [skillType, setSkillType] = useState<SkillType>('technical')
 
   return (
-    <section id="skills" className="pt-24 md:pt-32 md:pb-20">
+    <section id="skills" className="pt-24 md:pt-12 md:pb-20">
       <div className="container mx-auto px-6 max-w-7xl">
         <h2 className="font-cal text-4xl md:text-5xl text-foreground text-center">Skills</h2>
         <p className="text-(--color-text-muted) text-center mb-8 mt-2">{DESCRIPTIONS[skillType]}</p>
