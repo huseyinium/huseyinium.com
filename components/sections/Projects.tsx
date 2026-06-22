@@ -347,7 +347,7 @@ export function Projects() {
         <div className="mb-12 text-center">
           <Link
             href="/projects"
-            className="inline-flex items-center gap-0.5 text-sm rounded-full
+            className="inline-flex items-center gap-1 text-sm rounded-full
               border border-(--color-border) text-muted-foreground font-medium px-4 py-2
               hover:border-(--color-accent) hover:text-(--color-accent) transition-colors"
           >
