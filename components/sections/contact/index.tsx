@@ -108,7 +108,7 @@ export function Contact() {
           <ContactForm />
         </div> */}
       </div>
-      <div className="flex flex-wrap justify-center gap-6 mb-6 max-w-5xl!">
+      <div className="flex flex-wrap justify-center gap-6 mb-6 w-[80%] mx-auto md:max-w-xl!">
         {SOCIAL_LINKS.map(({ label, href, icon, handle }) => (
           <Link
             key={label}
