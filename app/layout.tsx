@@ -54,14 +54,14 @@ export const metadata: Metadata = {
     locale: 'en_US',
     url: siteUrl,
     siteName: 'Huseyin Karatas',
-    title: 'Full-Stack Engineer & Entrepreneur',
-    description: '',
+    title: 'Huseyin Karatas',
+    description: 'Full-Stack Engineer & Entrepreneur.',
     images: [{ url: '/og', width: 1200, height: 630 }],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Huseyin Karatas — Full-Stack Engineer & Entrepreneur',
-    description: '',
+    title: 'Huseyin Karatas',
+    description: 'Full-Stack Engineer & Entrepreneur.',
     images: ['/og'],
   },
   robots: {
