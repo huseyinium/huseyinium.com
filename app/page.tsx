@@ -39,7 +39,6 @@ export default async function Home() {
       {/* <About /> */}
       <Projects />
       <Experience />
-      <Skills />
       <Principles />
       {/*  <Achievements /> */}
       {/* <BlogSection posts={recentPosts} /> */}
