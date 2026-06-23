@@ -59,11 +59,13 @@ export function Navbar() {
         visible ? 'translate-y-0' : '-translate-y-24'
       }`}
     >
-      <nav className="flex w-full max-w-4xl items-center justify-between gap-4 rounded-full border border-white/10 bg-black/40 px-4 py-2.5 shadow-lg backdrop-blur-xl">
+      <nav className="flex w-auto items-center justify-between gap-4 rounded-full border border-white/10 bg-black/40 px-4 py-2.5 shadow-lg backdrop-blur-xl md:w-full md:max-w-4xl">
         <Link href="/#" className="flex items-center gap-2 shrink-0">
           {/* TODO: swap for <Image> logo once provided */}
           <Image src={'/images/my-pp.svg'} alt="Huseyin Karatas PP" width={40} height={40} />
-          <span className="font-display text-sm font-semibold text-white">Huseyin Karatas</span>
+          <span className="hidden font-display text-sm font-semibold text-white sm:inline">
+            Huseyin Karatas
+          </span>
         </Link>
 
         <div className="hidden items-center gap-6 md:flex">
