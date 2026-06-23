@@ -36,9 +36,10 @@ export default async function Home() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
       />
       <Hero />
-      {/* <About /> */}
+      <About />
       <Projects />
       <Experience />
+      <Skills />
       <Principles />
       {/*  <Achievements /> */}
       {/* <BlogSection posts={recentPosts} /> */}
