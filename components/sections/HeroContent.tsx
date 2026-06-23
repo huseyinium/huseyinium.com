@@ -30,7 +30,7 @@ const ctaVariants = {
 export function HeroContent() {
   return (
     <>
-      <div className="absolute inset-0 z-0 h-full w-full rounded-3xl! bg-background">
+      <div className="absolute inset-0 z-0 h-full w-full rounded-3xl!">
         <WebglErrorBoundary
           fallback={<div className="absolute inset-0 rounded-3xl! bg-background" />}
         >

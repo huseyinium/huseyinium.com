@@ -80,9 +80,9 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} ${calSans.variable} dark h-full antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} ${calSans.variable} dark h-full antialiased overflow-x-hidden!`}
     >
-      <body className="flex min-h-full flex-col overflow-x-hidden">
+      <body className="flex min-h-full flex-col overflow-x-hidden!">
         <TooltipProvider>
           <Navbar />
           <main className="flex-1">
