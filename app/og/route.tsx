@@ -43,7 +43,7 @@ export async function GET() {
         Huseyin Karatas
       </div>
       <div style={{ fontSize: 24, color: '#9ca3af', lineHeight: 1.5, fontFamily: 'Geist' }}>
-        Co-Founder & Full-Stack Engineer
+        Full-Stack Engineer & Entrepreneur
       </div>
       <div
         style={{
