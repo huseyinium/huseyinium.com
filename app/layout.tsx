@@ -82,7 +82,7 @@ export default function RootLayout({
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} ${calSans.variable} dark h-full antialiased`}
     >
-      <body className="flex min-h-full flex-col overflow-x-clip">
+      <body className="flex min-h-full flex-col overflow-x-hidden">
         <TooltipProvider>
           <Navbar />
           <main className="flex-1">

@@ -196,6 +196,22 @@
 html {
   color-scheme: dark;
   scroll-behavior: smooth;
+  scrollbar-color: var(--color-accent) var(--color-bg-subtle);
+  scrollbar-width: thin;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-bg-subtle);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-accent);
+  border-radius: 9999px;
 }
 
 body {
