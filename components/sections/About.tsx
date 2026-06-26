@@ -1,6 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import Image from 'next/image'
 import CurvedLoop from '../react-bits/CurvedLoopText'
 
 // const STATS = [
@@ -14,13 +15,6 @@ import CurvedLoop from '../react-bits/CurvedLoopText'
 //   { value: 'METU', label: 'METU student' },
 // ]
 
-const SOCIAL_LINKS = [
-  { label: 'LinkedIn', href: 'https://linkedin.com/in/huseyinlorakaratas' },
-  { label: 'GitHub', href: 'https://github.com/huseyinium' },
-  { label: 'YouTube', href: 'https://youtube.com/@huseyinium' },
-  { label: 'Instagram', href: 'https://instagram.com/huseyinium' },
-]
-
 const paragraphVariants = {
   hidden: { opacity: 0, y: 20 },
   visible: (i: number) => ({ opacity: 1, y: 0, transition: { delay: i * 0.15, duration: 0.5 } }),
@@ -32,17 +26,34 @@ export function About() {
       <div className="container mx-auto px-6 max-w-6xl">
         <h2 className="font-cal text-4xl md:text-5xl text-foreground mb-16 text-center">About</h2>
 
-        <div className="grid  gap-12 md:gap-20">
-          {/* Left — story */}
-          <div className="flex flex-col gap-6 text-(--color-text-muted) leading-relaxed ">
+        <div className="grid grid-cols-1 md:grid-cols-[280px_1fr] gap-12 md:gap-20 items-center">
+          {/* Left — portrait */}
+          <motion.div
+            className="flex justify-center md:justify-start"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            viewport={{ once: true }}
+          >
+            <Image
+              src="/images/my-pp.svg"
+              alt="Huseyin Karatas"
+              width={280}
+              height={280}
+              className="w-48 h-48 md:w-70 md:h-70 rounded-full border border-(--color-border)"
+            />
+          </motion.div>
+
+          {/* Right — story */}
+          <div className="flex flex-col gap-6 text-(--color-text-muted) leading-relaxed">
             {[
               {
                 id: 'about-para-builder' as const,
-                text: "I'm Huseyin Karatas, a 22 year old full-stack engineer and entrepreneur.",
+                text: "I'm Huseyin Karatas, a 22-year-old full-stack engineer and entrepreneur, graduated from METU, Turkiye's top technical university. I've spent the last 5+ years building software products from zero to production.",
               },
               {
                 id: 'about-para-builder' as const,
-                text: "I've been building since I'm 17.",
+                text: "Across 20+ projects, I've shipped regulated fintech platforms, developer tools, and B2B software with real users and revenue.",
               },
             ].map((para, i) => (
               <motion.p
@@ -51,7 +62,7 @@ export function About() {
                 custom={i}
                 variants={paragraphVariants}
                 initial="hidden"
-                className="text-gray-300 text-center"
+                className="text-gray-200 text-lg text-center md:text-left"
                 whileInView="visible"
                 viewport={{ once: true }}
               >
