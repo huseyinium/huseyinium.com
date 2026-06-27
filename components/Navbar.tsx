@@ -7,7 +7,7 @@ import { Sheet, SheetContent, SheetTitle } from '@/components/ui/sheet'
 import Image from 'next/image'
 
 const NAV_LINKS = [
-  /*  { label: 'About', href: '/#about' }, */
+  { label: 'About', href: '/#about' },
   { label: 'Projects', href: '/#projects' },
   { label: 'Skills', href: '/#skills' },
   { label: 'Experience', href: '/#experience' },
